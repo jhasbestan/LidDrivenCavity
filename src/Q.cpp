@@ -50,7 +50,7 @@ Q::Q(int nmax1, double dx1, double dy1) {
 
   double C = 0.0;
 
-  for (int i = 0; i < sizeS; i++) {
+  for (uint i = 0; i < sizeS; i++) {
     u[i] = C;
     v[i] = C;
 
@@ -61,11 +61,11 @@ Q::Q(int nmax1, double dx1, double dy1) {
     vp[i] = C;
   }
 
-  for (int i = 0; i < 2 * sizeS; i++) {
+  for (uint i = 0; i < 2 * sizeS; i++) {
     Res[i] = 0.0;
   }
 
-  for (int i = 0; i < sizeP; i++) {
+  for (uint i = 0; i < sizeP; i++) {
     p[i] = 0.0;
     pn[i] = 0.0;
     pp[i] = 0.0;
@@ -87,7 +87,6 @@ Q::~Q() {
 void Q::initialize(int N, double *val) {}
 
 void Q::VTK_out(double *X, double *Y, int N) {
-  unsigned int i, j, k;
 
   FILE *fp = NULL;
   int M = N;
@@ -108,9 +107,9 @@ void Q::VTK_out(double *X, double *Y, int N) {
   fprintf(fp, "DIMENSIONS %d %d %d\n", N, M, 1);
   fprintf(fp, "POINTS %d float\n", M * N);
 
-  for (k = 0; k < 1; k++) {
-    for (j = 0; j < N; j++) {
-      for (i = 0; i < N; i++) {
+  for (int k = 0; k < 1; k++) {
+    for (int j = 0; j < N; j++) {
+      for (int i = 0; i < N; i++) {
         fprintf(fp, "%lf %lf %lf\n", X[i], Y[j], 0.0);
       }
     }
@@ -121,16 +120,16 @@ void Q::VTK_out(double *X, double *Y, int N) {
   fprintf(fp, "SCALARS U float 1\n");
   fprintf(fp, "LOOKUP_TABLE default\n");
 
-  for (j = 1; j < N; j++) {
-    for (i = 1; i < N; i++) {
+  for (int j = 1; j < N; j++) {
+    for (int i = 1; i < N; i++) {
       fprintf(fp, "%lf\n", (u[uIdx(i, j)]));
     }
   }
   fprintf(fp, "SCALARS V float 1\n");
   fprintf(fp, "LOOKUP_TABLE default\n");
 
-  for (j = 1; j < N; j++) {
-    for (i = 1; i < N; i++) {
+  for (int j = 1; j < N; j++) {
+    for (int i = 1; i < N; i++) {
 
       fprintf(fp, "%lf\n", (v[vIdx(i, j)]));
     }
@@ -138,8 +137,8 @@ void Q::VTK_out(double *X, double *Y, int N) {
   fprintf(fp, "SCALARS P float 1\n");
   fprintf(fp, "LOOKUP_TABLE default\n");
 
-  for (j = 1; j < N; j++) {
-    for (i = 1; i < N; i++) {
+  for (int j = 1; j < N; j++) {
+    for (int i = 1; i < N; i++) {
       fprintf(fp, " %lf\n", p[pIdx(i, j)]);
     }
   }
@@ -166,8 +165,8 @@ void Q::VTK_out_with_ghost(double *X, double *Y) {
   fprintf(fp, "DIMENSIONS %d %d %d\n", N, M, 1);
   fprintf(fp, "POINTS %d float\n", M * N);
 
-  for (unsigned int j = 0; j < N; j++) {
-    for (unsigned int i = 0; i < N; i++) {
+  for (int j = 0; j < N; j++) {
+    for (int i = 0; i < N; i++) {
       fprintf(fp, "%lf %lf %lf\n", X[i], Y[j], 0.0);
     }
   }
@@ -177,8 +176,8 @@ void Q::VTK_out_with_ghost(double *X, double *Y) {
   fprintf(fp, "SCALARS U float 1\n");
   fprintf(fp, "LOOKUP_TABLE default\n");
 
-  for (unsigned int j = 0; j < longEnd; j++) {
-    for (unsigned int i = 0; i < longEnd; i++) {
+  for (uint j = 0; j < longEnd; j++) {
+    for (uint i = 0; i < longEnd; i++) {
 #if (AVG)
       fprintf(fp, "%lf\n", (u[uIdx(i, j)] + u[uIdx(i + 1, j)]) * 0.5);
 #else
@@ -528,8 +527,7 @@ void Q::project() {
 
 void Q::predict() {
 
-  for (int i = 0; i < sizeS; i++) {
-
+  for (uint i = 0; i < sizeS; i++) {
     un[i] = -Res[i] * dt + u[i];
     vn[i] = -Res[sizeS + i] * dt + v[i];
   }
@@ -538,18 +536,14 @@ void Q::predict() {
 void Q::correct() {
 
   for (uint i = 1; i < longEnd; i++) {
-
     for (uint j = 1; j < shortEnd; j++) {
-
       un[uIdx(i, j)] =
           -dt * (pn[pIdx(i, j)] - pn[pIdx(i - 1, j)]) / dx + un[uIdx(i, j)];
     }
   }
 
   for (uint i = 1; i < shortEnd; i++) {
-
     for (uint j = 1; j < longEnd; j++) {
-
       vn[vIdx(i, j)] =
           -dt * (pn[pIdx(i, j)] - pn[pIdx(i, j - 1)]) / dy + vn[vIdx(i, j)];
     }
@@ -560,11 +554,8 @@ void Q::correct() {
 
 void Q::setNeumanPressure() {
   // apply newman bc on the solid
-
   // we solid faces so five neuman or solid
-
-  for (uint i = 0; i < nmax; i++) {
-
+  for (int i = 0; i < nmax; i++) {
     pn[pIdx(i, nmax - 1)] = pn[pIdx(i, nmax - 2)];
     pn[pIdx(i, 0)] = pn[pIdx(i, 1)];
   }
@@ -1222,17 +1213,10 @@ void Q::setNeumanPressureLDC() {
 
   // we solid faces so five neuman or solid
 
-  for (uint i = 0; i < nmax; i++) {
-    //           for ( uint j = 0; j < nmax; j++ )
-    {
-
-      //           pn[pIdx( i, nmax - 1 )] = pn[pIdx( i, nmax - 2 )];
-
+  for (int i = 0; i < nmax; i++) {
       pn[pIdx(i, 0)] = pn[pIdx(i, 1)];
       pn[pIdx(0, i)] = pn[pIdx(1, i)];
       pn[pIdx(nmax - 1, i)] = pn[pIdx(nmax - 2, i)];
-      //                pn[pIdx( i, nmax - 1, j )] = pn[pIdx( i, nmax - 2, j )];
-    }
   }
 
   //            pn[pIdx(0,0)]=0.0;

@@ -102,7 +102,8 @@ message("header files" ${HEADER_FILES})
 # insert -pg instead of -g for checking with gprof
 # gprof bin/incomp > out.text  
 if(UNIX)
-   SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++1y -O3 -Wunused-variable ")
+##   SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++1y -O3 -Wunused-variable ")
+   SET(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -O3 -march=skylake-avx512 -qopt-zmm-usage=high -fp-model fast=2 -no-prec-div   -qopt-report-phase=vec -qopt-report=5 -qopenmp")
 #    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++1y  -O3 -Wunused-variable ")
 #    SET(CMAKE_EXEC_LINKER_FLAGS "${CMAKE_EXEC_LINKER_FLAGS} -Wall -std=gnu++0x" )
     SET(CMAKE_EXEC_LINKER_FLAGS "${CMAKE_EXEC_LINKER_FLAGS} -Wall -std=c++1y -Wunused-variable" )
@@ -166,8 +167,6 @@ set(CPACK_SOURCE_PACKAGE_FILE_NAME "incomp-${DATE}")
 # projects it is normally the src directory that includes *.cpp and *.h files
 
 SET(CPACK_SOURCE_INSTALLED_DIRECTORIES "${dir}/src;/")
-
-SET(CPACK_PACKAGE_VENDOR "BSU")
 
 # If you like to add any other files to archieve, need to use install file
 # command, now in addition to source I am compresing the CMakeList.txt along
