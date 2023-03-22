@@ -6,9 +6,6 @@ double rhs(double &x, double &y, double &z);
 void Struct_2D(double Xa,double Xb, double Ya, double Yb,int N, int M,double **X, double **Y);
 void VTK_out(double *X, double*Y,double *Z,int N, int M,int ID);
 
-
-
-
 int main()
 {
 

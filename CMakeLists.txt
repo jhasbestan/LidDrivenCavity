@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8.11)
 
-project(amrGem)
+project(incomp)
 
 #disable in source build
 set(CMAKE_DISABLE_IN_SOURCE_BUILD ON)
@@ -41,7 +41,7 @@ message("project binary dir" ${EXECUTABLE_OUTPUT_PATH})
 message("CMAKE SOURCE DIR:" ${CMAKE_SOURCE_DIR})
 message("CMAKE_BINARY_DIR:" ${CMAKE_BINARY_DIR})
 
-# Out-of-Source build is required by amrGem, this if statement prevents
+# Out-of-Source build is required by incomp, this if statement prevents
 # in-source-builds 
 
 if ( ${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_BINARY_DIR})
@@ -100,7 +100,7 @@ set(HEADER_FILES "${dir}/src/include/header.h")
 message("header files" ${HEADER_FILES})
 
 # insert -pg instead of -g for checking with gprof
-# gprof bin/amrGem > out.text  
+# gprof bin/incomp > out.text  
 if(UNIX)
    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++1y -O3 -Wunused-variable ")
 #    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++1y  -O3 -Wunused-variable ")
@@ -109,11 +109,11 @@ if(UNIX)
 endif()
 
 # Generate Object Files
-add_executable(amrGem ${OBJ} ${HEADER_FILES}) 
+add_executable(incomp ${OBJ} ${HEADER_FILES}) 
 
-target_link_libraries(amrGem  ${HDF5_C_LIBRARIES})
+target_link_libraries(incomp  ${HDF5_C_LIBRARIES})
 
-#install(TARGETS amrGem DESTINATION ${dir/}bin)
+#install(TARGETS incomp DESTINATION ${dir/}bin)
 
 ############################################################################
 #
@@ -158,9 +158,9 @@ SET(CPACK_SOURCE_GENERATOR "TGZ")
 
 #message("package name: " ${CPACK_PACKAGE_NAME})
 
-set(CPACK_PACKAGE_FILE_NAME "amrGem-${DATE}")
+set(CPACK_PACKAGE_FILE_NAME "incomp-${DATE}")
 
-set(CPACK_SOURCE_PACKAGE_FILE_NAME "amrGem-${DATE}")
+set(CPACK_SOURCE_PACKAGE_FILE_NAME "incomp-${DATE}")
 
 # set the directory you would like to be compressed, For under development
 # projects it is normally the src directory that includes *.cpp and *.h files
@@ -182,9 +182,9 @@ install(FILES ${dir}/CMakeLists.txt DESTINATION ${dir}/src)
 
 message("file name:" ${CPACK_PACKAGE_FILE_NAME})
 
-#install(TARGETS  amrGem ARCHIVE  DESTINATION archieve)
+#install(TARGETS  incomp ARCHIVE  DESTINATION archieve)
 
-# This variable (CPACK_OUTPUT_FILE_PREFIX)  will put the result of amrGem.date.tar.gz into the folder
+# This variable (CPACK_OUTPUT_FILE_PREFIX)  will put the result of incomp.date.tar.gz into the folder
 # named archieve, this is only available in  in CMake versions >= 2.8.3 
 
 set(CPACK_OUTPUT_FILE_PREFIX "${dir}/archieve")

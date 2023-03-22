@@ -23,7 +23,6 @@ class Q
 {
 private:
 
-
 #if(1)
 
 double * __restrict__ u=nullptr;
@@ -56,14 +55,11 @@ double *pn=nullptr;
 
 double * __restrict__ Res=nullptr;
 
-
-
 #endif
 
-
-
 double dx;
-double dy=dx,dz=dx;
+double dy;
+double dz;
 double dt;
 
 

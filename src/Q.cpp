@@ -11,7 +11,7 @@ Q::Q( int nmax1, double dx1, double dy1 )
 
     dx = dx1;
     dy = dy1;
-    dt = 0.0005;
+    dt = 0.005;
 
     nmax = nmax1 + 2;
 
@@ -391,7 +391,7 @@ void Q::getRes( double Re )
                         - ( ( u[uIdx( i, j )] - u[uIdx( i, j - 1 )] ) / dy + ( v[vIdx( i, j )] - v[vIdx( i - 1, j )] ) / dx ) )
 
 // skew symmetric formulation 
-// first trial dumb as sack of rox, making analogy with Gaussian Quadrature, 
+// first trial dumb as sack of rocks, making analogy with Gaussian Quadrature, 
 // need to use more points than one to integrate 
 //
 /*
@@ -401,12 +401,8 @@ void Q::getRes( double Re )
                  +c2*(0.25*(u[uIdx(i,j)]+u[uIdx(i+1,j)])*(u[uIdx(i+1,j)]-u[uIdx(i,j)])/dx+0.25*(u[uIdx(i,j)]+u[uIdx(i-1,j)])*(u[uIdx(i,j)]-u[uIdx(i-1,j)])/dx 
                  +(0.25*(v[vIdx(i,j)]+v[vIdx(i-1,j)])*(u[uIdx(i,j)]-u[uIdx(i,j-1)])/dy+0.25*(v[vIdx(i-1,j+1)]+v[vIdx(i,j+1)])*(u[uIdx(i,j+1)]-u[uIdx(i,j)])/dy));
 
-
-
-
                 // pressure grad
                 //                  +1./dx*(p[pIdx(i,j)]-p[pIdx(i-1,j)]);
-
                 //                     cout<<un[uIdx(i,j,k)]<<endl;
             }
         }
@@ -438,11 +434,6 @@ void Q::getRes( double Re )
 
                   +c2*(0.25*(v[vIdx(i,j)]+v[vIdx(i,j+1)])*(v[vIdx(i,j+1)]-v[vIdx(i,j)])/dy+0.25*(v[vIdx(i,j)]+v[vIdx(i,j-1)])*(v[vIdx(i,j)]-v[vIdx(i,j-1)])/dy 
                  +(0.25*(u[uIdx(i,j)]+u[uIdx(i,j-1)])*(v[vIdx(i,j)]-v[vIdx(i-1,j)])/dx+0.25*(u[uIdx(i+1,j-1)]+u[uIdx(i+1,j)])*(v[vIdx(i+1,j)]-v[vIdx(i,j)])/dx));
-
-
-
-
-
 
                 // pressure grad
                 //                 +1./dy*(p[pIdx(i,j)]-p[pIdx(i,j-1)]);
@@ -718,11 +709,8 @@ void Q::correct()
 
         for ( uint j = 1; j < shortEnd; j++ )
         {
-            //                for ( uint k = 1; k < shortEnd; k++ )
-            {
 
                 un[uIdx( i, j )] = -dt * ( pn[pIdx( i, j )] - pn[pIdx( i - 1, j )] ) / dx + un[uIdx( i, j )];
-            }
         }
     }
 
@@ -731,11 +719,8 @@ void Q::correct()
 
         for ( uint j = 1; j < longEnd; j++ )
         {
-            //               for ( uint k = 1; k < shortEnd; k++ )
-            {
 
                 vn[vIdx( i, j )] = -dt * ( pn[pIdx( i, j )] - pn[pIdx( i, j - 1 )] ) / dy + vn[vIdx( i, j )];
-            }
         }
     }
 }
