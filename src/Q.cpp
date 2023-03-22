@@ -72,7 +72,17 @@ Q::Q(int nmax1, double dx1, double dy1) {
   }
 }
 
-Q::~Q() { delete[] u, v, p, up, vp, pp, un, vn, pn; }
+Q::~Q() { 
+delete[] u;
+delete[] v;
+delete[] p;
+delete[] up; 
+delete[] vp;
+delete[] pp;
+delete[] un;
+delete[] vn;
+delete[] pn;
+ }
 
 void Q::initialize(int N, double *val) {}
 
