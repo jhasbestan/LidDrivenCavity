@@ -113,8 +113,8 @@ void Struct_2D(double Xa, double Xb, double Ya, double Yb, int N, int M,
   double Xh = (Xb - Xa) / (hx);
   double Yh = (Yb - Ya) / (hy);
 
-  (*X) = (double *)new double[N + 1];
-  (*Y) = (double *)new double[N + 1];
+  (*X) = new double[N + 1];
+  (*Y) = new double[N + 1];
 
   for (int i = 0; i < N + 1; i++) {
     (*X)[i] = Xa + Xh * i;

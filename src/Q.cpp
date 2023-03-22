@@ -10,7 +10,7 @@ Q::Q(int nmax1, double dx1, double dy1) {
 
   dx = dx1;
   dy = dy1;
-  dt = 0.005;
+  dt = 0.001;
 
   nmax = nmax1 + 2;
 
@@ -461,17 +461,20 @@ void Q::getResNorm(double *del_u) {
 // FD formulation
 void Q::project() {
 
+//  std::cout<<" calling project ... "<<std::endl;
   // Gaus-Seidel Iteration
   double err=1.0;
   double val;
 
   double c1 = 2. / dx / dx + 2. / dy / dy;
 
-  pn[pIdx(5, 5)] = 0.0;
+//  pn[pIdx(5, 5)] = 0.0;
   //  while ( err > 1.e-12 )
   for (uint l = 0; l < 5; l++) {
     err = 0.0;
+#pragma omp parallel for
     for (uint i = 1; i < shortEnd; i++) {
+#pragma omp simd
       for (uint j = 1; j < shortEnd; j++) {
         //                    for ( uint k = 1; k < shortEnd; k++ )
         {
@@ -497,7 +500,7 @@ void Q::project() {
 #else
 
 void Q::project() {
-
+  std::cout<<" calling project "<<std::endl;
   // Gaus-Seidel Iteration
   double err = 1.0;
   double val;
