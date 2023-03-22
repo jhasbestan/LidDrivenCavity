@@ -72,17 +72,17 @@ Q::Q(int nmax1, double dx1, double dy1) {
   }
 }
 
-Q::~Q() { 
-delete[] u;
-delete[] v;
-delete[] p;
-delete[] up; 
-delete[] vp;
-delete[] pp;
-delete[] un;
-delete[] vn;
-delete[] pn;
- }
+Q::~Q() {
+  delete[] u;
+  delete[] v;
+  delete[] p;
+  delete[] up;
+  delete[] vp;
+  delete[] pp;
+  delete[] un;
+  delete[] vn;
+  delete[] pn;
+}
 
 void Q::initialize(int N, double *val) {}
 
@@ -90,17 +90,6 @@ void Q::VTK_out(double *X, double *Y, int N) {
   unsigned int i, j, k;
 
   FILE *fp = NULL;
-  /*
-      i=1;j=2;k=4;
-
-      u[uIdx(i,j,k)]=5.0;
-      v[vIdx(i,j,k)]=5.0;
-      w[wIdx(i,j,k)]=5.0;
-      p[pIdx(i,j,k)]=5.0;
-
-      cout<<" "<<uIdx(i,j,k)<<" "<<vIdx(i,j,k)<<" "<<wIdx(i,j,k)<<endl;
-  */
-
   int M = N;
 
   // here we get some data into variable data
@@ -134,10 +123,7 @@ void Q::VTK_out(double *X, double *Y, int N) {
 
   for (j = 1; j < N; j++) {
     for (i = 1; i < N; i++) {
-      // fprintf( fp, "%lf\n", ( u[uIndex( i, j, k )] + u[uIndex( i + 1, j, k )]
-      // ) * 0.5 );
       fprintf(fp, "%lf\n", (u[uIdx(i, j)]));
-      //        cout<<q1.Zindex(i,j,0)<<endl;
     }
   }
   fprintf(fp, "SCALARS V float 1\n");
@@ -145,67 +131,23 @@ void Q::VTK_out(double *X, double *Y, int N) {
 
   for (j = 1; j < N; j++) {
     for (i = 1; i < N; i++) {
-      // fprintf(fp,"%lf\n",(double)q1.Zindex(i,j,k)/((N-1)*(N-1)*(N-1)));
-      // fprintf( fp, "%lf\n",q[index( i, j, k )] );
-      //      fprintf(fp,"%lf\n",1.0);
 
-      // fprintf( fp, "%lf\n", ( v[vIndex( i, j, k )] + v[vIndex( i, j + 1, k )]
-      // ) * 0.5 );
       fprintf(fp, "%lf\n", (v[vIdx(i, j)]));
-      //        cout<<q1.Zindex(i,j,0)<<endl;
     }
   }
-  /*
-      fprintf( fp, "SCALARS w float 1\n" );
-      fprintf( fp, "LOOKUP_TABLE default\n" );
-
-
-          for ( j = 1; j < N; j++ )
-          {
-              for ( i = 1; i < N; i++ )
-              {
-                  // fprintf( fp, "%lf\n", ( w[wIndex( i, j, k )] + w[wIndex( i,
-     j, k + 1 )] ) * 0.5 ); fprintf( fp, "%lf\n", ( w[wIdx( i, j, k )] ) );
-                  //        cout<<q1.Zindex(i,j,0)<<endl;
-              }
-          }
-  */
   fprintf(fp, "SCALARS P float 1\n");
   fprintf(fp, "LOOKUP_TABLE default\n");
 
-  int cout = 0;
-
   for (j = 1; j < N; j++) {
     for (i = 1; i < N; i++) {
-      // fprintf(fp,"%lf\n",(double)q1.Zindex(i,j,k)/((N-1)*(N-1)*(N-1)));
-      // fprintf( fp, "%lf\n",q[index( i, j, k )] );
-      //      fprintf(fp,"%lf\n",1.0);
-
-      // fprintf( fp, "%d \t %lf\n",cout,p[index( i, j, k )] );
       fprintf(fp, " %lf\n", p[pIdx(i, j)]);
-      //          cout++;
-      //        cout<<q1.Zindex(i,j,0)<<endl;
     }
   }
-
   fclose(fp);
 }
 #if (1)
 void Q::VTK_out_with_ghost(double *X, double *Y) {
-  unsigned int i, j, k;
-
   FILE *fp = NULL;
-  /*
-      i=1;j=2;k=4;
-
-      u[uIdx(i,j,k)]=5.0;
-      v[vIdx(i,j,k)]=5.0;
-      w[wIdx(i,j,k)]=5.0;
-      p[pIdx(i,j,k)]=5.0;
-
-      cout<<" "<<uIdx(i,j,k)<<" "<<vIdx(i,j,k)<<" "<<wIdx(i,j,k)<<endl;
-  */
-
   int M, N;
 
   // here we get some data into variable data
@@ -224,12 +166,9 @@ void Q::VTK_out_with_ghost(double *X, double *Y) {
   fprintf(fp, "DIMENSIONS %d %d %d\n", N, M, 1);
   fprintf(fp, "POINTS %d float\n", M * N);
 
-  //    for ( k = 0; k < N; k++ )
-  {
-    for (j = 0; j < N; j++) {
-      for (i = 0; i < N; i++) {
-        fprintf(fp, "%lf %lf %lf\n", X[i], Y[j], 0.0);
-      }
+  for (unsigned int j = 0; j < N; j++) {
+    for (unsigned int i = 0; i < N; i++) {
+      fprintf(fp, "%lf %lf %lf\n", X[i], Y[j], 0.0);
     }
   }
 
@@ -238,79 +177,35 @@ void Q::VTK_out_with_ghost(double *X, double *Y) {
   fprintf(fp, "SCALARS U float 1\n");
   fprintf(fp, "LOOKUP_TABLE default\n");
 
-  for (k = 0; k < 1; k++) {
-
-    for (j = 0; j < longEnd; j++) {
-      for (i = 0; i < longEnd; i++) {
-
+  for (unsigned int j = 0; j < longEnd; j++) {
+    for (unsigned int i = 0; i < longEnd; i++) {
 #if (AVG)
-        fprintf(fp, "%lf\n", (u[uIdx(i, j)] + u[uIdx(i + 1, j)]) * 0.5);
+      fprintf(fp, "%lf\n", (u[uIdx(i, j)] + u[uIdx(i + 1, j)]) * 0.5);
 #else
 
-        fprintf(fp, "%lf\n", (u[uIdx(i, j)]));
+      fprintf(fp, "%lf\n", (u[uIdx(i, j)]));
 #endif
-        //        cout<<q1.Zindex(i,j,0)<<endl;
-      }
     }
   }
 
   fprintf(fp, "SCALARS V float 1\n");
   fprintf(fp, "LOOKUP_TABLE default\n");
 
-  for (k = 0; k < 1; k++) {
-
-    for (j = 0; j < longEnd; j++) {
-      for (i = 0; i < longEnd; i++) {
-        // fprintf(fp,"%lf\n",(double)q1.Zindex(i,j,k)/((N-1)*(N-1)*(N-1)));
-        // fprintf( fp, "%lf\n",q[index( i, j, k )] );
-        //      fprintf(fp,"%lf\n",1.0);
-
+  for (unsigned int j = 0; j < longEnd; j++) {
+    for (unsigned int i = 0; i < longEnd; i++) {
 #if (AVG)
-        fprintf(fp, "%lf\n", (v[vIdx(i, j)] + v[vIdx(i, j + 1)]) * 0.5);
+      fprintf(fp, "%lf\n", (v[vIdx(i, j)] + v[vIdx(i, j + 1)]) * 0.5);
 #else
-        fprintf(fp, "%lf\n", (v[vIdx(i, j)]));
+      fprintf(fp, "%lf\n", (v[vIdx(i, j)]));
 #endif
-        //        cout<<q1.Zindex(i,j,0)<<endl;
-      }
     }
   }
-  /*
-      fprintf( fp, "SCALARS w float 1\n" );
-      fprintf( fp, "LOOKUP_TABLE default\n" );
-
-      for ( k = 0; k < longEnd; k++ )
-      {
-
-          for ( j = 0; j < longEnd; j++ )
-          {
-              for ( i = 0; i < longEnd; i++ )
-              {
-                  // fprintf( fp, "%lf\n", ( w[wIndex( i, j, k )] + w[wIndex( i,
-     j, k + 1 )] ) * 0.5 ); fprintf( fp, "%lf\n", ( w[wIdx( i, j, k )] ) );
-                  //        cout<<q1.Zindex(i,j,0)<<endl;
-              }
-          }
-      }
-  */
-
   fprintf(fp, "SCALARS P float 1\n");
   fprintf(fp, "LOOKUP_TABLE default\n");
 
-  int cout = 0;
-
-  for (k = 0; k < 1; k++) {
-
-    for (j = 0; j < longEnd; j++) {
-      for (i = 0; i < longEnd; i++) {
-        // fprintf(fp,"%lf\n",(double)q1.Zindex(i,j,k)/((N-1)*(N-1)*(N-1)));
-        // fprintf( fp, "%lf\n",q[index( i, j, k )] );
-        //      fprintf(fp,"%lf\n",1.0);
-
-        // fprintf( fp, "%d \t %lf\n",cout,p[index( i, j, k )] );
-        fprintf(fp, " %lf\n", p[pIdx(i, j)]);
-        //          cout++;
-        //        cout<<q1.Zindex(i,j,0)<<endl;
-      }
+  for (unsigned int j = 0; j < longEnd; j++) {
+    for (unsigned int i = 0; i < longEnd; i++) {
+      fprintf(fp, " %lf\n", p[pIdx(i, j)]);
     }
   }
 
@@ -337,109 +232,95 @@ void Q::getRes(double Re) {
 
   double c1 = 0.5;
   double c2 = 0.5;
-  // AB
-  // c1=1.5,c2=0.5;
-  double cx = 1. / Re / dx / dx;
-  double cy = 1. / Re / dy / dy;
-
-  // cx=0.0, cy=0.0,cz=0.;
-  // cout<<cx<<" "<<cy<<" "<<cz<<"dt "<<dt<<endl;
 
   for (uint i = 1; i < longEnd; i++) {
 
     for (uint j = 1; j < shortEnd; j++) {
-      //                for ( uint k = 1; k < shortEnd; k++ )
-      {
-        Res[uIdx(i, j)] =
-            c1 * ((pow((u[uIdx(i + 1, j)] + u[uIdx(i, j)]), 2.) -
-                   pow(u[uIdx(i, j)] + u[uIdx(i - 1, j)], 2.)) /
-                      dx * 0.25 +
-                  0.25 / dy *
-                      ((v[vIdx(i, j + 1)] + v[vIdx(i - 1, j + 1)]) *
-                           (u[uIdx(i, j)] + u[uIdx(i, j + 1)]) -
-                       (v[vIdx(i, j)] + v[vIdx(i - 1, j)]) *
-                           (u[uIdx(i, j)] + u[uIdx(i, j - 1)])))
+      Res[uIdx(i, j)] =
+          c1 * ((pow((u[uIdx(i + 1, j)] + u[uIdx(i, j)]), 2.) -
+                 pow(u[uIdx(i, j)] + u[uIdx(i - 1, j)], 2.)) /
+                    dx * 0.25 +
+                0.25 / dy *
+                    ((v[vIdx(i, j + 1)] + v[vIdx(i - 1, j + 1)]) *
+                         (u[uIdx(i, j)] + u[uIdx(i, j + 1)]) -
+                     (v[vIdx(i, j)] + v[vIdx(i - 1, j)]) *
+                         (u[uIdx(i, j)] + u[uIdx(i, j - 1)])))
 
-            - 2. / Re / dx *
-                  ((u[uIdx(i + 1, j)] - u[uIdx(i, j)]) / dx -
-                   (u[uIdx(i, j)] - u[uIdx(i - 1, j)]) / dx) -
-            1. / Re / dy *
-                (((u[uIdx(i, j + 1)] - u[uIdx(i, j)]) / dy +
-                  (v[vIdx(i, j + 1)] - v[vIdx(i - 1, j + 1)]) / dx) -
-                 ((u[uIdx(i, j)] - u[uIdx(i, j - 1)]) / dy +
-                  (v[vIdx(i, j)] - v[vIdx(i - 1, j)]) / dx))
+          - 2. / Re / dx *
+                ((u[uIdx(i + 1, j)] - u[uIdx(i, j)]) / dx -
+                 (u[uIdx(i, j)] - u[uIdx(i - 1, j)]) / dx) -
+          1. / Re / dy *
+              (((u[uIdx(i, j + 1)] - u[uIdx(i, j)]) / dy +
+                (v[vIdx(i, j + 1)] - v[vIdx(i - 1, j + 1)]) / dx) -
+               ((u[uIdx(i, j)] - u[uIdx(i, j - 1)]) / dy +
+                (v[vIdx(i, j)] - v[vIdx(i - 1, j)]) / dx))
 
-            // skew symmetric formulation
-            // first trial dumb as sack of rocks, making analogy with Gaussian
-            // Quadrature, need to use more points than one to integrate
-            //
-            /*
-                             +c2*(u[uIdx(i,j)]*0.5/dx*(u[uIdx(i+1,j)]-u[uIdx(i,j)]+u[uIdx(i,j)]-u[uIdx(i-1,j)])
-                             +0.25*(v[vIdx(i,j)]+v[vIdx(i,j+1)]+
-               v[vIdx(i-1,j)]+v[vIdx(i-1,j+1)])*(u[uIdx(i,j+1)]-u[uIdx(i,j-1)])/2./dy);
-            */
-            + c2 * (0.25 * (u[uIdx(i, j)] + u[uIdx(i + 1, j)]) *
-                        (u[uIdx(i + 1, j)] - u[uIdx(i, j)]) / dx +
-                    0.25 * (u[uIdx(i, j)] + u[uIdx(i - 1, j)]) *
-                        (u[uIdx(i, j)] - u[uIdx(i - 1, j)]) / dx +
-                    (0.25 * (v[vIdx(i, j)] + v[vIdx(i - 1, j)]) *
-                         (u[uIdx(i, j)] - u[uIdx(i, j - 1)]) / dy +
-                     0.25 * (v[vIdx(i - 1, j + 1)] + v[vIdx(i, j + 1)]) *
-                         (u[uIdx(i, j + 1)] - u[uIdx(i, j)]) / dy));
+          // skew symmetric formulation
+          // first trial dumb as sack of rocks, making analogy with Gaussian
+          // Quadrature, need to use more points than one to integrate
+          //
+          /*
+                           +c2*(u[uIdx(i,j)]*0.5/dx*(u[uIdx(i+1,j)]-u[uIdx(i,j)]+u[uIdx(i,j)]-u[uIdx(i-1,j)])
+                           +0.25*(v[vIdx(i,j)]+v[vIdx(i,j+1)]+
+             v[vIdx(i-1,j)]+v[vIdx(i-1,j+1)])*(u[uIdx(i,j+1)]-u[uIdx(i,j-1)])/2./dy);
+          */
+          + c2 * (0.25 * (u[uIdx(i, j)] + u[uIdx(i + 1, j)]) *
+                      (u[uIdx(i + 1, j)] - u[uIdx(i, j)]) / dx +
+                  0.25 * (u[uIdx(i, j)] + u[uIdx(i - 1, j)]) *
+                      (u[uIdx(i, j)] - u[uIdx(i - 1, j)]) / dx +
+                  (0.25 * (v[vIdx(i, j)] + v[vIdx(i - 1, j)]) *
+                       (u[uIdx(i, j)] - u[uIdx(i, j - 1)]) / dy +
+                   0.25 * (v[vIdx(i - 1, j + 1)] + v[vIdx(i, j + 1)]) *
+                       (u[uIdx(i, j + 1)] - u[uIdx(i, j)]) / dy));
 
-        // pressure grad
-        //                  +1./dx*(p[pIdx(i,j)]-p[pIdx(i-1,j)]);
-        //                     cout<<un[uIdx(i,j,k)]<<endl;
-      }
+      // pressure grad
+      //                  +1./dx*(p[pIdx(i,j)]-p[pIdx(i-1,j)]);
+      //                     cout<<un[uIdx(i,j,k)]<<endl;
     }
   }
 
   for (uint i = 1; i < shortEnd; i++) {
 
     for (uint j = 1; j < longEnd; j++) {
-      //                for ( uint k = 1; k < shortEnd; k++ )
 
-      {
+      Res[sizeS + vIdx(i, j)] =
+          c1 * ((pow((v[vIdx(i, j + 1)] + v[vIdx(i, j)]), 2.) -
+                 pow(v[vIdx(i, j)] + v[vIdx(i, j - 1)], 2.)) /
+                    dy * 0.25 +
+                0.25 / dx *
+                    ((v[vIdx(i + 1, j)] + v[vIdx(i, j)]) *
+                         (u[uIdx(i + 1, j)] + u[uIdx(i + 1, j - 1)]) -
+                     (v[vIdx(i, j)] + v[vIdx(i - 1, j)]) *
+                         (u[uIdx(i, j)] + u[uIdx(i, j - 1)]))) -
+          2. / Re / dy *
+              ((v[vIdx(i, j + 1)] - v[vIdx(i, j)]) / dy -
+               (v[vIdx(i, j)] - v[vIdx(i, j - 1)]) / dy) -
+          1. / Re / dx *
+              (((u[uIdx(i + 1, j)] - u[uIdx(i + 1, j - 1)]) / dy +
+                (v[vIdx(i + 1, j)] - v[vIdx(i, j)]) / dx) -
+               ((u[uIdx(i, j)] - u[uIdx(i, j - 1)]) / dy +
+                (v[vIdx(i, j)] - v[vIdx(i - 1, j)]) / dx))
 
-        Res[sizeS + vIdx(i, j)] =
-            c1 * ((pow((v[vIdx(i, j + 1)] + v[vIdx(i, j)]), 2.) -
-                   pow(v[vIdx(i, j)] + v[vIdx(i, j - 1)], 2.)) /
-                      dy * 0.25 +
-                  0.25 / dx *
-                      ((v[vIdx(i + 1, j)] + v[vIdx(i, j)]) *
-                           (u[uIdx(i + 1, j)] + u[uIdx(i + 1, j - 1)]) -
-                       (v[vIdx(i, j)] + v[vIdx(i - 1, j)]) *
-                           (u[uIdx(i, j)] + u[uIdx(i, j - 1)]))) -
-            2. / Re / dy *
-                ((v[vIdx(i, j + 1)] - v[vIdx(i, j)]) / dy -
-                 (v[vIdx(i, j)] - v[vIdx(i, j - 1)]) / dy) -
-            1. / Re / dx *
-                (((u[uIdx(i + 1, j)] - u[uIdx(i + 1, j - 1)]) / dy +
-                  (v[vIdx(i + 1, j)] - v[vIdx(i, j)]) / dx) -
-                 ((u[uIdx(i, j)] - u[uIdx(i, j - 1)]) / dy +
-                  (v[vIdx(i, j)] - v[vIdx(i - 1, j)]) / dx))
+          // skew symmetric formulation
+          /* dumb version
+                           +c2*(v[vIdx(i,j)]*0.5/dy*(v[vIdx(i,j+1)]-v[vIdx(i,j)]+v[vIdx(i,j)]-v[vIdx(i,j-1)])
+                           +0.25*(u[uIdx(i,j)]+u[uIdx(i+1,j)]+
+             u[uIdx(i,j-1)]+u[uIdx(i+1,j-1)])*(v[vIdx(i+1,j)]-v[uIdx(i-1,j)])/2./dx);
+          */
 
-            // skew symmetric formulation
-            /* dumb version
-                             +c2*(v[vIdx(i,j)]*0.5/dy*(v[vIdx(i,j+1)]-v[vIdx(i,j)]+v[vIdx(i,j)]-v[vIdx(i,j-1)])
-                             +0.25*(u[uIdx(i,j)]+u[uIdx(i+1,j)]+
-               u[uIdx(i,j-1)]+u[uIdx(i+1,j-1)])*(v[vIdx(i+1,j)]-v[uIdx(i-1,j)])/2./dx);
-            */
+          + c2 * (0.25 * (v[vIdx(i, j)] + v[vIdx(i, j + 1)]) *
+                      (v[vIdx(i, j + 1)] - v[vIdx(i, j)]) / dy +
+                  0.25 * (v[vIdx(i, j)] + v[vIdx(i, j - 1)]) *
+                      (v[vIdx(i, j)] - v[vIdx(i, j - 1)]) / dy +
+                  (0.25 * (u[uIdx(i, j)] + u[uIdx(i, j - 1)]) *
+                       (v[vIdx(i, j)] - v[vIdx(i - 1, j)]) / dx +
+                   0.25 * (u[uIdx(i + 1, j - 1)] + u[uIdx(i + 1, j)]) *
+                       (v[vIdx(i + 1, j)] - v[vIdx(i, j)]) / dx));
 
-            + c2 * (0.25 * (v[vIdx(i, j)] + v[vIdx(i, j + 1)]) *
-                        (v[vIdx(i, j + 1)] - v[vIdx(i, j)]) / dy +
-                    0.25 * (v[vIdx(i, j)] + v[vIdx(i, j - 1)]) *
-                        (v[vIdx(i, j)] - v[vIdx(i, j - 1)]) / dy +
-                    (0.25 * (u[uIdx(i, j)] + u[uIdx(i, j - 1)]) *
-                         (v[vIdx(i, j)] - v[vIdx(i - 1, j)]) / dx +
-                     0.25 * (u[uIdx(i + 1, j - 1)] + u[uIdx(i + 1, j)]) *
-                         (v[vIdx(i + 1, j)] - v[vIdx(i, j)]) / dx));
+      // pressure grad
+      //                 +1./dy*(p[pIdx(i,j)]-p[pIdx(i,j-1)]);
 
-        // pressure grad
-        //                 +1./dy*(p[pIdx(i,j)]-p[pIdx(i,j-1)]);
-
-        //       cout<<vn[vIdx(i,j,k)]<<endl;
-      }
+      //       cout<<vn[vIdx(i,j,k)]<<endl;
     }
   }
 
@@ -450,97 +331,77 @@ void Q::getResTotal(double Re) {
 
   double c1 = 0.5;
   double c2 = 0.5;
-  // AB
-  // c1=1.5,c2=0.5;
-  double cx = 1. / Re / dx / dx;
-  double cy = 1. / Re / dy / dy;
-
-  // cx=0.0, cy=0.0,cz=0.;
-  // cout<<cx<<" "<<cy<<" "<<cz<<"dt "<<dt<<endl;
 
   for (uint i = 1; i < longEnd; i++) {
 
     for (uint j = 1; j < shortEnd; j++) {
-      //                for ( uint k = 1; k < shortEnd; k++ )
-      {
-        Res[uIdx(i, j)] =
-            c1 * ((pow((u[uIdx(i + 1, j)] + u[uIdx(i, j)]), 2.) -
-                   pow(u[uIdx(i, j)] + u[uIdx(i - 1, j)], 2.)) /
-                      dx * 0.25 +
-                  0.25 / dy *
-                      ((v[vIdx(i, j + 1)] + v[vIdx(i - 1, j + 1)]) *
-                           (u[uIdx(i, j)] + u[uIdx(i, j + 1)]) -
-                       (v[vIdx(i, j)] + v[vIdx(i - 1, j)]) *
-                           (u[uIdx(i, j)] + u[uIdx(i, j - 1)]))) -
-            2. / Re / dx *
-                ((u[uIdx(i + 1, j)] - u[uIdx(i, j)]) / dx -
-                 (u[uIdx(i, j)] - u[uIdx(i - 1, j)]) / dx) -
-            1. / Re / dy *
-                (((u[uIdx(i, j + 1)] - u[uIdx(i, j)]) / dy +
-                  (v[vIdx(i, j + 1)] - v[vIdx(i - 1, j + 1)]) / dx) -
-                 ((u[uIdx(i, j)] - u[uIdx(i, j - 1)]) / dy +
-                  (v[vIdx(i, j)] - v[vIdx(i - 1, j)]) / dx))
+      Res[uIdx(i, j)] =
+          c1 * ((pow((u[uIdx(i + 1, j)] + u[uIdx(i, j)]), 2.) -
+                 pow(u[uIdx(i, j)] + u[uIdx(i - 1, j)], 2.)) /
+                    dx * 0.25 +
+                0.25 / dy *
+                    ((v[vIdx(i, j + 1)] + v[vIdx(i - 1, j + 1)]) *
+                         (u[uIdx(i, j)] + u[uIdx(i, j + 1)]) -
+                     (v[vIdx(i, j)] + v[vIdx(i - 1, j)]) *
+                         (u[uIdx(i, j)] + u[uIdx(i, j - 1)]))) -
+          2. / Re / dx *
+              ((u[uIdx(i + 1, j)] - u[uIdx(i, j)]) / dx -
+               (u[uIdx(i, j)] - u[uIdx(i - 1, j)]) / dx) -
+          1. / Re / dy *
+              (((u[uIdx(i, j + 1)] - u[uIdx(i, j)]) / dy +
+                (v[vIdx(i, j + 1)] - v[vIdx(i - 1, j + 1)]) / dx) -
+               ((u[uIdx(i, j)] - u[uIdx(i, j - 1)]) / dy +
+                (v[vIdx(i, j)] - v[vIdx(i - 1, j)]) / dx))
 
-            + c2 * (0.25 * (u[uIdx(i, j)] + u[uIdx(i + 1, j)]) *
-                        (u[uIdx(i + 1, j)] - u[uIdx(i, j)]) / dx +
-                    0.25 * (u[uIdx(i, j)] + u[uIdx(i - 1, j)]) *
-                        (u[uIdx(i, j)] - u[uIdx(i - 1, j)]) / dx +
-                    (0.25 * (v[vIdx(i, j)] + v[vIdx(i - 1, j)]) *
-                         (u[uIdx(i, j)] - u[uIdx(i, j - 1)]) / dy +
-                     0.25 * (v[vIdx(i - 1, j + 1)] + v[vIdx(i, j + 1)]) *
-                         (u[uIdx(i, j + 1)] - u[uIdx(i, j)]) / dy));
+          + c2 * (0.25 * (u[uIdx(i, j)] + u[uIdx(i + 1, j)]) *
+                      (u[uIdx(i + 1, j)] - u[uIdx(i, j)]) / dx +
+                  0.25 * (u[uIdx(i, j)] + u[uIdx(i - 1, j)]) *
+                      (u[uIdx(i, j)] - u[uIdx(i - 1, j)]) / dx +
+                  (0.25 * (v[vIdx(i, j)] + v[vIdx(i - 1, j)]) *
+                       (u[uIdx(i, j)] - u[uIdx(i, j - 1)]) / dy +
+                   0.25 * (v[vIdx(i - 1, j + 1)] + v[vIdx(i, j + 1)]) *
+                       (u[uIdx(i, j + 1)] - u[uIdx(i, j)]) / dy));
 
-        // pressure grad
-        +1. / dx *(p[pIdx(i, j)] - p[pIdx(i - 1, j)]);
+      // pressure grad
+      //+1. / dx *(p[pIdx(i, j)] - p[pIdx(i - 1, j)]);
 
-        //                     cout<<un[uIdx(i,j,k)]<<endl;
-      }
+      //                     cout<<un[uIdx(i,j,k)]<<endl;
     }
   }
 
   for (uint i = 1; i < shortEnd; i++) {
-
     for (uint j = 1; j < longEnd; j++) {
-      //                for ( uint k = 1; k < shortEnd; k++ )
+      Res[sizeS + vIdx(i, j)] =
+          c1 * ((pow((v[vIdx(i, j + 1)] + v[vIdx(i, j)]), 2.) -
+                 pow(v[vIdx(i, j)] + v[vIdx(i, j - 1)], 2.)) /
+                    dy * 0.25 +
+                0.25 / dx *
+                    ((v[vIdx(i + 1, j)] + v[vIdx(i, j)]) *
+                         (u[uIdx(i + 1, j)] + u[uIdx(i + 1, j - 1)]) -
+                     (v[vIdx(i, j)] + v[vIdx(i - 1, j)]) *
+                         (u[uIdx(i, j)] + u[uIdx(i, j - 1)]))) -
+          2. / Re / dy *
+              ((v[vIdx(i, j + 1)] - v[vIdx(i, j)]) / dy -
+               (v[vIdx(i, j)] - v[vIdx(i, j - 1)]) / dy) -
+          1. / Re / dx *
+              (((u[uIdx(i + 1, j)] - u[uIdx(i + 1, j - 1)]) / dy +
+                (v[vIdx(i + 1, j)] - v[vIdx(i, j)]) / dx) -
+               ((u[uIdx(i, j)] - u[uIdx(i, j - 1)]) / dy +
+                (v[vIdx(i, j)] - v[vIdx(i - 1, j)]) / dx))
 
-      {
+          + c2 * (0.25 * (v[vIdx(i, j)] + v[vIdx(i, j + 1)]) *
+                      (v[vIdx(i, j + 1)] - v[vIdx(i, j)]) / dy +
+                  0.25 * (v[vIdx(i, j)] + v[vIdx(i, j - 1)]) *
+                      (v[vIdx(i, j)] - v[vIdx(i, j - 1)]) / dy +
+                  (0.25 * (u[uIdx(i, j)] + u[uIdx(i, j - 1)]) *
+                       (v[vIdx(i, j)] - v[vIdx(i - 1, j)]) / dx +
+                   0.25 * (u[uIdx(i + 1, j - 1)] + u[uIdx(i + 1, j)]) *
+                       (v[vIdx(i + 1, j)] - v[vIdx(i, j)]) / dx));
 
-        Res[sizeS + vIdx(i, j)] =
-            c1 * ((pow((v[vIdx(i, j + 1)] + v[vIdx(i, j)]), 2.) -
-                   pow(v[vIdx(i, j)] + v[vIdx(i, j - 1)], 2.)) /
-                      dy * 0.25 +
-                  0.25 / dx *
-                      ((v[vIdx(i + 1, j)] + v[vIdx(i, j)]) *
-                           (u[uIdx(i + 1, j)] + u[uIdx(i + 1, j - 1)]) -
-                       (v[vIdx(i, j)] + v[vIdx(i - 1, j)]) *
-                           (u[uIdx(i, j)] + u[uIdx(i, j - 1)]))) -
-            2. / Re / dy *
-                ((v[vIdx(i, j + 1)] - v[vIdx(i, j)]) / dy -
-                 (v[vIdx(i, j)] - v[vIdx(i, j - 1)]) / dy) -
-            1. / Re / dx *
-                (((u[uIdx(i + 1, j)] - u[uIdx(i + 1, j - 1)]) / dy +
-                  (v[vIdx(i + 1, j)] - v[vIdx(i, j)]) / dx) -
-                 ((u[uIdx(i, j)] - u[uIdx(i, j - 1)]) / dy +
-                  (v[vIdx(i, j)] - v[vIdx(i - 1, j)]) / dx))
-
-            + c2 * (0.25 * (v[vIdx(i, j)] + v[vIdx(i, j + 1)]) *
-                        (v[vIdx(i, j + 1)] - v[vIdx(i, j)]) / dy +
-                    0.25 * (v[vIdx(i, j)] + v[vIdx(i, j - 1)]) *
-                        (v[vIdx(i, j)] - v[vIdx(i, j - 1)]) / dy +
-                    (0.25 * (u[uIdx(i, j)] + u[uIdx(i, j - 1)]) *
-                         (v[vIdx(i, j)] - v[vIdx(i - 1, j)]) / dx +
-                     0.25 * (u[uIdx(i + 1, j - 1)] + u[uIdx(i + 1, j)]) *
-                         (v[vIdx(i + 1, j)] - v[vIdx(i, j)]) / dx));
-
-        // pressure grad
-        +1. / dy *(p[pIdx(i, j)] - p[pIdx(i, j - 1)]);
-
-        //       cout<<vn[vIdx(i,j,k)]<<endl;
-      }
+      // pressure grad
+      //+1. / dy *(p[pIdx(i, j)] - p[pIdx(i, j - 1)]);
     }
   }
-
-  // cout<<"completed"<<endl;
 }
 
 void Q::start() {
@@ -562,11 +423,6 @@ void Q::start() {
 
 void Q::update() {
 
-  double res[3] = {0.0, 0.0, 0.0};
-
-  //    sizeS = ( nmax + 1 ) * ( nmax );
-
-  //  cout << "sizeS " << sizeS << endl;
   for (uint i = 0; i < sizeS; i++) {
 
     up[i] = u[i];
@@ -587,26 +443,13 @@ void Q::getResNorm(double *del_u) {
   double res[3] = {0.0, 0.0, 0.0};
 
   sizeS = (nmax + 1) * (nmax);
-  /*
-      for ( uint i = 0; i < sizeS; i++ )
-      {
-          res[0] += Res[i] * Res[i];
-          res[1] += Res[sizeS + i] * Res[sizeS + i];
-      }
-  */
 
   for (uint i = 0; i < sizeS; i++) {
 
     res[0] = res[0] + (un[i] - up[i]) * (un[i] - up[i]);
     res[1] = res[1] + (vn[i] - vp[i]) * (vn[i] - vp[i]);
   }
-
-  //   cout << "res " << sqrt( res[0] / sizeS ) << " " << sqrt( res[1] / sizeS )
-  //   << " " << sqrt( res[2] / sizeS ) << endl;
-
   *del_u = sqrt((res[0] + res[1] + res[2]) / 3. / sizeS);
-
-  //*del_u=sqrt((res[1])/3./sizeS);
 }
 
 #if (!PFV)
@@ -614,7 +457,7 @@ void Q::getResNorm(double *del_u) {
 void Q::project() {
 
   // Gaus-Seidel Iteration
-  double err = 1.0;
+  double err=1.0;
   double val;
 
   double c1 = 2. / dx / dx + 2. / dy / dy;
@@ -643,12 +486,7 @@ void Q::project() {
         }
       }
     }
-
-    //    cout<<"error "<<err<<endl;
   }
-  // cout<<dx<<"dy "<<dy <<" dz "<<dz<<"dt "<<dt<<endl;
-
-  // cout<<"error "<<err<<endl;
 }
 
 #else
@@ -667,35 +505,24 @@ void Q::project() {
     pn[pIdx(0, 0)] = 0.0;
     for (uint i = 1; i < shortEnd; i++) {
       for (uint j = 1; j < shortEnd; j++) {
-        //                    for ( uint k = 1; k < shortEnd; k++ )
-        {
-          val = ((un[uIdx(i + 1, j)] / dt -
-                  (pn[pIdx(i + 1, j)] - pn[pIdx(i, j)]) / dx) +
-                 -(un[uIdx(i, j)] / dt -
-                   (pn[pIdx(i, j)] - pn[pIdx(i - 1, j)]) / dx)) /
-                    dx +
-                +((vn[vIdx(i, j + 1)] / dt -
-                   (pn[pIdx(i, j + 1)] - pn[pIdx(i, j)]) / dy) +
-                  -(vn[vIdx(i, j)] / dt -
-                    (pn[pIdx(i, j)] - pn[pIdx(i, j - 1)]) / dy)) /
-                    dy;
+        val = ((un[uIdx(i + 1, j)] / dt -
+                (pn[pIdx(i + 1, j)] - pn[pIdx(i, j)]) / dx) +
+               -(un[uIdx(i, j)] / dt -
+                 (pn[pIdx(i, j)] - pn[pIdx(i - 1, j)]) / dx)) /
+                  dx +
+              +((vn[vIdx(i, j + 1)] / dt -
+                 (pn[pIdx(i, j + 1)] - pn[pIdx(i, j)]) / dy) +
+                -(vn[vIdx(i, j)] / dt -
+                  (pn[pIdx(i, j)] - pn[pIdx(i, j - 1)]) / dy)) /
+                  dy;
 
-          err += fabs(val);
+        err += fabs(val);
 
-          pn[pIdx(i, j)] = pn[pIdx(i, j)] - val / c1;
-          //                               cout<<"val "<<val<<endl;
-        }
+        pn[pIdx(i, j)] = pn[pIdx(i, j)] - val / c1;
+        //                               cout<<"val "<<val<<endl;
       }
     }
-    //
-    // enforce at the boundary as wekk
-    //
-
-    //        cout<<"error "<<err<<endl;
   }
-  // cout<<dx<<"dy "<<dy <<" dz "<<dz<<"dt "<<dt<<endl;
-
-  // cout<<"error "<<err<<endl;
 }
 #endif
 
@@ -737,15 +564,9 @@ void Q::setNeumanPressure() {
   // we solid faces so five neuman or solid
 
   for (uint i = 0; i < nmax; i++) {
-    //           for ( uint j = 0; j < nmax; j++ )
-    {
 
-      pn[pIdx(i, nmax - 1)] = pn[pIdx(i, nmax - 2)];
-
-      pn[pIdx(i, 0)] = pn[pIdx(i, 1)];
-
-      //                pn[pIdx( i, nmax - 1, j )] = pn[pIdx( i, nmax - 2, j )];
-    }
+    pn[pIdx(i, nmax - 1)] = pn[pIdx(i, nmax - 2)];
+    pn[pIdx(i, 0)] = pn[pIdx(i, 1)];
   }
 
   //        pn[(pIdx(1,1,1))]=0.0;
@@ -1030,60 +851,8 @@ void Q::setSolid() {
       w[wIndex(nmax - 1, k, j)] = -w[wIndex(nmax - 2, k, j)];
       wp[wIndex(nmax - 1, k, j)] = -wp[wIndex(nmax - 2, k, j)];
       wn[wIndex(nmax - 1, k, j)] = -wn[wIndex(nmax - 2, k, j)];
-
-      /*
-                      u[uIndex( j, k, 0 )] = 0;
-                      up[uIndex( j, k, 0 )] = 0;
-                      un[uIndex( j, k, 0 )] = 0;
-
-                      u[uIndex( j, k, nmax - 1 )] = 0;
-                      up[uIndex( j, k, nmax - 1 )] = 0;
-                      un[uIndex( j, k, nmax - 1 )] = 0;
-      */
     }
   }
-  /*
-          //
-          //
-          //
-          //
-
-          for ( uint j = 0; j < nmax; j++ )
-          {
-              for ( uint k = 0; k < nmax + 1; k++ )
-              {
-                  w[wIndex( 0, j, k )] = 0;
-                  wp[wIndex( 0, j, k )] = 0;
-                  wn[wIndex( 0, j, k )] = 0;
-
-                  w[wIndex( nmax - 1, j, k )] = 0;
-                  wp[wIndex( nmax - 1, j, k )] = 0;
-                  wn[wIndex( nmax - 1, j, k )] = 0;
-
-                  w[wIndex( j, 0, k )] = 0;
-                  wp[wIndex( j, 0, k )] = 0;
-                  wn[wIndex( j, 0, k )] = 0;
-
-                  w[wIndex( j, nmax - 1, k )] = 0;
-                  wp[wIndex( j, nmax - 1, k )] = 0;
-                  wn[wIndex( j, nmax - 1, k )] = 0;
-              }
-          }
-
-          for ( uint j = 0; j < nmax; j++ )
-          {
-              for ( uint k = 0; k < nmax; k++ )
-              {
-                  w[wIndex( j, k, 0 )] = 0;
-                  wp[wIndex( j, k, 0 )] = 0;
-                  wn[wIndex( j, k, 0 )] = 0;
-
-                  w[wIndex( j, k, nmax - 1 )] = 0;
-                  wp[wIndex( j, k, nmax - 1 )] = 0;
-                  wn[wIndex( j, k, nmax - 1 )] = 0;
-              }
-          }
-  */
 }
 
 #endif
@@ -1095,19 +864,14 @@ void Q::Struct_2D_Ghost(double Xa, double Xb, double Ya, double Yb, double **X,
 
   double hx = nmax - 2;
   double hy = nmax - 2;
-
-  double hz = nmax;
   double Xh = (Xb - Xa) / (hx);
   double Yh = (Yb - Ya) / (hy);
 
   cout << "delx " << Xh << endl;
-
   cout << "dely " << Yh << endl;
-  double Zh = ZSHRINK * Xh;
 
-  (*X) = (double *)new double[nmax + 1];
-
-  (*Y) = (double *)new double[nmax + 1];
+  (*X) = new double[nmax + 1];
+  (*Y) = new double[nmax + 1];
 
   Xa = Xa - Xh;
 
@@ -1120,12 +884,6 @@ void Q::Struct_2D_Ghost(double Xa, double Xb, double Ya, double Yb, double **X,
   for (i = 0; i < nmax + 1; i++) {
     (*Y)[i] = Ya + Yh * i;
   }
-  /*
-          for ( i = 0; i < nmax + 1; i++ )
-          {
-              ( *Z )[i] = Xa + Zh * i;
-          }
-  */
 }
 
 void Q::KovFlow(double x, double y, double *ux, double *uy, double *p1) {
@@ -1203,33 +961,6 @@ void Q::setExactBC(double Xa, double Xb, double Ya, double Yb) {
     y1 = xy[1];
     KovFlow(x1, y1, &ux, &uy, &p1);
     v[vIdx(i, nmax)] = uy;
-
-    // set the pressure at inlet and outlet
-    /*
-            Pxy( Xa, Ya, 0, i, xy );
-            x1 = xy[0];
-            y1 = xy[1];
-            KovFlow( x1, y1, &ux, &uy, &p1 );
-            p[pIdx( 0, i )] = p1;
-
-            Pxy( Xa, Ya, nmax - 1, i, xy );
-            x1 = xy[0];
-            y1 = xy[1];
-            KovFlow( x1, y1, &ux, &uy, &p1 );
-            p[pIdx( nmax - 1, i )] = p1;
-
-            Pxy( Xa, Ya, i, 0, xy );
-            x1 = xy[0];
-            y1 = xy[1];
-            KovFlow( x1, y1, &ux, &uy, &p1 );
-            p[pIdx( i, 0 )] = p1;
-
-            Pxy( Xa, Ya, i, nmax - 1, xy );
-            x1 = xy[0];
-            y1 = xy[1];
-            KovFlow( x1, y1, &ux, &uy, &p1 );
-            p[pIdx( i, nmax - 1 )] = p1;
-    */
   }
 }
 
@@ -1302,7 +1033,6 @@ void Q::showExact(double Xa, double Ya) {
 void Q::Grad() {
 
   for (int i = 0; i < nmax; i++) {
-
     for (int j = 0; j < nmax; j++) {
 
       // pn[pIdx(i,j)]=(un[uIdx(i+1,j)]-un[uIdx(i,j)])/dx;
@@ -1311,7 +1041,6 @@ void Q::Grad() {
   }
 
   for (int i = 0; i < nmax; i++) {
-
     for (int j = 0; j < nmax - 1; j++) {
 
       // pn[pIdx(i,j)]=(un[uIdx(i+1,j)]-un[uIdx(i,j)])/dx;
@@ -1320,7 +1049,6 @@ void Q::Grad() {
   }
 
   for (int i = 0; i < nmax - 1; i++) {
-
     for (int j = 0; j < nmax; j++) {
 
       // pn[pIdx(i,j)]=(un[uIdx(i+1,j)]-un[uIdx(i,j)])/dx;
