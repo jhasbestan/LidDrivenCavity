@@ -10,7 +10,7 @@ Q::Q(int nmax1, double dx1, double dy1) {
 
   dx = dx1;
   dy = dy1;
-  dt = 0.001;
+  dt = 0.001*dx;
 
   nmax = nmax1 + 2;
 
@@ -471,13 +471,11 @@ void Q::project() {
 //  pn[pIdx(5, 5)] = 0.0;
   //  while ( err > 1.e-12 )
   for (uint l = 0; l < 5; l++) {
-    err = 0.0;
+//    err = 0.0;
 #pragma omp parallel for
     for (uint i = 1; i < shortEnd; i++) {
 #pragma omp simd
       for (uint j = 1; j < shortEnd; j++) {
-        //                    for ( uint k = 1; k < shortEnd; k++ )
-        {
 
           val = -((un[uIdx(i + 1, j)] - un[uIdx(i, j)]) / dx +
                   (vn[vIdx(i, j + 1)] - vn[vIdx(i, j)]) / dy) /
@@ -487,11 +485,10 @@ void Q::project() {
 
           val = val / c1;
 
-          err += fabs(pn[pIdx(i, j)] - val);
+         // err += fabs(pn[pIdx(i, j)] - val);
 
           pn[pIdx(i, j)] = val;
           //               cout<<"val "<<val<<endl;
-        }
       }
     }
   }

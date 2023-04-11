@@ -1,5 +1,6 @@
 #include "header.h"
 #include <cmath>
+#include <omp.h>
 #define LID 1
 
 double rhs(double &x, double &y, double &z);
@@ -15,7 +16,6 @@ int main() {
   cin >> N;
 
   // include the ghost inside initilization
-
   double a[4] = {0.0, 0.0, 0.0, 0.0};
 
   double *d = nullptr;
@@ -38,16 +38,18 @@ int main() {
   q.initialize(N, a);
   delete[] d;
 
-  double Re = 20.0;
+  double Re = 100.0;
 
   int count = 0;
   double res = 1.0;
+  double total_time=0.0;
 
 #if (!LID)
   q.setExactBC(Xa, Xb, Ya, Yb);
   q.start();
   count = 0;
   while (res > 1.e-12) {
+    double start_time = omp_get_wtime();
     q.getRes(Re);
     q.predict();
     q.project();
@@ -57,21 +59,24 @@ int main() {
 
     q.getResTotal(Re);
     q.getResNorm(&res);
+    double end_time = omp_get_wtime();
     count++;
     if (count % 60 == 0) {
       cout << res << endl;
     }
+    total_time+=end_time-start_time;
   }
-
+   std::cout<< " total time "<< total_time <<std::endl;
 #else
   // solve lid driven Cavity
-  Re = 1000.;
+  Re = 40.;
 
   q.setBoundaryLidDrivenCavity();
   q.start();
   count = 0;
   double res_old = 2.0;
   while (res > 1.e-12) {
+    double start_time = omp_get_wtime();
     q.getRes(Re);
     q.predict();
     q.setNeumanPressureLDC();
@@ -82,7 +87,9 @@ int main() {
     res_old = res;
     q.getResTotal(Re);
     q.getResNorm(&res);
+    double end_time = omp_get_wtime();
     count++;
+    total_time+=end_time-start_time;
     if (count % 100 == 0) {
       cout << res << endl;
     }
@@ -103,6 +110,7 @@ int main() {
   q.Struct_2D_Ghost(Xa, Xb, Ya, Yb, &X, &Y);
   q.VTK_out_with_ghost(X, Y);
 #endif
+   std::cout<< " total time "<< total_time <<std::endl;
 };
 
 void Struct_2D(double Xa, double Xb, double Ya, double Yb, int N, int M,
