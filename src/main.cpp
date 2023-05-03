@@ -88,10 +88,10 @@ int main(int argsc, char *argsv[]) {
     q.setBoundaryLidDrivenCavity();
     q.correct();
     q.update();
+    double end_time = omp_get_wtime();
     res_old = res;
     q.getResTotal(Re);
     q.getResNorm(&res);
-    double end_time = omp_get_wtime();
     count++;
     total_time+=end_time-start_time;
     if (count % 100 == 0) {

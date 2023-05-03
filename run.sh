@@ -17,7 +17,7 @@ cmake ../ -DCMAKE_BUILD_TYPE==Release -DZMM_HIGH=true  && make install
 
 cd ../bin
 
-./incomp 5000 200
+./incomp 10000 10
 
 cd ../build && rm CMakeCache.txt
 
@@ -25,7 +25,7 @@ cmake ../ -DCMAKE_BUILD_TYPE==Release -DAVX2=true  && make install
 
 cd ../bin
 
-./incomp 5000 200
+./incomp 10000 10
 
 cd ../
 
