@@ -10,7 +10,7 @@ Q::Q(int nmax1, double dx1, double dy1) {
 
   dx = dx1;
   dy = dy1;
-  dt = 0.001*dx;
+  dt = 0.01*dx;
 
   nmax = nmax1 + 2;
 
@@ -44,6 +44,7 @@ Q::Q(int nmax1, double dx1, double dy1) {
 
   p = new double[sizeP];
   pn = new double[sizeP];
+  pn_old = new double[sizeP];
   pp = new double[sizeP];
 
   // initialize the current time step
@@ -71,6 +72,7 @@ Q::Q(int nmax1, double dx1, double dy1) {
     p[i] = 0.0;
     pn[i] = 0.0;
     pp[i] = 0.0;
+    pn_old[i]=0.0;
   }
 }
 
@@ -233,9 +235,9 @@ void Q::getRes(double Re) {
   double c2 = 0.5;
 
 #pragma omp parallel for
-  for (uint i = 1; i < longEnd; i++) {
-#pragma omp simd
     for (uint j = 1; j < shortEnd; j++) {
+#pragma omp simd
+  for (uint i = 1; i < longEnd; i++) {
       Res[uIdx(i, j)] =
           c1 * ((pow((u[uIdx(i + 1, j)] + u[uIdx(i, j)]), 2.) -
                  pow(u[uIdx(i, j)] + u[uIdx(i - 1, j)], 2.)) /
@@ -280,9 +282,9 @@ void Q::getRes(double Re) {
   }
 
 #pragma omp parallel for
-  for (uint i = 1; i < shortEnd; i++) {
-#pragma omp simd
     for (uint j = 1; j < longEnd; j++) {
+#pragma omp simd
+  for (uint i = 1; i < shortEnd; i++) {
 
       Res[sizeS + vIdx(i, j)] =
           c1 * ((pow((v[vIdx(i, j + 1)] + v[vIdx(i, j)]), 2.) -
@@ -334,9 +336,9 @@ void Q::getResTotal(double Re) {
   double c2 = 0.5;
 
 #pragma omp parallel for
-  for (uint i = 1; i < longEnd; i++) {
-#pragma omp simd
     for (uint j = 1; j < shortEnd; j++) {
+#pragma omp simd
+  for (uint i = 1; i < longEnd; i++) {
       Res[uIdx(i, j)] =
           c1 * ((pow((u[uIdx(i + 1, j)] + u[uIdx(i, j)]), 2.) -
                  pow(u[uIdx(i, j)] + u[uIdx(i - 1, j)], 2.)) /
@@ -372,9 +374,9 @@ void Q::getResTotal(double Re) {
   }
 
 #pragma omp parallel for
-  for (uint i = 1; i < shortEnd; i++) {
-#pragma omp simd
     for (uint j = 1; j < longEnd; j++) {
+#pragma omp simd
+  for (uint i = 1; i < shortEnd; i++) {
       Res[sizeS + vIdx(i, j)] =
           c1 * ((pow((v[vIdx(i, j + 1)] + v[vIdx(i, j)]), 2.) -
                  pow(v[vIdx(i, j)] + v[vIdx(i, j - 1)], 2.)) /
@@ -461,17 +463,26 @@ void Q::getResNorm(double *del_u) {
 // FD formulation
 void Q::project() {
 
-//  std::cout<<" calling project ... "<<std::endl;
+  //std::cout<<" calling project ... "<<std::endl;
   // Gaus-Seidel Iteration
   double err=1.0;
   double val;
 
   double c1 = 2. / dx / dx + 2. / dy / dy;
 
+
+
 //  pn[pIdx(5, 5)] = 0.0;
   //  while ( err > 1.e-12 )
-  for (uint l = 0; l < 5; l++) {
+  for (uint l = 0; l < 10; l++) {
 //    err = 0.0;
+
+#pragma omp parallel for simd
+    for (uint i = 0; i < sizeP; i++) {
+        pn_old[i]=pn[i];
+      }
+
+
 #pragma omp parallel for
     for (uint i = 1; i < shortEnd; i++) {
 #pragma omp simd
@@ -480,8 +491,8 @@ void Q::project() {
           val = -((un[uIdx(i + 1, j)] - un[uIdx(i, j)]) / dx +
                   (vn[vIdx(i, j + 1)] - vn[vIdx(i, j)]) / dy) /
                     dt +
-                (pn[pIdx(i + 1, j)] + pn[pIdx(i - 1, j)]) / dx / dx +
-                (pn[pIdx(i, j + 1)] + pn[pIdx(i, j - 1)]) / dy / dy;
+                (pn_old[pIdx(i + 1, j)] + pn_old[pIdx(i - 1, j)]) / dx / dx +
+                (pn_old[pIdx(i, j + 1)] + pn_old[pIdx(i, j - 1)]) / dy / dy;
 
           val = val / c1;
 
@@ -543,18 +554,18 @@ void Q::predict() {
 void Q::correct() {
 
 #pragma omp parallel for 
-  for (uint i = 1; i < longEnd; i++) {
-#pragma omp simd
     for (uint j = 1; j < shortEnd; j++) {
+#pragma omp simd
+  for (uint i = 1; i < longEnd; i++) {
       un[uIdx(i, j)] =
           -dt * (pn[pIdx(i, j)] - pn[pIdx(i - 1, j)]) / dx + un[uIdx(i, j)];
     }
   }
 
 #pragma omp parallel for 
-  for (uint i = 1; i < shortEnd; i++) {
-#pragma omp simd
     for (uint j = 1; j < longEnd; j++) {
+#pragma omp simd
+  for (uint i = 1; i < shortEnd; i++) {
       vn[vIdx(i, j)] =
           -dt * (pn[pIdx(i, j)] - pn[pIdx(i, j - 1)]) / dy + vn[vIdx(i, j)];
     }

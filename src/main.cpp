@@ -1,7 +1,7 @@
 #include "header.h"
 #include <cmath>
 #include <omp.h>
-#define LID 1
+#define LID 0
 
 double rhs(double &x, double &y, double &z);
 void Struct_2D(double Xa, double Xb, double Ya, double Yb, int N, int M,
@@ -22,7 +22,7 @@ int main() {
   double *X = nullptr;
   double *Y = nullptr;
 
-#if (!LID)
+#ifndef LID
   double Xa = -.5, Xb = 1.0;
   double Ya = -.5, Yb = 0.5;
 #else
@@ -38,17 +38,17 @@ int main() {
   q.initialize(N, a);
   delete[] d;
 
-  double Re = 100.0;
+  double Re = 40.0;
 
   int count = 0;
   double res = 1.0;
   double total_time=0.0;
 
-#if (!LID)
+#ifndef LID
   q.setExactBC(Xa, Xb, Ya, Yb);
   q.start();
   count = 0;
-  while (res > 1.e-12) {
+  while (res > 1.e-7) {
     double start_time = omp_get_wtime();
     q.getRes(Re);
     q.predict();
@@ -66,16 +66,16 @@ int main() {
     }
     total_time+=end_time-start_time;
   }
-   std::cout<< " total time "<< total_time <<std::endl;
+   std::cout<< " total time Kov "<< total_time <<std::endl;
 #else
   // solve lid driven Cavity
-  Re = 40.;
+  Re = 100.;
 
   q.setBoundaryLidDrivenCavity();
   q.start();
   count = 0;
   double res_old = 2.0;
-  while (res > 1.e-12) {
+  while (res > 1.e-7) {
     double start_time = omp_get_wtime();
     q.getRes(Re);
     q.predict();
@@ -102,7 +102,7 @@ int main() {
 
   cout << res << endl;
 
-#if (0)
+#if (1)
   Struct_2D(Xa, Xb, Ya, Yb, N, N, &X, &Y);
   q.VTK_out(X, Y, N);
 

@@ -32,6 +32,7 @@ private:
   double *__restrict__ un = nullptr;
   double *__restrict__ vn = nullptr;
   double *__restrict__ pn = nullptr;
+  double *__restrict__ pn_old = nullptr;
 
   double *__restrict__ Res = nullptr;
 
@@ -48,6 +49,7 @@ private:
   double *un = nullptr;
   double *vn = nullptr;
   double *pn = nullptr;
+  double *pn_old = nullptr;
 
   double *__restrict__ Res = nullptr;
 
