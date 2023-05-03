@@ -8,12 +8,14 @@ void Struct_2D(double Xa, double Xb, double Ya, double Yb, int N, int M,
                double **X, double **Y);
 void VTK_out(double *X, double *Y, double *Z, int N, int M, int ID);
 
-int main() {
+int main(int argsc, char *argsv[]) {
 
-  int N;
+  int N=atoi(argsv[1]);
+  if(argsc==1)
+  {
+    cout << "forgot to pass in N" << endl;
+  }
   // N is the number if elements
-  cout << "enter N" << endl;
-  cin >> N;
 
   // include the ghost inside initilization
   double a[4] = {0.0, 0.0, 0.0, 0.0};

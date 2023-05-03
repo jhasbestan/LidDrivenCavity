@@ -115,7 +115,7 @@ add_executable(incomp ${OBJ} ${HEADER_FILES})
 
 target_link_libraries(incomp  ${HDF5_C_LIBRARIES})
 
-#install(TARGETS incomp DESTINATION ${dir/}bin)
+install(TARGETS incomp DESTINATION ${CMAKE_SOURCE_DIR}/bin)
 
 ############################################################################
 #
@@ -178,7 +178,7 @@ SET(CPACK_SOURCE_INSTALLED_DIRECTORIES "${dir}/src;/")
 # get rid of this is to use an alias to remove that file from src after
 # packing
 
-install(FILES ${dir}/CMakeLists.txt DESTINATION ${dir}/src)
+##install(FILES ${dir}/CMakeLists.txt DESTINATION ${dir}/src)
 
 message("file name:" ${CPACK_PACKAGE_FILE_NAME})
 
