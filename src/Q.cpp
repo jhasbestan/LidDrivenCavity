@@ -10,7 +10,7 @@ Q::Q(int nmax1, double dx1, double dy1) {
 
   dx = dx1;
   dy = dy1;
-  dt = 0.01*dx;
+  dt = 0.001*dx;
 
   nmax = nmax1 + 2;
 

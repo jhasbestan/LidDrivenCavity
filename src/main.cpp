@@ -11,9 +11,10 @@ void VTK_out(double *X, double *Y, double *Z, int N, int M, int ID);
 int main(int argsc, char *argsv[]) {
 
   int N=atoi(argsv[1]);
-  if(argsc==1)
+  int count_max=atoi(argsv[2]);
+  if(argsc<3)
   {
-    cout << "forgot to pass in N" << endl;
+    cout << "forgot to pass in N and/or number of iter and/or number of iterss" << endl;
   }
   // N is the number if elements
 
@@ -77,7 +78,8 @@ int main(int argsc, char *argsv[]) {
   q.start();
   count = 0;
   double res_old = 2.0;
-  while (res > 1.e-7) {
+//  while (res > 1.e-7) {
+  while (count < count_max) {
     double start_time = omp_get_wtime();
     q.getRes(Re);
     q.predict();

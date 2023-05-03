@@ -101,14 +101,15 @@ message("header files" ${HEADER_FILES})
 
 # insert -pg instead of -g for checking with gprof
 # gprof bin/incomp > out.text  
-if(UNIX)
-##   SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++1y -O3 -Wunused-variable ")
-##     SET(CMAKE_CXX_FLAGS "${CMAKE_C_FLAGS} -O3 -march=skylake-avx512 -qopt-zmm-usage=high -fp-model fast=2 -no-prec-div -qopt-report-phase=5 -qopt-report=5 -qopenmp")
-    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++1y -O3 -march=skylake-avx512 -qopt-zmm-usage=high -Wunused-variable   -qopt-report-phase=5 -qopt-report=5 -qopenmp ")
-#    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++1y -march=core-avx2  -Wunused-variable -qopt-report-phase=5 -qopt-report=5 -qopenmp ")
-#    SET(CMAKE_EXEC_LINKER_FLAGS "${CMAKE_EXEC_LINKER_FLAGS} -Wall -std=gnu++0x" )
+if(ZMM_HIGH)
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++1y -O3 -march=skylake-avx512 -qopt-zmm-usage=high  -Wunused-variable   -qopt-report=5 -qopenmp ")
     SET(CMAKE_EXEC_LINKER_FLAGS "${CMAKE_EXEC_LINKER_FLAGS} -Wall -std=c++1y -Wunused-variable" )
 endif()
+if(AVX2)
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++1y -O3 -march=core-avx2 -Wunused-variable  -qopt-report=5 -qopenmp ")
+    SET(CMAKE_EXEC_LINKER_FLAGS "${CMAKE_EXEC_LINKER_FLAGS} -Wall -std=c++1y -Wunused-variable" )
+endif()
+
 
 # Generate Object Files
 add_executable(incomp ${OBJ} ${HEADER_FILES}) 
