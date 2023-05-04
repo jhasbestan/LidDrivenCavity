@@ -106,6 +106,7 @@ int main(int argsc, char *argsv[]) {
 
   cout << res << endl;
 
+/*
 #if (1)
   Struct_2D(Xa, Xb, Ya, Yb, N, N, &X, &Y);
   q.VTK_out(X, Y, N);
@@ -114,6 +115,7 @@ int main(int argsc, char *argsv[]) {
   q.Struct_2D_Ghost(Xa, Xb, Ya, Yb, &X, &Y);
   q.VTK_out_with_ghost(X, Y);
 #endif
+*/
    std::cout<< " total time "<< total_time <<std::endl;
 };
 

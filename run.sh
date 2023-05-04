@@ -13,19 +13,19 @@ module list
 cd build && rm CMakeCache.txt
 
 
-cmake ../ -DCMAKE_BUILD_TYPE==Release -DZMM_HIGH=true  && make install 
+cmake ../ -DCMAKE_BUILD_TYPE=Release -DZMM_HIGH=true  && make install 
 
 cd ../bin
 
-./incomp 10000 10
+./incomp_avx512 15000 100
 
 cd ../build && rm CMakeCache.txt
 
-cmake ../ -DCMAKE_BUILD_TYPE==Release -DAVX2=true  && make install 
+cmake ../ -DCMAKE_BUILD_TYPE=Release -DAVX2=true  && make install 
 
 cd ../bin
 
-./incomp 10000 10
+./incomp_avx2 15000 100
 
 cd ../
 

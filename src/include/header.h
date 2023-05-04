@@ -19,41 +19,21 @@ using namespace std;
 
 class Q {
 private:
-#if (1)
 
-  double *__restrict__ u = nullptr;
-  double *__restrict__ v = nullptr;
-  double *__restrict__ p = nullptr;
+  double * __restrict__ u = nullptr;
+  double * __restrict__ v = nullptr;
+  double * __restrict__ p = nullptr;
 
-  double *__restrict__ up = nullptr;
-  double *__restrict__ vp = nullptr;
-  double *__restrict__ pp = nullptr;
+  double * __restrict__ up = nullptr;
+  double * __restrict__ vp = nullptr;
+  double * __restrict__ pp = nullptr;
 
-  double *__restrict__ un = nullptr;
-  double *__restrict__ vn = nullptr;
-  double *__restrict__ pn = nullptr;
-  double *__restrict__ pn_old = nullptr;
+  double * __restrict__ un = nullptr;
+  double * __restrict__ vn = nullptr;
+  double * __restrict__ pn = nullptr;
+  double * __restrict__ pn_old = nullptr;
 
-  double *__restrict__ Res = nullptr;
-
-#else
-
-  double *u = nullptr;
-  double *v = nullptr;
-  double *p = nullptr;
-
-  double *up = nullptr;
-  double *vp = nullptr;
-  double *pp = nullptr;
-
-  double *un = nullptr;
-  double *vn = nullptr;
-  double *pn = nullptr;
-  double *pn_old = nullptr;
-
-  double *__restrict__ Res = nullptr;
-
-#endif
+  double * __restrict__ Res = nullptr;
 
   double dx;
   double dy;

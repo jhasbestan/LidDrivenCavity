@@ -104,19 +104,21 @@ message("header files" ${HEADER_FILES})
 if(ZMM_HIGH)
     SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++1y -O3 -march=skylake-avx512 -qopt-zmm-usage=high  -Wunused-variable   -qopt-report=5 -qopenmp ")
     SET(CMAKE_EXEC_LINKER_FLAGS "${CMAKE_EXEC_LINKER_FLAGS} -Wall -std=c++1y -Wunused-variable" )
+    add_executable(incomp_avx512 ${OBJ} ${HEADER_FILES}) 
+    target_link_libraries(incomp_avx512  ${HDF5_C_LIBRARIES})
+    install(TARGETS incomp_avx512 DESTINATION ${CMAKE_SOURCE_DIR}/bin)
 endif()
 if(AVX2)
     SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++1y -O3 -march=core-avx2 -Wunused-variable  -qopt-report=5 -qopenmp ")
     SET(CMAKE_EXEC_LINKER_FLAGS "${CMAKE_EXEC_LINKER_FLAGS} -Wall -std=c++1y -Wunused-variable" )
+    add_executable(incomp_avx2 ${OBJ} ${HEADER_FILES}) 
+    install(TARGETS incomp_avx2 DESTINATION ${CMAKE_SOURCE_DIR}/bin)
 endif()
 
 
 # Generate Object Files
-add_executable(incomp ${OBJ} ${HEADER_FILES}) 
 
-target_link_libraries(incomp  ${HDF5_C_LIBRARIES})
 
-install(TARGETS incomp DESTINATION ${CMAKE_SOURCE_DIR}/bin)
 
 ############################################################################
 #

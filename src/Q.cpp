@@ -1,5 +1,6 @@
 #include "header.h"
 #include <cmath>
+#include <cstring>
 #define ZSHRINK 0.1
 #define AVG 1
 // define poisson with FVM
@@ -29,6 +30,7 @@ Q::Q(int nmax1, double dx1, double dy1) {
   sizeS = (nmax + 1) * (nmax);
   // u is u at current time step, un means new values hence at time step n+1 and
   // up is previous value of u means u at n-1
+  /*
   u = new double[sizeS];
   v = new double[sizeS];
 
@@ -37,15 +39,33 @@ Q::Q(int nmax1, double dx1, double dy1) {
 
   un = new double[sizeS];
   vn = new double[sizeS];
-
+*/
   Res = new double[2 * sizeS];
 
   sizeP = nmax * nmax;
 
-  p = new double[sizeP];
-  pn = new double[sizeP];
-  pn_old = new double[sizeP];
-  pp = new double[sizeP];
+  posix_memalign((void**)&u,64,sizeS*sizeof(double));
+  posix_memalign((void**)&up,64,sizeS*sizeof(double));
+  posix_memalign((void**)&un,64,sizeS*sizeof(double));
+  posix_memalign((void**)&v,64,sizeS*sizeof(double));
+  posix_memalign((void**)&vp,64,sizeS*sizeof(double));
+  posix_memalign((void**)&vn,64,sizeS*sizeof(double));
+  __assume_aligned(u,64);
+  __assume_aligned(up,64);
+  __assume_aligned(un,64);
+  __assume_aligned(v,64);
+  __assume_aligned(vp,64);
+  __assume_aligned(vn,64);
+ // p = new double[sizeP];
+//  pn = new double[sizeP];
+  posix_memalign((void**)&p,64,sizeP*sizeof(double));
+  posix_memalign((void**)&pn,64,sizeP*sizeof(double));
+  posix_memalign((void**)&pn_old,64,sizeP*sizeof(double));
+  posix_memalign((void**)&pp,64,sizeP*sizeof(double));
+  __assume_aligned(pn_old,64);
+  __assume_aligned(pn,64);
+//  pn_old = new double[sizeP];
+//  pp = new double[sizeP];
 
   // initialize the current time step
 
@@ -77,15 +97,19 @@ Q::Q(int nmax1, double dx1, double dy1) {
 }
 
 Q::~Q() {
-  delete[] u;
-  delete[] v;
-  delete[] p;
-  delete[] up;
-  delete[] vp;
-  delete[] pp;
-  delete[] un;
-  delete[] vn;
-  delete[] pn;
+  free(u);
+  free(v);
+//  delete[] p;
+  free(up);
+  free(vp);
+//  delete[] pp;
+  free(un);
+  free(vn);
+//  delete[] pn;
+ free(pn);
+ free(pn_old);
+ free(p);
+ free(pp);
 }
 
 void Q::initialize(int N, double *val) {}
@@ -470,36 +494,29 @@ void Q::project() {
 
   double c1 = 2. / dx / dx + 2. / dy / dy;
 
-
+__assume_aligned(pn_old,64);
+__assume_aligned(pn,64);
 
 //  pn[pIdx(5, 5)] = 0.0;
   //  while ( err > 1.e-12 )
   for (uint l = 0; l < 10; l++) {
-//    err = 0.0;
-
 #pragma omp parallel for simd
-    for (uint i = 0; i < sizeP; i++) {
+    for (int i = 0; i < sizeP; i++)
+    {
         pn_old[i]=pn[i];
-      }
-
+     }
 
 #pragma omp parallel for
-    for (uint i = 1; i < shortEnd; i++) {
-#pragma omp simd
       for (uint j = 1; j < shortEnd; j++) {
-
+#pragma omp simd
+    for (uint i = 1; i < shortEnd; i++) {
           val = -((un[uIdx(i + 1, j)] - un[uIdx(i, j)]) / dx +
                   (vn[vIdx(i, j + 1)] - vn[vIdx(i, j)]) / dy) /
                     dt +
                 (pn_old[pIdx(i + 1, j)] + pn_old[pIdx(i - 1, j)]) / dx / dx +
                 (pn_old[pIdx(i, j + 1)] + pn_old[pIdx(i, j - 1)]) / dy / dy;
+          pn[pIdx(i, j)] = val / c1;
 
-          val = val / c1;
-
-         // err += fabs(pn[pIdx(i, j)] - val);
-
-          pn[pIdx(i, j)] = val;
-          //               cout<<"val "<<val<<endl;
       }
     }
   }
