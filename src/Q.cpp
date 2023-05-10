@@ -11,7 +11,7 @@ Q::Q(int nmax1, double dx1, double dy1) {
 
   dx = dx1;
   dy = dy1;
-  dt = 0.001*dx;
+  dt = 0.00001*dx;
 
   nmax = nmax1 + 2;
 
@@ -258,7 +258,9 @@ void Q::getRes(double Re) {
   double c1 = 0.5;
   double c2 = 0.5;
 
-#pragma omp parallel for
+#pragma omp parallel 
+{  
+#pragma omp for nowait
     for (uint j = 1; j < shortEnd; j++) {
 #pragma omp simd
   for (uint i = 1; i < longEnd; i++) {
@@ -304,8 +306,7 @@ void Q::getRes(double Re) {
       //                     cout<<un[uIdx(i,j,k)]<<endl;
     }
   }
-
-#pragma omp parallel for
+#pragma omp for 
     for (uint j = 1; j < longEnd; j++) {
 #pragma omp simd
   for (uint i = 1; i < shortEnd; i++) {
@@ -350,6 +351,7 @@ void Q::getRes(double Re) {
       //       cout<<vn[vIdx(i,j,k)]<<endl;
     }
   }
+  }
 
   // cout<<"completed"<<endl;
 }
@@ -359,7 +361,9 @@ void Q::getResTotal(double Re) {
   double c1 = 0.5;
   double c2 = 0.5;
 
-#pragma omp parallel for
+#pragma omp parallel 
+  {  
+#pragma omp for nowait
     for (uint j = 1; j < shortEnd; j++) {
 #pragma omp simd
   for (uint i = 1; i < longEnd; i++) {
@@ -397,7 +401,7 @@ void Q::getResTotal(double Re) {
     }
   }
 
-#pragma omp parallel for
+#pragma omp for
     for (uint j = 1; j < longEnd; j++) {
 #pragma omp simd
   for (uint i = 1; i < shortEnd; i++) {
@@ -431,6 +435,7 @@ void Q::getResTotal(double Re) {
       // pressure grad
       //+1. / dy *(p[pIdx(i, j)] - p[pIdx(i, j - 1)]);
     }
+  }
   }
 }
 
@@ -475,7 +480,7 @@ void Q::getResNorm(double *del_u) {
   double res[3] = {0.0, 0.0, 0.0};
 
   sizeS = (nmax + 1) * (nmax);
-#pragma omp simd
+#pragma omp parallel for simd
   for (uint i = 0; i < sizeS; i++) {
     res[0] = res[0] + (un[i] - up[i]) * (un[i] - up[i]);
     res[1] = res[1] + (vn[i] - vp[i]) * (vn[i] - vp[i]);
@@ -506,7 +511,7 @@ __assume_aligned(pn,64);
         pn_old[i]=pn[i];
      }
 
-#pragma omp parallel for
+#pragma omp parallel for 
       for (uint j = 1; j < shortEnd; j++) {
 #pragma omp simd
     for (uint i = 1; i < shortEnd; i++) {
@@ -570,7 +575,9 @@ void Q::predict() {
 
 void Q::correct() {
 
-#pragma omp parallel for 
+#pragma omp parallel   
+{
+#pragma omp for nowait  
     for (uint j = 1; j < shortEnd; j++) {
 #pragma omp simd
   for (uint i = 1; i < longEnd; i++) {
@@ -578,8 +585,7 @@ void Q::correct() {
           -dt * (pn[pIdx(i, j)] - pn[pIdx(i - 1, j)]) / dx + un[uIdx(i, j)];
     }
   }
-
-#pragma omp parallel for 
+#pragma omp for 
     for (uint j = 1; j < longEnd; j++) {
 #pragma omp simd
   for (uint i = 1; i < shortEnd; i++) {
@@ -587,6 +593,7 @@ void Q::correct() {
           -dt * (pn[pIdx(i, j)] - pn[pIdx(i, j - 1)]) / dy + vn[vIdx(i, j)];
     }
   }
+}
 }
 
 // this is for solid

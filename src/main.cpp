@@ -78,9 +78,9 @@ int main(int argsc, char *argsv[]) {
   q.start();
   count = 0;
   double res_old = 2.0;
+  double start_time = omp_get_wtime();
 //  while (res > 1.e-7) {
   while (count < count_max) {
-    double start_time = omp_get_wtime();
     q.getRes(Re);
     q.predict();
     q.setNeumanPressureLDC();
@@ -88,12 +88,10 @@ int main(int argsc, char *argsv[]) {
     q.setBoundaryLidDrivenCavity();
     q.correct();
     q.update();
-    double end_time = omp_get_wtime();
     res_old = res;
     q.getResTotal(Re);
     q.getResNorm(&res);
     count++;
-    total_time+=end_time-start_time;
     if (count % 100 == 0) {
       cout << res << endl;
     }
@@ -103,6 +101,8 @@ int main(int argsc, char *argsv[]) {
     res_old = res;
   }
 #endif
+    double end_time = omp_get_wtime();
+    total_time += end_time-start_time;
 
   cout << res << endl;
 
