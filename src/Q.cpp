@@ -477,15 +477,14 @@ void Q::update() {
 
 void Q::getResNorm(double *del_u) {
 
-  double res[3] = {0.0, 0.0, 0.0};
-
+  double res0, res1;
   sizeS = (nmax + 1) * (nmax);
-#pragma omp parallel for simd
+#pragma omp parallel for simd reduction(+:res0,res1)
   for (uint i = 0; i < sizeS; i++) {
-    res[0] = res[0] + (un[i] - up[i]) * (un[i] - up[i]);
-    res[1] = res[1] + (vn[i] - vp[i]) * (vn[i] - vp[i]);
+    res0 +=  (un[i] - up[i]) * (un[i] - up[i]);
+    res1 +=  (vn[i] - vp[i]) * (vn[i] - vp[i]);
   }
-  *del_u = sqrt((res[0] + res[1] + res[2]) / 3. / sizeS);
+  *del_u = sqrt((res0 + res1) / 3. / sizeS);
 }
 
 #if (!PFV)
