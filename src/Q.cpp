@@ -28,6 +28,8 @@ Q::Q(int nmax1, double dx1, double dy1) {
   cout << "nelem with ghost" << nmax << endl;
 
   sizeS = (nmax + 1) * (nmax);
+
+  std::cout<< " Number of Elements " << sizeS <<std::endl;
   // u is u at current time step, un means new values hence at time step n+1 and
   // up is previous value of u means u at n-1
   /*
