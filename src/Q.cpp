@@ -11,7 +11,7 @@ Q::Q(int nmax1, double dx1, double dy1) {
 
   dx = dx1;
   dy = dy1;
-  dt = 0.01*dx;
+  dt = 0.001*dx;
 
   nmax = nmax1 + 2;
 
@@ -50,20 +50,24 @@ Q::Q(int nmax1, double dx1, double dy1) {
   posix_memalign((void**)&v,64,sizeS*sizeof(double));
   posix_memalign((void**)&vp,64,sizeS*sizeof(double));
   posix_memalign((void**)&vn,64,sizeS*sizeof(double));
-  __assume_aligned(u,64);
-  __assume_aligned(up,64);
-  __assume_aligned(un,64);
-  __assume_aligned(v,64);
-  __assume_aligned(vp,64);
-  __assume_aligned(vn,64);
  // p = new double[sizeP];
 //  pn = new double[sizeP];
   posix_memalign((void**)&p,64,sizeP*sizeof(double));
   posix_memalign((void**)&pn,64,sizeP*sizeof(double));
   posix_memalign((void**)&pn_old,64,sizeP*sizeof(double));
   posix_memalign((void**)&pp,64,sizeP*sizeof(double));
+
+#ifdef __ICC
+  __assume_aligned(u,64);
+  __assume_aligned(up,64);
+  __assume_aligned(un,64);
+  __assume_aligned(v,64);
+  __assume_aligned(vp,64);
+  __assume_aligned(vn,64);
   __assume_aligned(pn_old,64);
   __assume_aligned(pn,64);
+#endif
+
 //  pn_old = new double[sizeP];
 //  pp = new double[sizeP];
 
@@ -103,6 +107,7 @@ Q::~Q() {
   free(u);
   free(v);
 //  delete[] p;
+  delete[] Res;
   free(up);
   free(vp);
 //  delete[] pp;
@@ -507,18 +512,22 @@ void Q::project() {
 
   double c1 = 2. / dx / dx + 2. / dy / dy;
 
+#ifdef __ICC
 __assume_aligned(pn_old,64);
 __assume_aligned(pn,64);
+#endif
+  double *tmp;
 
 //  pn[pIdx(5, 5)] = 0.0;
   //  while ( err > 1.e-12 )
   for (uint l = 0; l < 10; l++) {
+/*
 #pragma omp parallel for simd
     for (int i = 0; i < sizeP; i++)
     {
         pn_old[i]=pn[i];
      }
-
+*/
 #pragma omp parallel for 
       for (uint j = 1; j < shortEnd; j++) {
 #pragma omp simd
@@ -532,6 +541,9 @@ __assume_aligned(pn,64);
 
       }
     }
+    tmp=pn_old;
+    pn_old=pn;
+    pn=tmp;
   }
 }
 
@@ -546,7 +558,7 @@ void Q::project() {
   double c1 = 2. / dx / dx + 2. / dy / dy;
 
   //    while ( err > 1.e-12 )
-  for (uint l = 0; l < 12; l++) {
+  for (uint l = 0; l < 10; l++) {
     err = 0.0;
     pn[pIdx(0, 0)] = 0.0;
 #pragma omp parallel for

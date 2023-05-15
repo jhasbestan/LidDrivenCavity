@@ -113,6 +113,11 @@ if(AVX2)
     SET(CMAKE_EXEC_LINKER_FLAGS "${CMAKE_EXEC_LINKER_FLAGS} -Wall -std=c++1y -Wunused-variable" )
     add_executable(incomp_avx2 ${OBJ} ${HEADER_FILES}) 
     install(TARGETS incomp_avx2 DESTINATION ${CMAKE_SOURCE_DIR}/bin)
+else()
+    SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++1y -g -O3 -fsanitize=address -fno-omit-frame-pointer -fopenmp")
+    SET(CMAKE_EXEC_LINKER_FLAGS "${CMAKE_EXEC_LINKER_FLAGS} -fopenmp=libiomp5" )
+    add_executable(incomp ${OBJ} ${HEADER_FILES}) 
+    install(TARGETS incomp DESTINATION ${CMAKE_SOURCE_DIR}/bin)
 endif()
 
 
