@@ -498,18 +498,23 @@ void Q::project() {
 
   double c1 = 2. / dx / dx + 2. / dy / dy;
 
+  double *tmp;
+  
+
 __assume_aligned(pn_old,64);
 __assume_aligned(pn,64);
 
 //  pn[pIdx(5, 5)] = 0.0;
   //  while ( err > 1.e-12 )
   for (uint l = 0; l < 10; l++) {
+
+    /*
 #pragma omp parallel for simd
     for (int i = 0; i < sizeP; i++)
     {
         pn_old[i]=pn[i];
      }
-
+*/
 #pragma omp parallel for 
       for (uint j = 1; j < shortEnd; j++) {
 #pragma omp simd
@@ -523,6 +528,10 @@ __assume_aligned(pn,64);
 
       }
     }
+     tmp    = pn_old;
+     pn_old = pn;
+     pn     = tmp;
+
   }
 }
 
