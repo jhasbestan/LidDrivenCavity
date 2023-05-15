@@ -79,8 +79,9 @@ int main(int argsc, char *argsv[]) {
   count = 0;
   double res_old = 2.0;
   double start_time = omp_get_wtime();
-//  while (res > 1.e-7) {
-  while (count < count_max) {
+  while (res > 1.e-10) {
+//  while (count < count_max) {
+#if 1
     q.getRes(Re);
     q.predict();
     q.setNeumanPressureLDC();
@@ -91,13 +92,16 @@ int main(int argsc, char *argsv[]) {
     res_old = res;
     q.getResTotal(Re);
     q.getResNorm(&res);
+#endif
     count++;
     if (count % 100 == 0) {
       cout << res << endl;
     }
+/*
     if (fabs(res_old - res) < 1e-14) {
       // break;
     }
+*/
     res_old = res;
   }
 #endif
@@ -106,7 +110,7 @@ int main(int argsc, char *argsv[]) {
 
   cout << res << endl;
 
-/*
+
 #if (1)
   Struct_2D(Xa, Xb, Ya, Yb, N, N, &X, &Y);
   q.VTK_out(X, Y, N);
@@ -115,7 +119,7 @@ int main(int argsc, char *argsv[]) {
   q.Struct_2D_Ghost(Xa, Xb, Ya, Yb, &X, &Y);
   q.VTK_out_with_ghost(X, Y);
 #endif
-*/
+
    std::cout<< " total time "<< total_time <<std::endl;
 };
 

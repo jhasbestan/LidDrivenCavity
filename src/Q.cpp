@@ -11,7 +11,7 @@ Q::Q(int nmax1, double dx1, double dy1) {
 
   dx = dx1;
   dy = dy1;
-  dt = 0.00001*dx;
+  dt = 0.01*dx;
 
   nmax = nmax1 + 2;
 
@@ -70,8 +70,9 @@ Q::Q(int nmax1, double dx1, double dy1) {
   // initialize the current time step
 
   double C = 0.0;
+  int loop_size = sizeS; 
 #pragma omp parallel for simd
-  for (uint i = 0; i < sizeS; i++) {
+  for (uint i = 0; i < loop_size; i++) {
     u[i] = C;
     v[i] = C;
 
@@ -82,13 +83,15 @@ Q::Q(int nmax1, double dx1, double dy1) {
     vp[i] = C;
   }
 
+  loop_size = 2*sizeS; 
 #pragma omp parallel for simd
-  for (uint i = 0; i < 2 * sizeS; i++) {
+  for (uint i = 0; i < loop_size; i++) {
     Res[i] = 0.0;
   }
 
+  loop_size = sizeP; 
 #pragma omp parallel for simd
-  for (uint i = 0; i < sizeP; i++) {
+  for (uint i = 0; i < loop_size; i++) {
     p[i] = 0.0;
     pn[i] = 0.0;
     pp[i] = 0.0;
@@ -260,7 +263,7 @@ void Q::getRes(double Re) {
 
 #pragma omp parallel 
 {  
-#pragma omp for nowait
+#pragma omp for 
     for (uint j = 1; j < shortEnd; j++) {
 #pragma omp simd
   for (uint i = 1; i < longEnd; i++) {
@@ -363,7 +366,7 @@ void Q::getResTotal(double Re) {
 
 #pragma omp parallel 
   {  
-#pragma omp for nowait
+#pragma omp for 
     for (uint j = 1; j < shortEnd; j++) {
 #pragma omp simd
   for (uint i = 1; i < longEnd; i++) {
@@ -460,16 +463,18 @@ void Q::start() {
 
 void Q::update() {
 
+int loop_size=sizeS;
 #pragma omp parallel for simd
-  for (uint i = 0; i < sizeS; i++) {
+  for (uint i = 0; i <loop_size; i++) {
     up[i] = u[i];
     vp[i] = v[i];
     u[i] = un[i];
     v[i] = vn[i];
   }
 
+loop_size=sizeP;
 #pragma omp parallel for simd
-  for (uint i = 0; i < sizeP; i++) {
+  for (uint i = 0; i < loop_size; i++) {
     pp[i] = p[i];
     p[i] = pn[i];
   }
@@ -478,14 +483,17 @@ void Q::update() {
 void Q::getResNorm(double *del_u) {
 
   double res[3] = {0.0, 0.0, 0.0};
+  double res0=0.0;
+  double res1=0.0;
 
-  sizeS = (nmax + 1) * (nmax);
-#pragma omp parallel for simd
+  int sizeS = (nmax + 1) * (nmax);
+#pragma omp parallel for simd reduction(+:res0)
   for (uint i = 0; i < sizeS; i++) {
-    res[0] = res[0] + (un[i] - up[i]) * (un[i] - up[i]);
-    res[1] = res[1] + (vn[i] - vp[i]) * (vn[i] - vp[i]);
+    res0 +=  (un[i] - up[i]) * (un[i] - up[i]);
+    res1 +=  (vn[i] - vp[i]) * (vn[i] - vp[i]);
   }
-  *del_u = sqrt((res[0] + res[1] + res[2]) / 3. / sizeS);
+
+  *del_u = sqrt((res0 + res1) / 2. / sizeS);
 }
 
 #if (!PFV)
@@ -577,7 +585,7 @@ void Q::correct() {
 
 #pragma omp parallel   
 {
-#pragma omp for nowait  
+#pragma omp for   
     for (uint j = 1; j < shortEnd; j++) {
 #pragma omp simd
   for (uint i = 1; i < longEnd; i++) {
@@ -914,12 +922,12 @@ void Q::Struct_2D_Ghost(double Xa, double Xb, double Ya, double Yb, double **X,
 
   Ya = Ya - Yh;
 
-#pragma omp parallel for simd 
+//#pragma omp parallel for simd 
   for (i = 0; i < nmax + 1; i++) {
     (*X)[i] = Xa + Xh * i;
   }
 
-#pragma omp parallel for simd 
+//#pragma omp parallel for simd 
   for (i = 0; i < nmax + 1; i++) {
     (*Y)[i] = Ya + Yh * i;
   }
@@ -1213,7 +1221,7 @@ void Q::debug(double Xa, double Ya) {
 
 void Q::setBoundaryLidDrivenCavity() {
 
-#pragma omp parallel for simd
+//#pragma omp parallel for simd
   for (int i = 1; i < nmax; i++) {
     // cond on U at i direction
     un[uIdx(i, 0)] = -un[uIdx(i, 1)];
@@ -1225,7 +1233,7 @@ void Q::setBoundaryLidDrivenCavity() {
   }
 
   // no leaking at the top so the u velocity is zero
-#pragma omp parallel for simd
+//#pragma omp parallel for simd
   for (int i = 1; i < nmax - 1; i++) {
     // condition on V at i-direction
     //         vn[vIdx(i,1)]=0.0;
@@ -1249,7 +1257,7 @@ void Q::setNeumanPressureLDC() {
   // apply newman bc on the solid
   // we solid faces so five neuman or solid
 
-#pragma omp parallel for simd
+//#pragma omp parallel for simd
   for (int i = 0; i < nmax; i++) {
       pn[pIdx(i, 0)] = pn[pIdx(i, 1)];
       pn[pIdx(0, i)] = pn[pIdx(1, i)];
