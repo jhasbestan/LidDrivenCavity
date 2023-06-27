@@ -1,19 +1,21 @@
 #! /usr/bin/bash
 
-module use /mnt/share/intel/oneapi/2022.2/modulefiles
-module load icc/2022.1.0
+#module use /mnt/share/intel/oneapi/2022.2/modulefiles
+#module load icc/2022.1.0
+
+module load clang-16.0.0
 
 export KMP_AFFINITY=granularity=fine,compact
 
-export CXX=icpc
-export CC=icc
+export CXX=clang++
+export CC=clang
 
 module list 
 
 cd build && rm CMakeCache.txt
 
 
-cmake ../ -DCMAKE_BUILD_TYPE=Release -DZMM_HIGH=true  && make -j 8  && make install
+cmake ../ -DCMAKE_BUILD_TYPE=Release -DZMM_HIGH=true  && make -j 8  
 
 cd ../bin
 
@@ -21,7 +23,7 @@ cd ../bin
 
 cd ../build && rm CMakeCache.txt
 
-cmake ../ -DCMAKE_BUILD_TYPE=Release -DAVX2=true  && make -j 8 && make install 
+cmake ../ -DCMAKE_BUILD_TYPE=Release -DAVX2=true  && make -j 8 
 
 cd ../bin
 
