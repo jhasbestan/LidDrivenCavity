@@ -13,7 +13,7 @@ module list
 cd build && rm CMakeCache.txt
 
 
-cmake ../ -DCMAKE_BUILD_TYPE=Release -DZMM_HIGH=true  && make install 
+cmake ../ -DCMAKE_BUILD_TYPE=Release -DZMM_HIGH=true  && make -j 8  && make install
 
 cd ../bin
 
@@ -21,7 +21,7 @@ cd ../bin
 
 cd ../build && rm CMakeCache.txt
 
-cmake ../ -DCMAKE_BUILD_TYPE=Release -DAVX2=true  && make install 
+cmake ../ -DCMAKE_BUILD_TYPE=Release -DAVX2=true  && make -j 8 && make install 
 
 cd ../bin
 

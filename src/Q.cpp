@@ -52,20 +52,24 @@ Q::Q(int nmax1, double dx1, double dy1) {
   posix_memalign((void**)&v,64,sizeS*sizeof(double));
   posix_memalign((void**)&vp,64,sizeS*sizeof(double));
   posix_memalign((void**)&vn,64,sizeS*sizeof(double));
+#ifndef __ICC
   __assume_aligned(u,64);
   __assume_aligned(up,64);
   __assume_aligned(un,64);
   __assume_aligned(v,64);
   __assume_aligned(vp,64);
   __assume_aligned(vn,64);
+#endif
  // p = new double[sizeP];
 //  pn = new double[sizeP];
   posix_memalign((void**)&p,64,sizeP*sizeof(double));
   posix_memalign((void**)&pn,64,sizeP*sizeof(double));
   posix_memalign((void**)&pn_old,64,sizeP*sizeof(double));
   posix_memalign((void**)&pp,64,sizeP*sizeof(double));
+#ifndef __ICC
   __assume_aligned(pn_old,64);
   __assume_aligned(pn,64);
+#endif
 //  pn_old = new double[sizeP];
 //  pp = new double[sizeP];
 
@@ -503,8 +507,10 @@ void Q::project() {
   double *tmp;
   
 
+#ifndef __ICC
 __assume_aligned(pn_old,64);
 __assume_aligned(pn,64);
+#endif
 
 //  pn[pIdx(5, 5)] = 0.0;
   //  while ( err > 1.e-12 )
