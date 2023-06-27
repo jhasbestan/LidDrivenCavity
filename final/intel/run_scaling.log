@@ -1,0 +1,7 @@
+====================================================================================
+
+ 
+ Intel AVX512: 
+        MAX THREADS=192
+        KMP_AFFINITY=granularity=fine,compact
+        ./bin/incomp_avx512 40000 10

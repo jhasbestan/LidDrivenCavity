@@ -1,0 +1,484 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+Intel(R) C++ Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.6.0 Build 20220226_000000
+
+Compiler options: -I/mnt/share/users/kasra/projects/LidDrivenCavity/final/intel/src/include -Wall -std=c++1y -O3 -march=core-avx2 -Wunused-variable -qopt-report=5 -qopenmp -O3 -DNDEBUG -MD -MT CMakeFiles/incomp_avx2.dir/src/main.cpp.o -MF CMakeFiles/incomp_avx2.dir/src/main.cpp.o.d -o CMakeFiles/incomp_avx2.dir/src/main.cpp.o -c
+
+    Report from: Interprocedural optimizations [ipo]
+
+  WHOLE PROGRAM (SAFE) [EITHER METHOD]: false
+  WHOLE PROGRAM (SEEN) [TABLE METHOD]: false
+  WHOLE PROGRAM (READ) [OBJECT READER METHOD]: false
+
+INLINING OPTION VALUES:
+  -inline-factor: 100
+  -inline-min-size: 30
+  -inline-max-size: 230
+  -inline-max-total-size: 2000
+  -inline-max-per-routine: 10000
+  -inline-max-per-compile: 500000
+
+In the inlining report below:
+   "sz" refers to the "size" of the routine. The smaller a routine's size,
+      the more likely it is to be inlined.
+   "isz" refers to the "inlined size" of the routine. This is the amount
+      the calling routine will grow if the called routine is inlined into it.
+      The compiler generally limits the amount a routine can grow by having
+      routines inlined into it.
+
+Begin optimization report for: main(int, char **)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (main(int, char **)) [1/17=5.9%] /mnt/share/users/kasra/projects/LidDrivenCavity/final/intel/src/main.cpp(11,36)
+  -> INLINE (MANUAL): (13,9) atoi(const char *) (isz = 7) (sz = 14)
+    -> EXTERN: /usr/include/stdlib.h:(363,16) strtol(const char *, char **, int)
+  -> INLINE (MANUAL): (14,17) atoi(const char *) (isz = 7) (sz = 14)
+    -> EXTERN: /usr/include/stdlib.h:(363,16) strtol(const char *, char **, int)
+  -> (17,10) std::operator<<<std::char_traits<char>>(std::basic_ostream<char, std::char_traits<char>> &, const char *) (isz = 15) (sz = 24)
+     [[ Called routine is noinline  <1>]]
+  -> (17,81) std::basic_ostream<char, std::char_traits<char>>::operator<<(std::basic_ostream<char, std::char_traits<char>> *, std::basic_ostream<char, std::char_traits<char>>::__ostream_type &(*)(std::basic_ostream<char, std::char_traits<char>>::__ostream_type &)) (isz = 0) (sz = 9)
+     [[ Called routine is noinline  <1>]]
+  -> EXTERN: (22,15) ?1memset
+  -> EXTERN: (39,14) Q::~Q(Q *)
+  -> EXTERN: (39,14) Q::Q(Q *, int, double, double)
+  -> EXTERN: (41,5) Q::initialize(Q *, int, double *)
+  -> EXTERN: (42,3) operator delete[](void *)
+  -> EXTERN: (77,5) Q::setBoundaryLidDrivenCavity(Q *)
+  -> EXTERN: (78,5) Q::start(Q *)
+  -> EXTERN: (81,23) omp_get_wtime()
+  -> EXTERN: (84,7) Q::getRes(Q *, double)
+  -> EXTERN: (85,7) Q::predict(Q *)
+  -> EXTERN: (86,7) Q::setNeumanPressureLDC(Q *)
+  -> EXTERN: (87,7) Q::project(Q *)
+  -> EXTERN: (88,7) Q::setBoundaryLidDrivenCavity(Q *)
+  -> EXTERN: (89,7) Q::correct(Q *)
+  -> EXTERN: (90,7) Q::update(Q *)
+  -> EXTERN: (92,7) Q::getResTotal(Q *, double)
+  -> EXTERN: (93,7) Q::getResNorm(Q *, double *)
+  -> (96,12) std::basic_ostream<char, std::char_traits<char>>::operator<<(std::basic_ostream<char, std::char_traits<char>> *, double) (isz = 1) (sz = 10)
+     [[ Called routine is noinline  <1>]]
+  -> (96,19) std::basic_ostream<char, std::char_traits<char>>::operator<<(std::basic_ostream<char, std::char_traits<char>> *, std::basic_ostream<char, std::char_traits<char>>::__ostream_type &(*)(std::basic_ostream<char, std::char_traits<char>>::__ostream_type &)) (isz = 0) (sz = 9)
+     [[ Called routine is noinline  <1>]]
+  -> EXTERN: (104,23) omp_get_wtime()
+  -> (107,9) std::basic_ostream<char, std::char_traits<char>>::operator<<(std::basic_ostream<char, std::char_traits<char>> *, double) (isz = 1) (sz = 10)
+     [[ Called routine is noinline  <1>]]
+  -> (107,16) std::basic_ostream<char, std::char_traits<char>>::operator<<(std::basic_ostream<char, std::char_traits<char>> *, std::basic_ostream<char, std::char_traits<char>>::__ostream_type &(*)(std::basic_ostream<char, std::char_traits<char>>::__ostream_type &)) (isz = 0) (sz = 9)
+     [[ Called routine is noinline  <1>]]
+  -> (120,13) std::operator<<<std::char_traits<char>>(std::basic_ostream<char, std::char_traits<char>> &, const char *) (isz = 15) (sz = 24)
+     [[ Called routine is noinline  <1>]]
+  -> (120,30) std::basic_ostream<char, std::char_traits<char>>::operator<<(std::basic_ostream<char, std::char_traits<char>> *, double) (isz = 1) (sz = 10)
+     [[ Called routine is noinline  <1>]]
+  -> EXTERN: (120,44) Q::~Q(Q *)
+  -> (120,44) std::basic_ostream<char, std::char_traits<char>>::operator<<(std::basic_ostream<char, std::char_traits<char>> *, std::basic_ostream<char, std::char_traits<char>>::__ostream_type &(*)(std::basic_ostream<char, std::char_traits<char>>::__ostream_type &)) (isz = 0) (sz = 9)
+     [[ Called routine is noinline  <1>]]
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at /mnt/share/users/kasra/projects/LidDrivenCavity/final/intel/src/main.cpp(83,3)
+   remark #26015: Exception can be thrown by the call to Q::getRes(Q *, double)   [ /mnt/share/users/kasra/projects/LidDrivenCavity/final/intel/src/main.cpp(84,7) ]
+   remark #15333: loop was not vectorized: exception handling for a call prevents vectorization   [ /mnt/share/users/kasra/projects/LidDrivenCavity/final/intel/src/main.cpp(84,7) ]
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/mnt/share/users/kasra/projects/LidDrivenCavity/final/intel/src/main.cpp(22,15):remark #34000: call to memset implemented inline with stores with proven (alignment, offset): (32, 0)
+/mnt/share/users/kasra/projects/LidDrivenCavity/final/intel/src/main.cpp(11,36):remark #34051: REGISTER ALLOCATION : [main] /mnt/share/users/kasra/projects/LidDrivenCavity/final/intel/src/main.cpp:11
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   10[ rax rdx rcx rbx rsi rdi r12-r13 zmm0-zmm1]
+        
+    Routine temporaries
+        Total         :     123
+            Global    :      34
+            Local     :      89
+        Regenerable   :      55
+        Spilled       :       5
+        
+    Routine stack
+        Variables     :     196 bytes*
+            Reads     :       5 [8.42e-01 ~ 0.8%]
+            Writes    :       5 [7.70e-01 ~ 0.8%]
+        Spills        :      16 bytes*
+            Reads     :       2 [7.70e-01 ~ 0.8%]
+            Writes    :       2 [7.70e-01 ~ 0.8%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: std::basic_ostream<char, std::char_traits<char>>::operator<<(std::basic_ostream<char, std::char_traits<char>> *, std::basic_ostream<char, std::char_traits<char>>::__ostream_type &(*)(std::basic_ostream<char, std::char_traits<char>>::__ostream_type &))
+
+    Report from: Interprocedural optimizations [ipo]
+
+NEVER EMIT DEFINITION FUNCTION: (std::basic_ostream<char, std::char_traits<char>>::operator<<(std::basic_ostream<char, std::char_traits<char>> *, std::basic_ostream<char, std::char_traits<char>>::__ostream_type &(*)(std::basic_ostream<char, std::char_traits<char>>::__ostream_type &)))/usr/include/c++/8/ostream(109,7)
+
+===========================================================================
+
+Begin optimization report for: std::basic_ostream<char, std::char_traits<char>>::operator<<(std::basic_ostream<char, std::char_traits<char>> *, double)
+
+    Report from: Interprocedural optimizations [ipo]
+
+NEVER EMIT DEFINITION FUNCTION: (std::basic_ostream<char, std::char_traits<char>>::operator<<(std::basic_ostream<char, std::char_traits<char>> *, double))/usr/include/c++/8/ostream(221,7)
+
+===========================================================================
+
+Begin optimization report for: std::operator<<<std::char_traits<char>>(std::basic_ostream<char, std::char_traits<char>> &, const char *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+NEVER EMIT DEFINITION FUNCTION: (std::operator<<<std::char_traits<char>>(std::basic_ostream<char, std::char_traits<char>> &, const char *))/usr/include/c++/8/ostream(560,5)
+
+===========================================================================
+
+Begin optimization report for: std::basic_ios<char, std::char_traits<char>>::setstate(std::basic_ios<char, std::char_traits<char>> *, std::ios_base::iostate)
+
+    Report from: Interprocedural optimizations [ipo]
+
+NEVER EMIT DEFINITION FUNCTION: (std::basic_ios<char, std::char_traits<char>>::setstate(std::basic_ios<char, std::char_traits<char>> *, std::ios_base::iostate))/usr/include/c++/8/bits/basic_ios.h(158,7)
+
+===========================================================================
+
+Begin optimization report for: std::char_traits<char>::length(const std::char_traits<char>::char_type *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (std::char_traits<char>::length(const std::char_traits<char>::char_type *)) [6/17=35.3%] /usr/include/c++/8/bits/char_traits.h(324,7)
+  -> EXTERN: (329,9) __builtin_strlen(const char *)
+
+
+    Report from: Code generation optimizations [cg]
+
+/usr/include/c++/8/bits/char_traits.h(324,7):remark #34051: REGISTER ALLOCATION : [_ZNSt11char_traitsIcE6lengthEPKc] /usr/include/c++/8/bits/char_traits.h:324
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    3[ rax rdx rdi]
+        
+    Routine temporaries
+        Total         :      12
+            Global    :       7
+            Local     :       5
+        Regenerable   :       0
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: atoi(const char *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+NEVER EMIT DEFINITION FUNCTION: (atoi(const char *))/usr/include/stdlib.h(362,1)
+
+===========================================================================
+
+Begin optimization report for: Struct_2D(double, double, double, double, int, int, double **, double **)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (Struct_2D(double, double, double, double, int, int, double **, double **)) [8/17=47.1%] /mnt/share/users/kasra/projects/LidDrivenCavity/final/intel/src/main.cpp(124,40)
+  -> EXTERN: (131,25) operator new[](std::size_t)
+  -> EXTERN: (131,25) __cxa_throw_bad_array_new_length()
+  -> EXTERN: (132,25) operator new[](std::size_t)
+  -> EXTERN: (132,25) __cxa_throw_bad_array_new_length()
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at /mnt/share/users/kasra/projects/LidDrivenCavity/final/intel/src/main.cpp(134,3)
+<Peeled loop for vectorization>
+   remark #25015: Estimate of max trip count of loop=3
+LOOP END
+
+LOOP BEGIN at /mnt/share/users/kasra/projects/LidDrivenCavity/final/intel/src/main.cpp(134,3)
+   remark #15388: vectorization support: reference *X[i] has aligned access   [ /mnt/share/users/kasra/projects/LidDrivenCavity/final/intel/src/main.cpp(135,7) ]
+   remark #15305: vectorization support: vector length 4
+   remark #15399: vectorization support: unroll factor set to 4
+   remark #15309: vectorization support: normalized vectorization overhead 0.375
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15442: entire loop may be executed in remainder
+   remark #15449: unmasked aligned unit stride stores: 1 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 9 
+   remark #15477: vector cost: 2.000 
+   remark #15478: estimated potential speedup: 3.870 
+   remark #15487: type converts: 1 
+   remark #15488: --- end vector cost summary ---
+LOOP END
+
+LOOP BEGIN at /mnt/share/users/kasra/projects/LidDrivenCavity/final/intel/src/main.cpp(134,3)
+<Remainder loop for vectorization>
+   remark #15389: vectorization support: reference *X[i] has unaligned access   [ /mnt/share/users/kasra/projects/LidDrivenCavity/final/intel/src/main.cpp(135,7) ]
+   remark #15381: vectorization support: unaligned access used inside loop body
+   remark #15305: vectorization support: vector length 4
+   remark #15309: vectorization support: normalized vectorization overhead 1.500
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+   remark #15442: entire loop may be executed in remainder
+   remark #15449: unmasked aligned unit stride stores: 1 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 9 
+   remark #15477: vector cost: 2.000 
+   remark #15478: estimated potential speedup: 3.870 
+   remark #15487: type converts: 1 
+   remark #15488: --- end vector cost summary ---
+LOOP END
+
+LOOP BEGIN at /mnt/share/users/kasra/projects/LidDrivenCavity/final/intel/src/main.cpp(134,3)
+<Remainder loop for vectorization>
+LOOP END
+
+LOOP BEGIN at /mnt/share/users/kasra/projects/LidDrivenCavity/final/intel/src/main.cpp(138,3)
+<Peeled loop for vectorization>
+   remark #25015: Estimate of max trip count of loop=3
+LOOP END
+
+LOOP BEGIN at /mnt/share/users/kasra/projects/LidDrivenCavity/final/intel/src/main.cpp(138,3)
+   remark #15388: vectorization support: reference Y has aligned access   [ /mnt/share/users/kasra/projects/LidDrivenCavity/final/intel/src/main.cpp(139,7) ]
+   remark #15305: vectorization support: vector length 4
+   remark #15399: vectorization support: unroll factor set to 4
+   remark #15309: vectorization support: normalized vectorization overhead 0.375
+   remark #15300: LOOP WAS VECTORIZED
+   remark #15442: entire loop may be executed in remainder
+   remark #15449: unmasked aligned unit stride stores: 1 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 9 
+   remark #15477: vector cost: 2.000 
+   remark #15478: estimated potential speedup: 3.870 
+   remark #15487: type converts: 1 
+   remark #15488: --- end vector cost summary ---
+LOOP END
+
+LOOP BEGIN at /mnt/share/users/kasra/projects/LidDrivenCavity/final/intel/src/main.cpp(138,3)
+<Remainder loop for vectorization>
+   remark #15389: vectorization support: reference Y has unaligned access   [ /mnt/share/users/kasra/projects/LidDrivenCavity/final/intel/src/main.cpp(139,7) ]
+   remark #15381: vectorization support: unaligned access used inside loop body
+   remark #15305: vectorization support: vector length 4
+   remark #15309: vectorization support: normalized vectorization overhead 1.500
+   remark #15301: REMAINDER LOOP WAS VECTORIZED
+   remark #15442: entire loop may be executed in remainder
+   remark #15449: unmasked aligned unit stride stores: 1 
+   remark #15475: --- begin vector cost summary ---
+   remark #15476: scalar cost: 9 
+   remark #15477: vector cost: 2.000 
+   remark #15478: estimated potential speedup: 3.870 
+   remark #15487: type converts: 1 
+   remark #15488: --- end vector cost summary ---
+LOOP END
+
+LOOP BEGIN at /mnt/share/users/kasra/projects/LidDrivenCavity/final/intel/src/main.cpp(138,3)
+<Remainder loop for vectorization>
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+/mnt/share/users/kasra/projects/LidDrivenCavity/final/intel/src/main.cpp(124,40):remark #34051: REGISTER ALLOCATION : [_Z9Struct_2DddddiiPPdS0_] /mnt/share/users/kasra/projects/LidDrivenCavity/final/intel/src/main.cpp:124
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   21[ rax rdx rcx rbx rsi rdi r8 r12-r15 zmm0-zmm9]
+        
+    Routine temporaries
+        Total         :     180
+            Global    :      69
+            Local     :     111
+        Regenerable   :       6
+        Spilled       :       9
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :      32 bytes*
+            Reads     :      16 [2.22e+00 ~ 2.2%]
+            Writes    :       4 [6.17e-01 ~ 0.6%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: rhs(double &, double &, double &)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (rhs(double &, double &, double &)) [9/17=52.9%] /mnt/share/users/kasra/projects/LidDrivenCavity/final/intel/src/main.cpp(143,45)
+  -> EXTERN: (144,40) __cxa_guard_release(unsigned long *)
+  -> EXTERN: (144,40) __cxa_guard_acquire(unsigned long *)
+  -> EXTERN: (145,35) __cxa_guard_release(unsigned long *)
+  -> EXTERN: (145,35) __cxa_guard_acquire(unsigned long *)
+  -> EXTERN: (146,26) sin(double)
+  -> EXTERN: (146,48) sin(double)
+  -> EXTERN: (147,13) sin(double)
+
+
+    Report from: Code generation optimizations [cg]
+
+/mnt/share/users/kasra/projects/LidDrivenCavity/final/intel/src/main.cpp(143,45):remark #34051: REGISTER ALLOCATION : [_Z3rhsRdS_S_] /mnt/share/users/kasra/projects/LidDrivenCavity/final/intel/src/main.cpp:143
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   14[ rax rdx rbx rbp rsi rdi r12 zmm0-zmm6]
+        
+    Routine temporaries
+        Total         :      50
+            Global    :      22
+            Local     :      28
+        Regenerable   :       9
+        Spilled       :       6
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :      24 bytes*
+            Reads     :       4 [7.66e+00 ~ 7.7%]
+            Writes    :       3 [5.75e+00 ~ 5.7%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: std::ctype<char>::widen(const std::ctype<char> *, char) const
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (std::ctype<char>::widen(const std::ctype<char> *, char) const) /usr/include/c++/8/bits/locale_facets.h(873,7)
+
+===========================================================================
+
+Begin optimization report for: std::basic_ios<char, std::char_traits<char>>::rdstate(const std::basic_ios<char, std::char_traits<char>> *) const
+
+    Report from: Interprocedural optimizations [ipo]
+
+NEVER EMIT DEFINITION FUNCTION: (std::basic_ios<char, std::char_traits<char>>::rdstate(const std::basic_ios<char, std::char_traits<char>> *) const)/usr/include/c++/8/bits/basic_ios.h(138,7)
+
+===========================================================================
+
+Begin optimization report for: std::basic_ios<char, std::char_traits<char>>::widen(const std::basic_ios<char, std::char_traits<char>> *, char) const
+
+    Report from: Interprocedural optimizations [ipo]
+
+NEVER EMIT DEFINITION FUNCTION: (std::basic_ios<char, std::char_traits<char>>::widen(const std::basic_ios<char, std::char_traits<char>> *, char) const)/usr/include/c++/8/bits/basic_ios.h(450,7)
+
+===========================================================================
+
+Begin optimization report for: std::operator|(std::_Ios_Iostate, std::_Ios_Iostate)
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (std::operator|(std::_Ios_Iostate, std::_Ios_Iostate)) /usr/include/c++/8/bits/ios_base.h(170,3)
+
+===========================================================================
+
+Begin optimization report for: std::endl<char, std::char_traits<char>>(std::basic_ostream<char, std::char_traits<char>> &)
+
+    Report from: Interprocedural optimizations [ipo]
+
+NEVER EMIT DEFINITION FUNCTION: (std::endl<char, std::char_traits<char>>(std::basic_ostream<char, std::char_traits<char>> &))/usr/include/c++/8/ostream(594,5)
+
+===========================================================================
+
+Begin optimization report for: std::flush<char, std::char_traits<char>>(std::basic_ostream<char, std::char_traits<char>> &)
+
+    Report from: Interprocedural optimizations [ipo]
+
+NEVER EMIT DEFINITION FUNCTION: (std::flush<char, std::char_traits<char>>(std::basic_ostream<char, std::char_traits<char>> &))/usr/include/c++/8/ostream(616,5)
+
+===========================================================================
+
+Begin optimization report for: std::__check_facet<std::basic_ios<char, std::char_traits<char>>::__ctype_type>(const std::basic_ios<char, std::char_traits<char>>::__ctype_type *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+DEAD STATIC FUNCTION: (std::__check_facet<std::basic_ios<char, std::char_traits<char>>::__ctype_type>(const std::basic_ios<char, std::char_traits<char>>::__ctype_type *)) /usr/include/c++/8/bits/basic_ios.h(48,5)
+
+===========================================================================
+
+Begin optimization report for: __sti__$E()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (__sti__$E()) [17/17=100.0%] <compiler generated>
+  -> EXTERN: /usr/include/c++/8/iostream:(74,25) __cxa_atexit(void (*)(void *), void *, void *)
+  -> EXTERN: /usr/include/c++/8/iostream:(74,25) std::ios_base::Init::Init(std::ios_base::Init *)
+
+
+    Report from: Code generation optimizations [cg]
+
+<compiler generated>:remark #34051: REGISTER ALLOCATION : [__sti__$E] (null):0
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    3[ rdx rsi rdi]
+        
+    Routine temporaries
+        Total         :      13
+            Global    :       7
+            Local     :       6
+        Regenerable   :       7
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINING FOOTNOTES:
+
+<1> The routine declaration is annotated with "__attribute__((noinline))".  
+    Remove this annotation to permit the compiler to inline this routine.
+

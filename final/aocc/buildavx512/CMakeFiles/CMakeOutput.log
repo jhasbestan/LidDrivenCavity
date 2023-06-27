@@ -1,0 +1,563 @@
+The system is: Linux - 4.18.0-425.3.1.el8.x86_64 - x86_64
+Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
+Compiler: /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin/clang 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
+
+The C compiler identification is Clang, found in "/mnt/share/users/kasra/projects/LidDrivenCavity/final/aocc/buildavx512/CMakeFiles/3.20.2/CompilerIdC/a.out"
+
+Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+Compiler: /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin/clang++ 
+Build flags: 
+Id flags:  
+
+The output was:
+0
+
+
+Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
+
+The CXX compiler identification is Clang, found in "/mnt/share/users/kasra/projects/LidDrivenCavity/final/aocc/buildavx512/CMakeFiles/3.20.2/CompilerIdCXX/a.out"
+
+Detecting C compiler ABI info compiled with the following output:
+Change Dir: /mnt/share/users/kasra/projects/LidDrivenCavity/final/aocc/buildavx512/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_0790d/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_0790d.dir/build.make CMakeFiles/cmTC_0790d.dir/build
+gmake[1]: Entering directory '/mnt/share/users/kasra/projects/LidDrivenCavity/final/aocc/buildavx512/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_0790d.dir/CMakeCCompilerABI.c.o
+/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin/clang   -v -MD -MT CMakeFiles/cmTC_0790d.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_0790d.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_0790d.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake/Modules/CMakeCCompilerABI.c
+AMD clang version 14.0.6 (CLANG: AOCC_4.0.0-Build#434 2022_10_28) (based on LLVM Mirror.Version.14.0.6)
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin
+Found candidate GCC installation: /usr/lib/gcc/i686-redhat-linux/8
+Found candidate GCC installation: /usr/lib/gcc/x86_64-redhat-linux/8
+Selected GCC installation: /usr/lib/gcc/x86_64-redhat-linux/8
+Candidate multilib: .;@m64
+Candidate multilib: 32;@m32
+Selected multilib: .;@m64
+ (in-process)
+ "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin/clang-14" -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -main-file-name CMakeCCompilerABI.c -mrelocation-model static -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/mnt/share/users/kasra/projects/LidDrivenCavity/final/aocc/buildavx512/CMakeFiles/CMakeTmp -resource-dir /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib/clang/14.0.6 -dependency-file CMakeFiles/cmTC_0790d.dir/CMakeCCompilerABI.c.o.d -MT CMakeFiles/cmTC_0790d.dir/CMakeCCompilerABI.c.o -sys-header-deps -c-isystem . -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem . -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -internal-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib/clang/14.0.6/include -internal-isystem /usr/local/include -internal-isystem /usr/lib/gcc/x86_64-redhat-linux/8/../../../../x86_64-redhat-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdebug-compilation-dir=/mnt/share/users/kasra/projects/LidDrivenCavity/final/aocc/buildavx512/CMakeFiles/CMakeTmp -ferror-limit 19 -fgnuc-version=4.2.1 -itodcalls -itodcallsbyclone -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_0790d.dir/CMakeCCompilerABI.c.o -x c /usr/share/cmake/Modules/CMakeCCompilerABI.c
+clang -cc1 version 14.0.6 based upon LLVM Mirror.Version.14.0.6 default target x86_64-unknown-linux-gnu
+ignoring nonexistent directory "/usr/lib/gcc/x86_64-redhat-linux/8/../../../../x86_64-redhat-linux/include"
+ignoring nonexistent directory "/include"
+ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"
+ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"
+ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"
+ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"
+ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"
+ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"
+ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"
+ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"
+ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ .
+ /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include
+ /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib/clang/14.0.6/include
+ /usr/local/include
+ /usr/include
+End of search list.
+Linking C executable cmTC_0790d
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0790d.dir/link.txt --verbose=1
+/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin/clang  -v -rdynamic CMakeFiles/cmTC_0790d.dir/CMakeCCompilerABI.c.o -o cmTC_0790d 
+AMD clang version 14.0.6 (CLANG: AOCC_4.0.0-Build#434 2022_10_28) (based on LLVM Mirror.Version.14.0.6)
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin
+Found candidate GCC installation: /usr/lib/gcc/i686-redhat-linux/8
+Found candidate GCC installation: /usr/lib/gcc/x86_64-redhat-linux/8
+Selected GCC installation: /usr/lib/gcc/x86_64-redhat-linux/8
+Candidate multilib: .;@m64
+Candidate multilib: 32;@m32
+Selected multilib: .;@m64
+ "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin/ld.lld" -export-dynamic --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_0790d /usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/8/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/8 -L/usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin/../lib -L/lib -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L. CMakeFiles/cmTC_0790d.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-redhat-linux/8/crtend.o /usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crtn.o
+gmake[1]: Leaving directory '/mnt/share/users/kasra/projects/LidDrivenCavity/final/aocc/buildavx512/CMakeFiles/CMakeTmp'
+
+
+
+Parsed C implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [.]
+    add: [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include]
+    add: [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib/clang/14.0.6/include]
+    add: [/usr/local/include]
+    add: [/usr/include]
+  end of search list found
+  skipping relative include dir [.]
+  collapse include dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include]
+  collapse include dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib/clang/14.0.6/include] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib/clang/14.0.6/include]
+  collapse include dir [/usr/local/include] ==> [/usr/local/include]
+  collapse include dir [/usr/include] ==> [/usr/include]
+  implicit include dirs: [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include;/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib/clang/14.0.6/include;/usr/local/include;/usr/include]
+
+
+Parsed C implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /mnt/share/users/kasra/projects/LidDrivenCavity/final/aocc/buildavx512/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_0790d/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_0790d.dir/build.make CMakeFiles/cmTC_0790d.dir/build]
+  ignore line: [gmake[1]: Entering directory '/mnt/share/users/kasra/projects/LidDrivenCavity/final/aocc/buildavx512/CMakeFiles/CMakeTmp']
+  ignore line: [Building C object CMakeFiles/cmTC_0790d.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin/clang   -v -MD -MT CMakeFiles/cmTC_0790d.dir/CMakeCCompilerABI.c.o -MF CMakeFiles/cmTC_0790d.dir/CMakeCCompilerABI.c.o.d -o CMakeFiles/cmTC_0790d.dir/CMakeCCompilerABI.c.o -c /usr/share/cmake/Modules/CMakeCCompilerABI.c]
+  ignore line: [AMD clang version 14.0.6 (CLANG: AOCC_4.0.0-Build#434 2022_10_28) (based on LLVM Mirror.Version.14.0.6)]
+  ignore line: [Target: x86_64-unknown-linux-gnu]
+  ignore line: [Thread model: posix]
+  ignore line: [InstalledDir: /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin]
+  ignore line: [Found candidate GCC installation: /usr/lib/gcc/i686-redhat-linux/8]
+  ignore line: [Found candidate GCC installation: /usr/lib/gcc/x86_64-redhat-linux/8]
+  ignore line: [Selected GCC installation: /usr/lib/gcc/x86_64-redhat-linux/8]
+  ignore line: [Candidate multilib: .]
+  ignore line: [@m64]
+  ignore line: [Candidate multilib: 32]
+  ignore line: [@m32]
+  ignore line: [Selected multilib: .]
+  ignore line: [@m64]
+  ignore line: [ (in-process)]
+  ignore line: [ "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin/clang-14" -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -main-file-name CMakeCCompilerABI.c -mrelocation-model static -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/mnt/share/users/kasra/projects/LidDrivenCavity/final/aocc/buildavx512/CMakeFiles/CMakeTmp -resource-dir /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib/clang/14.0.6 -dependency-file CMakeFiles/cmTC_0790d.dir/CMakeCCompilerABI.c.o.d -MT CMakeFiles/cmTC_0790d.dir/CMakeCCompilerABI.c.o -sys-header-deps -c-isystem . -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem . -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -internal-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib/clang/14.0.6/include -internal-isystem /usr/local/include -internal-isystem /usr/lib/gcc/x86_64-redhat-linux/8/../../../../x86_64-redhat-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdebug-compilation-dir=/mnt/share/users/kasra/projects/LidDrivenCavity/final/aocc/buildavx512/CMakeFiles/CMakeTmp -ferror-limit 19 -fgnuc-version=4.2.1 -itodcalls -itodcallsbyclone -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_0790d.dir/CMakeCCompilerABI.c.o -x c /usr/share/cmake/Modules/CMakeCCompilerABI.c]
+  ignore line: [clang -cc1 version 14.0.6 based upon LLVM Mirror.Version.14.0.6 default target x86_64-unknown-linux-gnu]
+  ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-redhat-linux/8/../../../../x86_64-redhat-linux/include"]
+  ignore line: [ignoring nonexistent directory "/include"]
+  ignore line: [ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"]
+  ignore line: [ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"]
+  ignore line: [ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"]
+  ignore line: [ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"]
+  ignore line: [ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"]
+  ignore line: [ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"]
+  ignore line: [ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"]
+  ignore line: [ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"]
+  ignore line: [ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ .]
+  ignore line: [ /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include]
+  ignore line: [ /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib/clang/14.0.6/include]
+  ignore line: [ /usr/local/include]
+  ignore line: [ /usr/include]
+  ignore line: [End of search list.]
+  ignore line: [Linking C executable cmTC_0790d]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0790d.dir/link.txt --verbose=1]
+  ignore line: [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin/clang  -v -rdynamic CMakeFiles/cmTC_0790d.dir/CMakeCCompilerABI.c.o -o cmTC_0790d ]
+  ignore line: [AMD clang version 14.0.6 (CLANG: AOCC_4.0.0-Build#434 2022_10_28) (based on LLVM Mirror.Version.14.0.6)]
+  ignore line: [Target: x86_64-unknown-linux-gnu]
+  ignore line: [Thread model: posix]
+  ignore line: [InstalledDir: /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin]
+  ignore line: [Found candidate GCC installation: /usr/lib/gcc/i686-redhat-linux/8]
+  ignore line: [Found candidate GCC installation: /usr/lib/gcc/x86_64-redhat-linux/8]
+  ignore line: [Selected GCC installation: /usr/lib/gcc/x86_64-redhat-linux/8]
+  ignore line: [Candidate multilib: .]
+  ignore line: [@m64]
+  ignore line: [Candidate multilib: 32]
+  ignore line: [@m32]
+  ignore line: [Selected multilib: .]
+  ignore line: [@m64]
+  link line: [ "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin/ld.lld" -export-dynamic --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_0790d /usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/8/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/8 -L/usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin/../lib -L/lib -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L. CMakeFiles/cmTC_0790d.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-redhat-linux/8/crtend.o /usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crtn.o]
+    arg [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin/ld.lld] ==> ignore
+    arg [-export-dynamic] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [-export-dynamic] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_0790d] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crt1.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crt1.o]
+    arg [/usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crti.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crti.o]
+    arg [/usr/lib/gcc/x86_64-redhat-linux/8/crtbegin.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/8/crtbegin.o]
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/8] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/8]
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64]
+    arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+    arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin/../lib] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin/../lib]
+    arg [-L/lib] ==> dir [/lib]
+    arg [-L/usr/lib] ==> dir [/usr/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+    arg [-L/usr/lib64] ==> dir [/usr/lib64]
+    arg [-L/usr/lib] ==> dir [/usr/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+    arg [-L/usr/lib64] ==> dir [/usr/lib64]
+    arg [-L/usr/lib] ==> dir [/usr/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+    arg [-L/usr/lib64] ==> dir [/usr/lib64]
+    arg [-L/usr/lib] ==> dir [/usr/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+    arg [-L/usr/lib64] ==> dir [/usr/lib64]
+    arg [-L/usr/lib] ==> dir [/usr/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+    arg [-L/usr/lib64] ==> dir [/usr/lib64]
+    arg [-L/usr/lib] ==> dir [/usr/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+    arg [-L/usr/lib64] ==> dir [/usr/lib64]
+    arg [-L/usr/lib] ==> dir [/usr/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+    arg [-L/usr/lib64] ==> dir [/usr/lib64]
+    arg [-L/usr/lib] ==> dir [/usr/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+    arg [-L/usr/lib64] ==> dir [/usr/lib64]
+    arg [-L/usr/lib] ==> dir [/usr/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+    arg [-L/usr/lib64] ==> dir [/usr/lib64]
+    arg [-L/usr/lib] ==> dir [/usr/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+    arg [-L/usr/lib64] ==> dir [/usr/lib64]
+    arg [-L/usr/lib] ==> dir [/usr/lib]
+    arg [-L.] ==> ignore
+    arg [CMakeFiles/cmTC_0790d.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [-lgcc] ==> lib [gcc]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [-lc] ==> lib [c]
+    arg [-lgcc] ==> lib [gcc]
+    arg [--as-needed] ==> ignore
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [--no-as-needed] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/8/crtend.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/8/crtend.o]
+    arg [/usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crtn.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crtn.o]
+  collapse obj [/usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crt1.o] ==> [/usr/lib64/crt1.o]
+  collapse obj [/usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crti.o] ==> [/usr/lib64/crti.o]
+  collapse obj [/usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crtn.o] ==> [/usr/lib64/crtn.o]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/8] ==> [/usr/lib/gcc/x86_64-redhat-linux/8]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64] ==> [/usr/lib64]
+  collapse library dir [/lib/../lib64] ==> [/lib64]
+  collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin/../lib] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+  collapse library dir [/lib] ==> [/lib]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+  collapse library dir [/usr/lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+  collapse library dir [/usr/lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+  collapse library dir [/usr/lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+  collapse library dir [/usr/lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+  collapse library dir [/usr/lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+  collapse library dir [/usr/lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+  collapse library dir [/usr/lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+  collapse library dir [/usr/lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+  collapse library dir [/usr/lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+  collapse library dir [/usr/lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  implicit libs: [gcc;gcc_s;c;gcc;gcc_s]
+  implicit objs: [/usr/lib64/crt1.o;/usr/lib64/crti.o;/usr/lib/gcc/x86_64-redhat-linux/8/crtbegin.o;/usr/lib/gcc/x86_64-redhat-linux/8/crtend.o;/usr/lib64/crtn.o]
+  implicit dirs: [/usr/lib/gcc/x86_64-redhat-linux/8;/usr/lib64;/lib64;/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib;/lib;/usr/lib;/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+  implicit fwks: []
+
+
+Detecting CXX compiler ABI info compiled with the following output:
+Change Dir: /mnt/share/users/kasra/projects/LidDrivenCavity/final/aocc/buildavx512/CMakeFiles/CMakeTmp
+
+Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_0ffd8/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_0ffd8.dir/build.make CMakeFiles/cmTC_0ffd8.dir/build
+gmake[1]: Entering directory '/mnt/share/users/kasra/projects/LidDrivenCavity/final/aocc/buildavx512/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_0ffd8.dir/CMakeCXXCompilerABI.cpp.o
+/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin/clang++   -v -MD -MT CMakeFiles/cmTC_0ffd8.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_0ffd8.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_0ffd8.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+AMD clang version 14.0.6 (CLANG: AOCC_4.0.0-Build#434 2022_10_28) (based on LLVM Mirror.Version.14.0.6)
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin
+Found candidate GCC installation: /usr/lib/gcc/i686-redhat-linux/8
+Found candidate GCC installation: /usr/lib/gcc/x86_64-redhat-linux/8
+Selected GCC installation: /usr/lib/gcc/x86_64-redhat-linux/8
+Candidate multilib: .;@m64
+Candidate multilib: 32;@m32
+Selected multilib: .;@m64
+ (in-process)
+ "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin/clang-14" -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model static -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/mnt/share/users/kasra/projects/LidDrivenCavity/final/aocc/buildavx512/CMakeFiles/CMakeTmp -resource-dir /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib/clang/14.0.6 -dependency-file CMakeFiles/cmTC_0ffd8.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_0ffd8.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -c-isystem . -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem . -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -internal-isystem /usr/lib/gcc/x86_64-redhat-linux/8/../../../../include/c++/8 -internal-isystem /usr/lib/gcc/x86_64-redhat-linux/8/../../../../include/c++/8/x86_64-redhat-linux -internal-isystem /usr/lib/gcc/x86_64-redhat-linux/8/../../../../include/c++/8/backward -internal-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib/clang/14.0.6/include -internal-isystem /usr/local/include -internal-isystem /usr/lib/gcc/x86_64-redhat-linux/8/../../../../x86_64-redhat-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdeprecated-macro -fdebug-compilation-dir=/mnt/share/users/kasra/projects/LidDrivenCavity/final/aocc/buildavx512/CMakeFiles/CMakeTmp -ferror-limit 19 -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -itodcalls -itodcallsbyclone -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_0ffd8.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp
+clang -cc1 version 14.0.6 based upon LLVM Mirror.Version.14.0.6 default target x86_64-unknown-linux-gnu
+ignoring nonexistent directory "/usr/lib/gcc/x86_64-redhat-linux/8/../../../../x86_64-redhat-linux/include"
+ignoring nonexistent directory "/include"
+ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"
+ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"
+ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"
+ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"
+ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"
+ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"
+ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"
+ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"
+ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"
+#include "..." search starts here:
+#include <...> search starts here:
+ .
+ /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include
+ /usr/lib/gcc/x86_64-redhat-linux/8/../../../../include/c++/8
+ /usr/lib/gcc/x86_64-redhat-linux/8/../../../../include/c++/8/x86_64-redhat-linux
+ /usr/lib/gcc/x86_64-redhat-linux/8/../../../../include/c++/8/backward
+ /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib/clang/14.0.6/include
+ /usr/local/include
+ /usr/include
+End of search list.
+Linking CXX executable cmTC_0ffd8
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0ffd8.dir/link.txt --verbose=1
+/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin/clang++  -v -rdynamic CMakeFiles/cmTC_0ffd8.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_0ffd8 
+AMD clang version 14.0.6 (CLANG: AOCC_4.0.0-Build#434 2022_10_28) (based on LLVM Mirror.Version.14.0.6)
+Target: x86_64-unknown-linux-gnu
+Thread model: posix
+InstalledDir: /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin
+Found candidate GCC installation: /usr/lib/gcc/i686-redhat-linux/8
+Found candidate GCC installation: /usr/lib/gcc/x86_64-redhat-linux/8
+Selected GCC installation: /usr/lib/gcc/x86_64-redhat-linux/8
+Candidate multilib: .;@m64
+Candidate multilib: 32;@m32
+Selected multilib: .;@m64
+ "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin/ld.lld" -export-dynamic --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_0ffd8 /usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/8/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/8 -L/usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin/../lib -L/lib -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L. CMakeFiles/cmTC_0ffd8.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-redhat-linux/8/crtend.o /usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crtn.o
+gmake[1]: Leaving directory '/mnt/share/users/kasra/projects/LidDrivenCavity/final/aocc/buildavx512/CMakeFiles/CMakeTmp'
+
+
+
+Parsed CXX implicit include dir info from above output: rv=done
+  found start of include info
+  found start of implicit include info
+    add: [.]
+    add: [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include]
+    add: [/usr/lib/gcc/x86_64-redhat-linux/8/../../../../include/c++/8]
+    add: [/usr/lib/gcc/x86_64-redhat-linux/8/../../../../include/c++/8/x86_64-redhat-linux]
+    add: [/usr/lib/gcc/x86_64-redhat-linux/8/../../../../include/c++/8/backward]
+    add: [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib/clang/14.0.6/include]
+    add: [/usr/local/include]
+    add: [/usr/include]
+  end of search list found
+  skipping relative include dir [.]
+  collapse include dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include]
+  collapse include dir [/usr/lib/gcc/x86_64-redhat-linux/8/../../../../include/c++/8] ==> [/usr/include/c++/8]
+  collapse include dir [/usr/lib/gcc/x86_64-redhat-linux/8/../../../../include/c++/8/x86_64-redhat-linux] ==> [/usr/include/c++/8/x86_64-redhat-linux]
+  collapse include dir [/usr/lib/gcc/x86_64-redhat-linux/8/../../../../include/c++/8/backward] ==> [/usr/include/c++/8/backward]
+  collapse include dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib/clang/14.0.6/include] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib/clang/14.0.6/include]
+  collapse include dir [/usr/local/include] ==> [/usr/local/include]
+  collapse include dir [/usr/include] ==> [/usr/include]
+  implicit include dirs: [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include;/usr/include/c++/8;/usr/include/c++/8/x86_64-redhat-linux;/usr/include/c++/8/backward;/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib/clang/14.0.6/include;/usr/local/include;/usr/include]
+
+
+Parsed CXX implicit link information from above output:
+  link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  ignore line: [Change Dir: /mnt/share/users/kasra/projects/LidDrivenCavity/final/aocc/buildavx512/CMakeFiles/CMakeTmp]
+  ignore line: []
+  ignore line: [Run Build Command(s):/usr/bin/gmake -f Makefile cmTC_0ffd8/fast && /usr/bin/gmake  -f CMakeFiles/cmTC_0ffd8.dir/build.make CMakeFiles/cmTC_0ffd8.dir/build]
+  ignore line: [gmake[1]: Entering directory '/mnt/share/users/kasra/projects/LidDrivenCavity/final/aocc/buildavx512/CMakeFiles/CMakeTmp']
+  ignore line: [Building CXX object CMakeFiles/cmTC_0ffd8.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin/clang++   -v -MD -MT CMakeFiles/cmTC_0ffd8.dir/CMakeCXXCompilerABI.cpp.o -MF CMakeFiles/cmTC_0ffd8.dir/CMakeCXXCompilerABI.cpp.o.d -o CMakeFiles/cmTC_0ffd8.dir/CMakeCXXCompilerABI.cpp.o -c /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [AMD clang version 14.0.6 (CLANG: AOCC_4.0.0-Build#434 2022_10_28) (based on LLVM Mirror.Version.14.0.6)]
+  ignore line: [Target: x86_64-unknown-linux-gnu]
+  ignore line: [Thread model: posix]
+  ignore line: [InstalledDir: /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin]
+  ignore line: [Found candidate GCC installation: /usr/lib/gcc/i686-redhat-linux/8]
+  ignore line: [Found candidate GCC installation: /usr/lib/gcc/x86_64-redhat-linux/8]
+  ignore line: [Selected GCC installation: /usr/lib/gcc/x86_64-redhat-linux/8]
+  ignore line: [Candidate multilib: .]
+  ignore line: [@m64]
+  ignore line: [Candidate multilib: 32]
+  ignore line: [@m32]
+  ignore line: [Selected multilib: .]
+  ignore line: [@m64]
+  ignore line: [ (in-process)]
+  ignore line: [ "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin/clang-14" -cc1 -triple x86_64-unknown-linux-gnu -emit-obj -mrelax-all --mrelax-relocations -disable-free -clear-ast-before-backend -main-file-name CMakeCXXCompilerABI.cpp -mrelocation-model static -mframe-pointer=all -fmath-errno -ffp-contract=on -fno-rounding-math -mconstructor-aliases -funwind-tables=2 -target-cpu x86-64 -tune-cpu generic -mllvm -treat-scalable-fixed-error-as-warning -debugger-tuning=gdb -v -fcoverage-compilation-dir=/mnt/share/users/kasra/projects/LidDrivenCavity/final/aocc/buildavx512/CMakeFiles/CMakeTmp -resource-dir /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib/clang/14.0.6 -dependency-file CMakeFiles/cmTC_0ffd8.dir/CMakeCXXCompilerABI.cpp.o.d -MT CMakeFiles/cmTC_0ffd8.dir/CMakeCXXCompilerABI.cpp.o -sys-header-deps -c-isystem . -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -c-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem . -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -cxx-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include -internal-isystem /usr/lib/gcc/x86_64-redhat-linux/8/../../../../include/c++/8 -internal-isystem /usr/lib/gcc/x86_64-redhat-linux/8/../../../../include/c++/8/x86_64-redhat-linux -internal-isystem /usr/lib/gcc/x86_64-redhat-linux/8/../../../../include/c++/8/backward -internal-isystem /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib/clang/14.0.6/include -internal-isystem /usr/local/include -internal-isystem /usr/lib/gcc/x86_64-redhat-linux/8/../../../../x86_64-redhat-linux/include -internal-externc-isystem /include -internal-externc-isystem /usr/include -fdeprecated-macro -fdebug-compilation-dir=/mnt/share/users/kasra/projects/LidDrivenCavity/final/aocc/buildavx512/CMakeFiles/CMakeTmp -ferror-limit 19 -fgnuc-version=4.2.1 -fcxx-exceptions -fexceptions -itodcalls -itodcallsbyclone -faddrsig -D__GCC_HAVE_DWARF2_CFI_ASM=1 -o CMakeFiles/cmTC_0ffd8.dir/CMakeCXXCompilerABI.cpp.o -x c++ /usr/share/cmake/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [clang -cc1 version 14.0.6 based upon LLVM Mirror.Version.14.0.6 default target x86_64-unknown-linux-gnu]
+  ignore line: [ignoring nonexistent directory "/usr/lib/gcc/x86_64-redhat-linux/8/../../../../x86_64-redhat-linux/include"]
+  ignore line: [ignoring nonexistent directory "/include"]
+  ignore line: [ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"]
+  ignore line: [ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"]
+  ignore line: [ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"]
+  ignore line: [ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"]
+  ignore line: [ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"]
+  ignore line: [ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"]
+  ignore line: [ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"]
+  ignore line: [ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"]
+  ignore line: [ignoring duplicate directory "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include"]
+  ignore line: [#include "..." search starts here:]
+  ignore line: [#include <...> search starts here:]
+  ignore line: [ .]
+  ignore line: [ /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/include]
+  ignore line: [ /usr/lib/gcc/x86_64-redhat-linux/8/../../../../include/c++/8]
+  ignore line: [ /usr/lib/gcc/x86_64-redhat-linux/8/../../../../include/c++/8/x86_64-redhat-linux]
+  ignore line: [ /usr/lib/gcc/x86_64-redhat-linux/8/../../../../include/c++/8/backward]
+  ignore line: [ /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib/clang/14.0.6/include]
+  ignore line: [ /usr/local/include]
+  ignore line: [ /usr/include]
+  ignore line: [End of search list.]
+  ignore line: [Linking CXX executable cmTC_0ffd8]
+  ignore line: [/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_0ffd8.dir/link.txt --verbose=1]
+  ignore line: [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin/clang++  -v -rdynamic CMakeFiles/cmTC_0ffd8.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_0ffd8 ]
+  ignore line: [AMD clang version 14.0.6 (CLANG: AOCC_4.0.0-Build#434 2022_10_28) (based on LLVM Mirror.Version.14.0.6)]
+  ignore line: [Target: x86_64-unknown-linux-gnu]
+  ignore line: [Thread model: posix]
+  ignore line: [InstalledDir: /mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin]
+  ignore line: [Found candidate GCC installation: /usr/lib/gcc/i686-redhat-linux/8]
+  ignore line: [Found candidate GCC installation: /usr/lib/gcc/x86_64-redhat-linux/8]
+  ignore line: [Selected GCC installation: /usr/lib/gcc/x86_64-redhat-linux/8]
+  ignore line: [Candidate multilib: .]
+  ignore line: [@m64]
+  ignore line: [Candidate multilib: 32]
+  ignore line: [@m32]
+  ignore line: [Selected multilib: .]
+  ignore line: [@m64]
+  link line: [ "/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin/ld.lld" -export-dynamic --eh-frame-hdr -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_0ffd8 /usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/8/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/8 -L/usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin/../lib -L/lib -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib -L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32 -L/usr/lib64 -L/usr/lib -L. CMakeFiles/cmTC_0ffd8.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-redhat-linux/8/crtend.o /usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crtn.o]
+    arg [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin/ld.lld] ==> ignore
+    arg [-export-dynamic] ==> ignore
+    arg [--eh-frame-hdr] ==> ignore
+    arg [-m] ==> ignore
+    arg [elf_x86_64] ==> ignore
+    arg [-export-dynamic] ==> ignore
+    arg [-dynamic-linker] ==> ignore
+    arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
+    arg [-o] ==> ignore
+    arg [cmTC_0ffd8] ==> ignore
+    arg [/usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crt1.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crt1.o]
+    arg [/usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crti.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crti.o]
+    arg [/usr/lib/gcc/x86_64-redhat-linux/8/crtbegin.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/8/crtbegin.o]
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/8] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/8]
+    arg [-L/usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64]
+    arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
+    arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin/../lib] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin/../lib]
+    arg [-L/lib] ==> dir [/lib]
+    arg [-L/usr/lib] ==> dir [/usr/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+    arg [-L/usr/lib64] ==> dir [/usr/lib64]
+    arg [-L/usr/lib] ==> dir [/usr/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+    arg [-L/usr/lib64] ==> dir [/usr/lib64]
+    arg [-L/usr/lib] ==> dir [/usr/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+    arg [-L/usr/lib64] ==> dir [/usr/lib64]
+    arg [-L/usr/lib] ==> dir [/usr/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+    arg [-L/usr/lib64] ==> dir [/usr/lib64]
+    arg [-L/usr/lib] ==> dir [/usr/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+    arg [-L/usr/lib64] ==> dir [/usr/lib64]
+    arg [-L/usr/lib] ==> dir [/usr/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+    arg [-L/usr/lib64] ==> dir [/usr/lib64]
+    arg [-L/usr/lib] ==> dir [/usr/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+    arg [-L/usr/lib64] ==> dir [/usr/lib64]
+    arg [-L/usr/lib] ==> dir [/usr/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+    arg [-L/usr/lib64] ==> dir [/usr/lib64]
+    arg [-L/usr/lib] ==> dir [/usr/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+    arg [-L/usr/lib64] ==> dir [/usr/lib64]
+    arg [-L/usr/lib] ==> dir [/usr/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+    arg [-L/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+    arg [-L/usr/lib64] ==> dir [/usr/lib64]
+    arg [-L/usr/lib] ==> dir [/usr/lib]
+    arg [-L.] ==> ignore
+    arg [CMakeFiles/cmTC_0ffd8.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [-lstdc++] ==> lib [stdc++]
+    arg [-lm] ==> lib [m]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [-lc] ==> lib [c]
+    arg [-lgcc_s] ==> lib [gcc_s]
+    arg [-lgcc] ==> lib [gcc]
+    arg [/usr/lib/gcc/x86_64-redhat-linux/8/crtend.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/8/crtend.o]
+    arg [/usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crtn.o] ==> obj [/usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crtn.o]
+  collapse obj [/usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crt1.o] ==> [/usr/lib64/crt1.o]
+  collapse obj [/usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crti.o] ==> [/usr/lib64/crti.o]
+  collapse obj [/usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64/crtn.o] ==> [/usr/lib64/crtn.o]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/8] ==> [/usr/lib/gcc/x86_64-redhat-linux/8]
+  collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/8/../../../../lib64] ==> [/usr/lib64]
+  collapse library dir [/lib/../lib64] ==> [/lib64]
+  collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin/../lib] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+  collapse library dir [/lib] ==> [/lib]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+  collapse library dir [/usr/lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+  collapse library dir [/usr/lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+  collapse library dir [/usr/lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+  collapse library dir [/usr/lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+  collapse library dir [/usr/lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+  collapse library dir [/usr/lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+  collapse library dir [/usr/lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+  collapse library dir [/usr/lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+  collapse library dir [/usr/lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib]
+  collapse library dir [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32] ==> [/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+  collapse library dir [/usr/lib64] ==> [/usr/lib64]
+  collapse library dir [/usr/lib] ==> [/usr/lib]
+  implicit libs: [stdc++;m;gcc_s;gcc;c;gcc_s;gcc]
+  implicit objs: [/usr/lib64/crt1.o;/usr/lib64/crti.o;/usr/lib/gcc/x86_64-redhat-linux/8/crtbegin.o;/usr/lib/gcc/x86_64-redhat-linux/8/crtend.o;/usr/lib64/crtn.o]
+  implicit dirs: [/usr/lib/gcc/x86_64-redhat-linux/8;/usr/lib64;/lib64;/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib;/lib;/usr/lib;/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/lib32]
+  implicit fwks: []
+
+

@@ -1,0 +1,18 @@
+====================================================================================
+
+ 
+ INTEL AVX512: 
+        MAX THREADS=192
+        KMP_AFFINITY=granularity=fine,compact
+        ./bin/incomp_avx512 40000 10
+  Time        |     Elem      |      Thrds   
+---------------------------------------------
+19.1156                40000   192
+
+ INTEL AVX2: 
+        MAX THREADS=192
+        KMP_AFFINITY=granularity=fine,compact
+        ./bin/incomp_avx2 40000 10
+  Time        |     Elem        |     Thrds  
+---------------------------------------------
+19.1685                40000   192

@@ -1,0 +1,5 @@
+/mnt/share/users/kasra/projects/LidDrivenCavity/final/aocc/buildavx2/CMakeFiles/rebuild_cache.dir
+/mnt/share/users/kasra/projects/LidDrivenCavity/final/aocc/buildavx2/CMakeFiles/edit_cache.dir
+/mnt/share/users/kasra/projects/LidDrivenCavity/final/aocc/buildavx2/CMakeFiles/ldc_aoccZNVER4AVX2ExpensiveOpt.dir
+/mnt/share/users/kasra/projects/LidDrivenCavity/final/aocc/buildavx2/CMakeFiles/package_source.dir
+/mnt/share/users/kasra/projects/LidDrivenCavity/final/aocc/buildavx2/CMakeFiles/package.dir

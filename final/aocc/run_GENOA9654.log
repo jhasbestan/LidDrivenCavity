@@ -1,0 +1,18 @@
+====================================================================================
+
+ 
+ AOCC AVX512: 
+        MAX THREADS=192
+        OMP_PROC_BIND=close
+        ./bin/ldc_aoccZNVER4AVX512ExpensiveOpt 40000 10
+  Time        |     Elem      |      Thrds   
+---------------------------------------------
+133.864              40000   192
+
+ AOCC AVX2: 
+        MAX THREADS=192
+        OMP_PROC_BIND=close
+        ./bin/ldc_aoccZNVER4AVX2ExpensiveOpt 40000 10
+  Time        |     Elem      |      Thrds   
+---------------------------------------------
+192.278              40000   192

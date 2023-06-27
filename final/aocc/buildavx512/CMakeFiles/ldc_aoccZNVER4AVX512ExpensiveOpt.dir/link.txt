@@ -1,0 +1,1 @@
+/mnt/share/tools/aocc/AOCC_4.0/aocc-compiler-rel-4.0-3206-145/bin/clang++  -Wall -std=c++1y -O3 -m64 -march=znver4 -fopenmp  -O3 -DNDEBUG -rdynamic CMakeFiles/ldc_aoccZNVER4AVX512ExpensiveOpt.dir/src/Q.cpp.o CMakeFiles/ldc_aoccZNVER4AVX512ExpensiveOpt.dir/src/main.cpp.o -o ../bin/ldc_aoccZNVER4AVX512ExpensiveOpt 

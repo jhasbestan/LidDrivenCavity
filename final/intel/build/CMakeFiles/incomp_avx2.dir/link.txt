@@ -1,0 +1,1 @@
+/mnt/share/intel/oneapi/2022.2/compiler/2022.1.0/linux/bin/intel64/icpc  -Wall -std=c++1y -O3 -march=core-avx2 -Wunused-variable  -qopt-report=5 -qopenmp  -O3 -DNDEBUG -rdynamic CMakeFiles/incomp_avx2.dir/src/Q.cpp.o CMakeFiles/incomp_avx2.dir/src/main.cpp.o -o ../bin/incomp_avx2 

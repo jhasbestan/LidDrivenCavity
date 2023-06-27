@@ -1,0 +1,1 @@
+/mnt/share/gcc-13.1/bin/g++  -Wall -std=c++1y -O3 -m64 -march=znver4 -mavx512f -mavx512ifma -fopenmp  -O3 -DNDEBUG -rdynamic CMakeFiles/ldc_gccZNVER4AVX512.dir/src/Q.cpp.o CMakeFiles/ldc_gccZNVER4AVX512.dir/src/main.cpp.o -o ../bin/ldc_gccZNVER4AVX512 
