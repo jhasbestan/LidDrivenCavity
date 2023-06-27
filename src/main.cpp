@@ -4,14 +4,14 @@
 #define LID 0
 
 double rhs(double &x, double &y, double &z);
-void Struct_2D(double Xa, double Xb, double Ya, double Yb, int N, int M,
+void Struct_2D(double Xa, double Xb, double Ya, double Yb, int64_t N, int64_t M,
                double **X, double **Y);
-void VTK_out(double *X, double *Y, double *Z, int N, int M, int ID);
+void VTK_out(double *X, double *Y, double *Z, int64_t N, int64_t M, int64_t ID);
 
-int main(int argsc, char *argsv[]) {
+int main(int64_t argsc, char *argsv[]) {
 
-  int N=atoi(argsv[1]);
-  int count_max=atoi(argsv[2]);
+  int64_t N=atoi(argsv[1]);
+  int64_t count_max=atoi(argsv[2]);
   if(argsc<3)
   {
     cout << "forgot to pass in N and/or number of iter and/or number of iterss" << endl;
@@ -43,7 +43,7 @@ int main(int argsc, char *argsv[]) {
 
   double Re = 40.0;
 
-  int count = 0;
+  int64_t count = 0;
   double res = 1.0;
   double total_time=0.0;
 
@@ -120,7 +120,7 @@ int main(int argsc, char *argsv[]) {
    std::cout<< " total time "<< total_time <<std::endl;
 };
 
-void Struct_2D(double Xa, double Xb, double Ya, double Yb, int N, int M,
+void Struct_2D(double Xa, double Xb, double Ya, double Yb, int64_t N, int64_t M,
                double **X, double **Y) {
 
   double hx = N;
@@ -131,11 +131,11 @@ void Struct_2D(double Xa, double Xb, double Ya, double Yb, int N, int M,
   (*X) = new double[N + 1];
   (*Y) = new double[N + 1];
 
-  for (int i = 0; i < N + 1; i++) {
+  for (int64_t i = 0; i < N + 1; i++) {
     (*X)[i] = Xa + Xh * i;
   }
 
-  for (int i = 0; i < N + 1; i++) {
+  for (int64_t i = 0; i < N + 1; i++) {
     (*Y)[i] = Ya + Yh * i;
   }
 }

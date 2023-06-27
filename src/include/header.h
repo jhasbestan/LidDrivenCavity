@@ -15,6 +15,9 @@ using namespace std;
 
 #define RESTRICT 1
 
+
+
+
 // vector<bitset<M>> mesh;
 
 class Q {
@@ -40,21 +43,21 @@ private:
   double dz;
   double dt;
 
-  uint sizeS;
-  uint sizeP;
+  int64_t sizeS;
+  int64_t sizeP;
 
-  uint longEnd;
-  uint shortEnd;
+  int64_t longEnd;
+  int64_t shortEnd;
 
 public:
-  Q(int nmax1, double dx, double dy);
+  Q(int64_t nmax1, double dx, double dy);
 
-  int nmax;
-  int index(int i, int j, int k);
+  int64_t nmax;
+  int64_t index(int64_t i, int64_t j, int64_t k);
 
-  void initialize(int N, double *a);
+  void initialize(int64_t N, double *a);
 
-  void VTK_out(double *X, double *Y, int N);
+  void VTK_out(double *X, double *Y, int64_t N);
 
   void VTK_out_with_ghost(double *X, double *Y);
 
@@ -65,26 +68,26 @@ public:
 
   void setExactBC(double Xa, double Xb, double Ya, double Yb);
 
-  void Uxy(double Xa, double Ya, int i, int j, double *xy);
-  void Vxy(double Xa, double Ya, int i, int j, double *xy);
-  void Pxy(double Xa, double Ya, int i, int j, double *xy);
+  void Uxy(double Xa, double Ya, int64_t i, int64_t j, double *xy);
+  void Vxy(double Xa, double Ya, int64_t i, int64_t j, double *xy);
+  void Pxy(double Xa, double Ya, int64_t i, int64_t j, double *xy);
   void Grad();
-  inline double U(int i, int j);
+  inline double U(int64_t i, int64_t j);
 
   void setBoundaryLidDrivenCavity();
 
   void showExact(double Xa, double Ya);
-  int uIdx(int i, int j);
-  int vIdx(int i, int j);
-  int wIdx(int i, int j);
-  int pIdx(int i, int j);
+  int64_t uIdx(int64_t i, int64_t j);
+  int64_t vIdx(int64_t i, int64_t j);
+  int64_t wIdx(int64_t i, int64_t j);
+  int64_t pIdx(int64_t i, int64_t j);
 
   // i=0, face 0; i=1, face 1;
   // j=0, face 2; i=1, face 3;
   // i=0, face 4; i=1, face 5;
-  void uGetFace(uint fId, uint *size, double **face);
-  void vGetFace(uint fId, uint *size, double **face);
-  void wGetFace(uint fId, uint *size, double **face);
+  void uGetFace(int64_t fId, int64_t *size, double **face);
+  void vGetFace(int64_t fId, int64_t *size, double **face);
+  void wGetFace(int64_t fId, int64_t *size, double **face);
 
   void getRes(double Re);
   void getResTotal(double Re);
