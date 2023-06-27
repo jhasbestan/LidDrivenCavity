@@ -7,8 +7,8 @@ module load icc/2022.1.0
 
 export KMP_AFFINITY=granularity=fine,compact
 
-export CXX=icc
-export CC=icpc
+export CXX=icpc
+export CC=icc
 
 module list 
 
