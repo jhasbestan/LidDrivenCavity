@@ -8,7 +8,7 @@ void Struct_2D(double Xa, double Xb, double Ya, double Yb, int64_t N, int64_t M,
                double **X, double **Y);
 void VTK_out(double *X, double *Y, double *Z, int64_t N, int64_t M, int64_t ID);
 
-int main(int64_t argsc, char *argsv[]) {
+int main(int argsc, char *argsv[]) {
 
   int64_t N=atoi(argsv[1]);
   int64_t count_max=atoi(argsv[2]);
