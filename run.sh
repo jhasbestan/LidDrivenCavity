@@ -1,14 +1,14 @@
 #! /usr/bin/bash
 
-#module use /mnt/share/intel/oneapi/2022.2/modulefiles
-#module load icc/2022.1.0
+module use /mnt/share/intel/oneapi/2022.2/modulefiles
+module load icc/2022.1.0
 
-module load clang-16.0.0
+#module load clang-16.0.0
 
 export KMP_AFFINITY=granularity=fine,compact
 
-export CXX=clang++
-export CC=clang
+export CXX=icc
+export CC=icpc
 
 module list 
 
