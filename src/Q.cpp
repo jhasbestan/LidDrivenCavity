@@ -116,6 +116,7 @@ Q::~Q() {
  free(pn_old);
  free(p);
  free(pp);
+ delete[] Res;
 }
 
 void Q::initialize(int64_t N, double *val) {}
@@ -138,8 +139,8 @@ void Q::VTK_out(double *X, double *Y, int64_t N) {
   fprintf(fp, "Grid\n");
   fprintf(fp, "ASCII\n");
   fprintf(fp, "DATASET STRUCTURED_GRID\n");
-  fprintf(fp, "DIMENSIONS %d %d %d\n", N, M, 1);
-  fprintf(fp, "POINTS %d float\n", M * N);
+  fprintf(fp, "DIMENSIONS %ld %ld %d\n", N, M, 1);
+  fprintf(fp, "POINTS %ld float\n", M * N);
 
     for (int64_t j = 0; j < N; j++) {
       for (int64_t i = 0; i < N; i++) {
@@ -147,7 +148,7 @@ void Q::VTK_out(double *X, double *Y, int64_t N) {
       }
   }
 
-  fprintf(fp, "CELL_DATA %d\n", (N - 1) * (N - 1));
+  fprintf(fp, "CELL_DATA %ld\n", (N - 1) * (N - 1));
 
   fprintf(fp, "SCALARS U float 1\n");
   fprintf(fp, "LOOKUP_TABLE default\n");
@@ -194,8 +195,8 @@ void Q::VTK_out_with_ghost(double *X, double *Y) {
   fprintf(fp, "Grid\n");
   fprintf(fp, "ASCII\n");
   fprintf(fp, "DATASET STRUCTURED_GRID\n");
-  fprintf(fp, "DIMENSIONS %d %d %d\n", N, M, 1);
-  fprintf(fp, "POINTS %d float\n", M * N);
+  fprintf(fp, "DIMENSIONS %ld %ld %d\n", N, M, 1);
+  fprintf(fp, "POINTS %ld float\n", M * N);
 
   for (int64_t j = 0; j < N; j++) {
     for (int64_t i = 0; i < N; i++) {
@@ -203,7 +204,7 @@ void Q::VTK_out_with_ghost(double *X, double *Y) {
     }
   }
 
-  fprintf(fp, "CELL_DATA %d\n", (N - 1) * (N - 1));
+  fprintf(fp, "CELL_DATA %ld\n", (N - 1) * (N - 1));
 
   fprintf(fp, "SCALARS U float 1\n");
   fprintf(fp, "LOOKUP_TABLE default\n");
@@ -483,7 +484,7 @@ void Q::update() {
 
 void Q::getResNorm(double *del_u) {
 
-  double res0, res1;
+  double res0=0.0, res1=0.0;
   sizeS = (nmax + 1) * (nmax);
 #pragma omp parallel for simd reduction(+:res0,res1)
   for (int64_t i = 0; i < sizeS; i++) {
@@ -499,7 +500,7 @@ void Q::project() {
 
   //std::cout<<" calling project ... "<<std::endl;
   // Gaus-Seidel Iteration
-  double err=1.0;
+  //double err=1.0;
   double val;
 
   double c1 = 2. / dx / dx + 2. / dy / dy;
