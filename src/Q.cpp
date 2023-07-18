@@ -14,8 +14,9 @@ Q::Q(int64_t nmax1, double dx1, double dy1) {
   dt = 0.00001*dx;
 
   nmax = nmax1 + 2;
-
+#ifndef NDEBUG
   cout << dx << " " << dy << " " << dz << " " << dt << endl;
+#endif
   //
   longEnd = nmax;
 
@@ -23,13 +24,16 @@ Q::Q(int64_t nmax1, double dx1, double dy1) {
 
   // nmax is the number of elements with ghost cell
 
+#ifndef NDEBUG
   cout << "nelem " << nmax1 << endl;
-
   cout << "nelem with ghost" << nmax << endl;
+#endif
 
   sizeS = (nmax + 1) * (nmax);
 
+#ifndef NDEBUG
   std::cout<< " Number of Elements " << sizeS <<std::endl;
+#endif
   // u is u at current time step, un means new values hence at time step n+1 and
   // up is previous value of u means u at n-1
   /*

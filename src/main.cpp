@@ -22,9 +22,10 @@ int main(int argsc, char *argsv[]) {
   double a[4] = {0.0, 0.0, 0.0, 0.0};
 
   double *d = nullptr;
+/*
   double *X = nullptr;
   double *Y = nullptr;
-
+*/
 #ifndef LID
   double Xa = -.5, Xb = 1.0;
   double Ya = -.5, Yb = 0.5;
@@ -104,7 +105,7 @@ int main(int argsc, char *argsv[]) {
     double end_time = omp_get_wtime();
     total_time += end_time-start_time;
 
-   cout << res << endl;
+    cout <<" residual = "<< res << endl;
 
 /*
 #if (1)
