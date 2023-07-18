@@ -6,7 +6,7 @@
 // define poisson with FVM
 #define PFV 0
 
-Q::Q(int nmax1, double dx1, double dy1) {
+Q::Q(int64_t nmax1, double dx1, double dy1) {
   // nmax1 is the number of elements
 
   dx = dx1;
@@ -14,8 +14,9 @@ Q::Q(int nmax1, double dx1, double dy1) {
   dt = 0.00001*dx;
 
   nmax = nmax1 + 2;
-
+#ifndef NDEBUG
   cout << dx << " " << dy << " " << dz << " " << dt << endl;
+#endif
   //
   longEnd = nmax;
 
@@ -23,13 +24,16 @@ Q::Q(int nmax1, double dx1, double dy1) {
 
   // nmax is the number of elements with ghost cell
 
+#ifndef NDEBUG
   cout << "nelem " << nmax1 << endl;
-
   cout << "nelem with ghost" << nmax << endl;
+#endif
 
   sizeS = (nmax + 1) * (nmax);
 
+#ifndef NDEBUG
   std::cout<< " Number of Elements " << sizeS <<std::endl;
+#endif
   // u is u at current time step, un means new values hence at time step n+1 and
   // up is previous value of u means u at n-1
   /*
@@ -77,7 +81,7 @@ Q::Q(int nmax1, double dx1, double dy1) {
 
   double C = 0.0;
 #pragma omp parallel for simd
-  for (uint i = 0; i < sizeS; i++) {
+  for (int64_t i = 0; i < sizeS; i++) {
     u[i] = C;
     v[i] = C;
 
@@ -89,12 +93,12 @@ Q::Q(int nmax1, double dx1, double dy1) {
   }
 
 #pragma omp parallel for simd
-  for (uint i = 0; i < 2 * sizeS; i++) {
+  for (int64_t i = 0; i < 2 * sizeS; i++) {
     Res[i] = 0.0;
   }
 
 #pragma omp parallel for simd
-  for (uint i = 0; i < sizeP; i++) {
+  for (int64_t i = 0; i < sizeP; i++) {
     p[i] = 0.0;
     pn[i] = 0.0;
     pp[i] = 0.0;
@@ -116,16 +120,17 @@ Q::~Q() {
  free(pn_old);
  free(p);
  free(pp);
+ delete[] Res;
 }
 
-void Q::initialize(int N, double *val) {}
+void Q::initialize(int64_t N, double *val) {}
 
-void Q::VTK_out(double *X, double *Y, int N) {
+void Q::VTK_out(double *X, double *Y, int64_t N) {
 
   FILE *fp = NULL;
-  int M = N;
+  int64_t M = N;
 
-  // here we get some data into variable data
+  // here we get some data int64_to variable data
   char filename[64];
   sprintf(filename, "out%d.vtk", 0);
   fp = fopen(filename, "w");
@@ -138,30 +143,30 @@ void Q::VTK_out(double *X, double *Y, int N) {
   fprintf(fp, "Grid\n");
   fprintf(fp, "ASCII\n");
   fprintf(fp, "DATASET STRUCTURED_GRID\n");
-  fprintf(fp, "DIMENSIONS %d %d %d\n", N, M, 1);
-  fprintf(fp, "POINTS %d float\n", M * N);
+  fprintf(fp, "DIMENSIONS %ld %ld %d\n", N, M, 1);
+  fprintf(fp, "POINTS %ld float\n", M * N);
 
-    for (int j = 0; j < N; j++) {
-      for (int i = 0; i < N; i++) {
+    for (int64_t j = 0; j < N; j++) {
+      for (int64_t i = 0; i < N; i++) {
         fprintf(fp, "%lf %lf %lf\n", X[i], Y[j], 0.0);
       }
   }
 
-  fprintf(fp, "CELL_DATA %d\n", (N - 1) * (N - 1));
+  fprintf(fp, "CELL_DATA %ld\n", (N - 1) * (N - 1));
 
   fprintf(fp, "SCALARS U float 1\n");
   fprintf(fp, "LOOKUP_TABLE default\n");
 
-  for (int j = 1; j < N; j++) {
-    for (int i = 1; i < N; i++) {
+  for (int64_t j = 1; j < N; j++) {
+    for (int64_t i = 1; i < N; i++) {
       fprintf(fp, "%lf\n", (u[uIdx(i, j)]));
     }
   }
   fprintf(fp, "SCALARS V float 1\n");
   fprintf(fp, "LOOKUP_TABLE default\n");
 
-  for (int j = 1; j < N; j++) {
-    for (int i = 1; i < N; i++) {
+  for (int64_t j = 1; j < N; j++) {
+    for (int64_t i = 1; i < N; i++) {
 
       fprintf(fp, "%lf\n", (v[vIdx(i, j)]));
     }
@@ -169,8 +174,8 @@ void Q::VTK_out(double *X, double *Y, int N) {
   fprintf(fp, "SCALARS P float 1\n");
   fprintf(fp, "LOOKUP_TABLE default\n");
 
-  for (int j = 1; j < N; j++) {
-    for (int i = 1; i < N; i++) {
+  for (int64_t j = 1; j < N; j++) {
+    for (int64_t i = 1; i < N; i++) {
       fprintf(fp, " %lf\n", p[pIdx(i, j)]);
     }
   }
@@ -179,9 +184,9 @@ void Q::VTK_out(double *X, double *Y, int N) {
 #if (1)
 void Q::VTK_out_with_ghost(double *X, double *Y) {
   FILE *fp = NULL;
-  int M, N;
+  int64_t M, N;
 
-  // here we get some data into variable data
+  // here we get some data int64_to variable data
   char filename[64];
   sprintf(filename, "out%d.vtk", 0);
   fp = fopen(filename, "w");
@@ -194,22 +199,22 @@ void Q::VTK_out_with_ghost(double *X, double *Y) {
   fprintf(fp, "Grid\n");
   fprintf(fp, "ASCII\n");
   fprintf(fp, "DATASET STRUCTURED_GRID\n");
-  fprintf(fp, "DIMENSIONS %d %d %d\n", N, M, 1);
-  fprintf(fp, "POINTS %d float\n", M * N);
+  fprintf(fp, "DIMENSIONS %ld %ld %d\n", N, M, 1);
+  fprintf(fp, "POINTS %ld float\n", M * N);
 
-  for (int j = 0; j < N; j++) {
-    for (int i = 0; i < N; i++) {
+  for (int64_t j = 0; j < N; j++) {
+    for (int64_t i = 0; i < N; i++) {
       fprintf(fp, "%lf %lf %lf\n", X[i], Y[j], 0.0);
     }
   }
 
-  fprintf(fp, "CELL_DATA %d\n", (N - 1) * (N - 1));
+  fprintf(fp, "CELL_DATA %ld\n", (N - 1) * (N - 1));
 
   fprintf(fp, "SCALARS U float 1\n");
   fprintf(fp, "LOOKUP_TABLE default\n");
 
-  for (uint j = 0; j < longEnd; j++) {
-    for (uint i = 0; i < longEnd; i++) {
+  for (int64_t j = 0; j < longEnd; j++) {
+    for (int64_t i = 0; i < longEnd; i++) {
 #if (AVG)
       fprintf(fp, "%lf\n", (u[uIdx(i, j)] + u[uIdx(i + 1, j)]) * 0.5);
 #else
@@ -222,8 +227,8 @@ void Q::VTK_out_with_ghost(double *X, double *Y) {
   fprintf(fp, "SCALARS V float 1\n");
   fprintf(fp, "LOOKUP_TABLE default\n");
 
-  for (unsigned int j = 0; j < longEnd; j++) {
-    for (unsigned int i = 0; i < longEnd; i++) {
+  for (int64_t j = 0; j < longEnd; j++) {
+    for (int64_t i = 0; i < longEnd; i++) {
 #if (AVG)
       fprintf(fp, "%lf\n", (v[vIdx(i, j)] + v[vIdx(i, j + 1)]) * 0.5);
 #else
@@ -234,8 +239,8 @@ void Q::VTK_out_with_ghost(double *X, double *Y) {
   fprintf(fp, "SCALARS P float 1\n");
   fprintf(fp, "LOOKUP_TABLE default\n");
 
-  for (unsigned int j = 0; j < longEnd; j++) {
-    for (unsigned int i = 0; i < longEnd; i++) {
+  for (int64_t j = 0; j < longEnd; j++) {
+    for (int64_t i = 0; i < longEnd; i++) {
       fprintf(fp, " %lf\n", p[pIdx(i, j)]);
     }
   }
@@ -246,13 +251,13 @@ void Q::VTK_out_with_ghost(double *X, double *Y) {
 
 // indexes for different vector
 
-inline int Q::uIdx(int i, int j) { return ((j) * (nmax + 1) + i); }
+inline int64_t Q::uIdx(int64_t i, int64_t j) { return ((j) * (nmax + 1) + i); }
 
 // i=0:nmax, j=0:nmax+1, k=0:nmax
-inline int Q::vIdx(int i, int j) { return (j * (nmax) + i); }
+inline int64_t Q::vIdx(int64_t i, int64_t j) { return (j * (nmax) + i); }
 
 // i=0:nmax, j=0:nmax, k=0:nmax+1
-inline int Q::pIdx(int i, int j) { return (j * (nmax) + i); }
+inline int64_t Q::pIdx(int64_t i, int64_t j) { return (j * (nmax) + i); }
 
 /************************************************
  *
@@ -267,9 +272,9 @@ void Q::getRes(double Re) {
 #pragma omp parallel 
 {  
 #pragma omp for nowait
-    for (uint j = 1; j < shortEnd; j++) {
+    for (int64_t j = 1; j < shortEnd; j++) {
 #pragma omp simd
-  for (uint i = 1; i < longEnd; i++) {
+  for (int64_t i = 1; i < longEnd; i++) {
       Res[uIdx(i, j)] =
           c1 * ((pow((u[uIdx(i + 1, j)] + u[uIdx(i, j)]), 2.) -
                  pow(u[uIdx(i, j)] + u[uIdx(i - 1, j)], 2.)) /
@@ -291,7 +296,7 @@ void Q::getRes(double Re) {
 
           // skew symmetric formulation
           // first trial dumb as sack of rocks, making analogy with Gaussian
-          // Quadrature, need to use more points than one to integrate
+          // Quadrature, need to use more point64_ts than one to int64_tegrate
           //
           /*
                            +c2*(u[uIdx(i,j)]*0.5/dx*(u[uIdx(i+1,j)]-u[uIdx(i,j)]+u[uIdx(i,j)]-u[uIdx(i-1,j)])
@@ -313,9 +318,9 @@ void Q::getRes(double Re) {
     }
   }
 #pragma omp for 
-    for (uint j = 1; j < longEnd; j++) {
+    for (int64_t j = 1; j < longEnd; j++) {
 #pragma omp simd
-  for (uint i = 1; i < shortEnd; i++) {
+  for (int64_t i = 1; i < shortEnd; i++) {
 
       Res[sizeS + vIdx(i, j)] =
           c1 * ((pow((v[vIdx(i, j + 1)] + v[vIdx(i, j)]), 2.) -
@@ -370,9 +375,9 @@ void Q::getResTotal(double Re) {
 #pragma omp parallel 
   {  
 #pragma omp for nowait
-    for (uint j = 1; j < shortEnd; j++) {
+    for (int64_t j = 1; j < shortEnd; j++) {
 #pragma omp simd
-  for (uint i = 1; i < longEnd; i++) {
+  for (int64_t i = 1; i < longEnd; i++) {
       Res[uIdx(i, j)] =
           c1 * ((pow((u[uIdx(i + 1, j)] + u[uIdx(i, j)]), 2.) -
                  pow(u[uIdx(i, j)] + u[uIdx(i - 1, j)], 2.)) /
@@ -408,9 +413,9 @@ void Q::getResTotal(double Re) {
   }
 
 #pragma omp for
-    for (uint j = 1; j < longEnd; j++) {
+    for (int64_t j = 1; j < longEnd; j++) {
 #pragma omp simd
-  for (uint i = 1; i < shortEnd; i++) {
+  for (int64_t i = 1; i < shortEnd; i++) {
       Res[sizeS + vIdx(i, j)] =
           c1 * ((pow((v[vIdx(i, j + 1)] + v[vIdx(i, j)]), 2.) -
                  pow(v[vIdx(i, j)] + v[vIdx(i, j - 1)], 2.)) /
@@ -450,7 +455,7 @@ void Q::start() {
   sizeS = (nmax + 1) * (nmax);
 
 #pragma omp parallel for simd
-  for (uint i = 0; i < sizeS; i++) {
+  for (int64_t i = 0; i < sizeS; i++) {
     un[i] = u[i];
     up[i] = u[i];
 
@@ -458,7 +463,7 @@ void Q::start() {
     vn[i] = v[i];
   }
 #pragma omp parallel for simd
-  for (uint i = 0; i < sizeP; i++) {
+  for (int64_t i = 0; i < sizeP; i++) {
     pn[i] = p[i];
     pp[i] = p[i];
   }
@@ -467,7 +472,7 @@ void Q::start() {
 void Q::update() {
 
 #pragma omp parallel for simd
-  for (uint i = 0; i < sizeS; i++) {
+  for (int64_t i = 0; i < sizeS; i++) {
     up[i] = u[i];
     vp[i] = v[i];
     u[i] = un[i];
@@ -475,7 +480,7 @@ void Q::update() {
   }
 
 #pragma omp parallel for simd
-  for (uint i = 0; i < sizeP; i++) {
+  for (int64_t i = 0; i < sizeP; i++) {
     pp[i] = p[i];
     p[i] = pn[i];
   }
@@ -483,10 +488,10 @@ void Q::update() {
 
 void Q::getResNorm(double *del_u) {
 
-  double res0, res1;
+  double res0=0.0, res1=0.0;
   sizeS = (nmax + 1) * (nmax);
 #pragma omp parallel for simd reduction(+:res0,res1)
-  for (uint i = 0; i < sizeS; i++) {
+  for (int64_t i = 0; i < sizeS; i++) {
     res0 +=  (un[i] - up[i]) * (un[i] - up[i]);
     res1 +=  (vn[i] - vp[i]) * (vn[i] - vp[i]);
   }
@@ -499,7 +504,7 @@ void Q::project() {
 
   //std::cout<<" calling project ... "<<std::endl;
   // Gaus-Seidel Iteration
-  double err=1.0;
+  //double err=1.0;
   double val;
 
   double c1 = 2. / dx / dx + 2. / dy / dy;
@@ -514,11 +519,11 @@ __assume_aligned(pn,64);
 
 //  pn[pIdx(5, 5)] = 0.0;
   //  while ( err > 1.e-12 )
-  for (uint l = 0; l < 10; l++) {
+  for (int64_t l = 0; l < 10; l++) {
 #pragma omp parallel for 
-      for (uint j = 1; j < shortEnd; j++) {
+      for (int64_t j = 1; j < shortEnd; j++) {
 #pragma omp simd
-    for (uint i = 1; i < shortEnd; i++) {
+    for (int64_t i = 1; i < shortEnd; i++) {
           val = -((un[uIdx(i + 1, j)] - un[uIdx(i, j)]) / dx +
                   (vn[vIdx(i, j + 1)] - vn[vIdx(i, j)]) / dy) /
                     dt +
@@ -545,13 +550,13 @@ void Q::project() {
   double c1 = 2. / dx / dx + 2. / dy / dy;
 
   //    while ( err > 1.e-12 )
-  for (uint l = 0; l < 12; l++) {
+  for (int64_t l = 0; l < 12; l++) {
     err = 0.0;
     pn[pIdx(0, 0)] = 0.0;
 #pragma omp parallel for
-    for (uint i = 1; i < shortEnd; i++) {
+    for (int64_t i = 1; i < shortEnd; i++) {
 #pragma omp simd
-      for (uint j = 1; j < shortEnd; j++) {
+      for (int64_t j = 1; j < shortEnd; j++) {
         val = ((un[uIdx(i + 1, j)] / dt -
                 (pn[pIdx(i + 1, j)] - pn[pIdx(i, j)]) / dx) +
                -(un[uIdx(i, j)] / dt -
@@ -574,7 +579,7 @@ void Q::project() {
 void Q::predict() {
 
 #pragma omp parallel for simd
-  for (uint i = 0; i < sizeS; i++) {
+  for (int64_t i = 0; i < sizeS; i++) {
     un[i] = -Res[i] * dt + u[i];
     vn[i] = -Res[sizeS + i] * dt + v[i];
   }
@@ -585,17 +590,17 @@ void Q::correct() {
 #pragma omp parallel   
 {
 #pragma omp for nowait  
-    for (uint j = 1; j < shortEnd; j++) {
+    for (int64_t j = 1; j < shortEnd; j++) {
 #pragma omp simd
-  for (uint i = 1; i < longEnd; i++) {
+  for (int64_t i = 1; i < longEnd; i++) {
       un[uIdx(i, j)] =
           -dt * (pn[pIdx(i, j)] - pn[pIdx(i - 1, j)]) / dx + un[uIdx(i, j)];
     }
   }
 #pragma omp for 
-    for (uint j = 1; j < longEnd; j++) {
+    for (int64_t j = 1; j < longEnd; j++) {
 #pragma omp simd
-  for (uint i = 1; i < shortEnd; i++) {
+  for (int64_t i = 1; i < shortEnd; i++) {
       vn[vIdx(i, j)] =
           -dt * (pn[pIdx(i, j)] - pn[pIdx(i, j - 1)]) / dy + vn[vIdx(i, j)];
     }
@@ -609,7 +614,7 @@ void Q::setNeumanPressure() {
   // apply newman bc on the solid
   // we solid faces so five neuman or solid
 #pragma omp parallel for 
-  for (int i = 0; i < nmax; i++) {
+  for (int64_t i = 0; i < nmax; i++) {
     pn[pIdx(i, nmax - 1)] = pn[pIdx(i, nmax - 2)];
     pn[pIdx(i, 0)] = pn[pIdx(i, 1)];
   }
@@ -618,8 +623,8 @@ void Q::setNeumanPressure() {
 
 #if (0)
 void Q::uSetFace(double *val) {
-  for (uint j = 0; j < nmax + 1; j++) {
-    for (uint k = 0; k < nmax; k++) {
+  for (int64_t j = 0; j < nmax + 1; j++) {
+    for (int64_t k = 0; k < nmax; k++) {
       v[vIndex(0, j, k)] = (*val) * 2.0 - v[vIndex(1, j, k)];
 
       vp[vIndex(0, j, k)] = (*val) * 2.0 - v[vIndex(1, j, k)];
@@ -633,8 +638,8 @@ void Q::uSetFace(double *val) {
   // set u and w as zero
   //
   //
-  for (uint j = 0; j < nmax; j++) {
-    for (uint k = 0; k < nmax; k++) {
+  for (int64_t j = 0; j < nmax; j++) {
+    for (int64_t k = 0; k < nmax; k++) {
       u[uIndex(0, j, k)] = 0;
       up[uIndex(0, j, k)] = 0;
       un[uIndex(0, j, k)] = 0;
@@ -644,8 +649,8 @@ void Q::uSetFace(double *val) {
       un[uIndex(nmax, j, k)] = 0;
     }
   }
-  for (uint j = 0; j < nmax + 1; j++) {
-    for (uint k = 0; k < nmax; k++) {
+  for (int64_t j = 0; j < nmax + 1; j++) {
+    for (int64_t k = 0; k < nmax; k++) {
       u[uIndex(j, 0, k)] = 0;
       up[uIndex(j, 0, k)] = 0;
       un[uIndex(j, 0, k)] = 0;
@@ -669,8 +674,8 @@ void Q::uSetFace(double *val) {
   //
   //
 
-  for (uint j = 0; j < nmax; j++) {
-    for (uint k = 0; k < nmax + 1; k++) {
+  for (int64_t j = 0; j < nmax; j++) {
+    for (int64_t k = 0; k < nmax + 1; k++) {
       w[wIndex(0, j, k)] = 0;
       wp[wIndex(0, j, k)] = 0;
       wn[wIndex(0, j, k)] = 0;
@@ -689,8 +694,8 @@ void Q::uSetFace(double *val) {
     }
   }
 
-  for (uint j = 0; j < nmax; j++) {
-    for (uint k = 0; k < nmax; k++) {
+  for (int64_t j = 0; j < nmax; j++) {
+    for (int64_t k = 0; k < nmax; k++) {
       w[wIndex(j, k, 0)] = 0;
       wp[wIndex(j, k, 0)] = 0;
       wn[wIndex(j, k, 0)] = 0;
@@ -710,15 +715,15 @@ void Q::setSolid() {
 
   //
   //
-  // set u and w  and v negative value of the closest interior
+  // set u and w  and v negative value of the closest int64_terior
   //
   // x=-1 and x=1. planes
   //
   //
   //
   //
-  for (uint j = 0; j < nmax; j++) {
-    for (uint k = 0; k < nmax; k++) {
+  for (int64_t j = 0; j < nmax; j++) {
+    for (int64_t k = 0; k < nmax; k++) {
 
       u[uIndex(1, j, k)] = 0.0;
       up[uIndex(1, j, k)] = 0.0;
@@ -738,8 +743,8 @@ void Q::setSolid() {
     }
   }
 
-  for (uint j = 1; j < nmax; j++) {
-    for (uint k = 1; k < nmax - 1; k++) {
+  for (int64_t j = 1; j < nmax; j++) {
+    for (int64_t k = 1; k < nmax - 1; k++) {
       /*
             v[vIndex( 0, j, k )] = - v[vIndex( 1, j, k )];
             vp[vIndex( 0, j, k )] = - vp[vIndex( 1, j, k )];
@@ -751,8 +756,8 @@ void Q::setSolid() {
     }
   }
 
-  for (uint j = 1; j < nmax - 1; j++) {
-    for (uint k = 1; k < nmax; k++) {
+  for (int64_t j = 1; j < nmax - 1; j++) {
+    for (int64_t k = 1; k < nmax; k++) {
 
       w[wIndex(0, j, k)] = -w[wIndex(1, j, k)];
       wp[wIndex(0, j, k)] = -wp[wIndex(1, j, k)];
@@ -771,8 +776,8 @@ void Q::setSolid() {
   // =============================================================
   //
 
-  for (uint j = 1; j < nmax; j++) {
-    for (uint k = 1; k < nmax - 1; k++) {
+  for (int64_t j = 1; j < nmax; j++) {
+    for (int64_t k = 1; k < nmax - 1; k++) {
 
       u[uIndex(j, 0, k)] = -u[uIndex(j, 1, k)];
       up[uIndex(j, 0, k)] = -up[uIndex(j, 1, k)];
@@ -784,8 +789,8 @@ void Q::setSolid() {
     }
   }
 
-  for (uint j = 1; j < nmax; j++) {
-    for (uint k = 1; k < nmax; k++) {
+  for (int64_t j = 1; j < nmax; j++) {
+    for (int64_t k = 1; k < nmax; k++) {
 
       v[vIndex(j, nmax, k)] = -v[vIndex(j, nmax - 1, k)];
       vp[vIndex(j, nmax, k)] = -vp[vIndex(j, nmax - 1, k)];
@@ -805,8 +810,8 @@ void Q::setSolid() {
     }
   }
 
-  for (uint j = 1; j < nmax - 1; j++) {
-    for (uint k = 1; k < nmax; k++) {
+  for (int64_t j = 1; j < nmax - 1; j++) {
+    for (int64_t k = 1; k < nmax; k++) {
 
       w[wIndex(j, 0, k)] = -w[wIndex(j, 1, k)];
       wp[wIndex(j, 0, k)] = -wp[wIndex(j, 1, k)];
@@ -820,8 +825,8 @@ void Q::setSolid() {
 
   // set periodic boundary condition at Z direction
 
-  for (uint j = 0; j < nmax; j++) {
-    for (uint k = 0; k < nmax; k++) {
+  for (int64_t j = 0; j < nmax; j++) {
+    for (int64_t k = 0; k < nmax; k++) {
 
       w[wIndex(j, k, nmax - 1)] = w[wIndex(j, k, 0)];
       wp[wIndex(j, k, nmax - 1)] = wp[wIndex(j, k, 0)];
@@ -839,15 +844,15 @@ void Q::setSolid() {
 
   // periodic for pressure
   //
-  for (uint j = 0; j < nmax; j++) {
-    for (uint k = 0; k < nmax; k++) {
+  for (int64_t j = 0; j < nmax; j++) {
+    for (int64_t k = 0; k < nmax; k++) {
 
       pn[pIndex(j, k, nmax - 1)] = pn[pIndex(j, k, 0)];
     }
   }
 
-  for (uint j = 1; j < nmax - 1; j++) {
-    for (uint k = 1; k < nmax - 1; k++) {
+  for (int64_t j = 1; j < nmax - 1; j++) {
+    for (int64_t k = 1; k < nmax - 1; k++) {
 
       // y =-1 and +1 directions
       v[vIndex(j, nmax, k)] = -v[vIndex(j, nmax - 1, k)];
@@ -866,8 +871,8 @@ void Q::setSolid() {
     }
   }
 
-  for (uint j = 0; j < nmax + 1; j++) {
-    for (uint k = 0; k < nmax; k++) {
+  for (int64_t j = 0; j < nmax + 1; j++) {
+    for (int64_t k = 0; k < nmax; k++) {
       u[uIndex(j, 0, k)] = -u[uIndex(j, 1, k)];
       up[uIndex(j, 0, k)] = -up[uIndex(j, 1, k)];
       un[uIndex(j, 0, k)] = -un[uIndex(j, 1, k)];
@@ -904,7 +909,7 @@ void Q::Struct_2D_Ghost(double Xa, double Xb, double Ya, double Yb, double **X,
                         double **Y)
 
 {
-  int i;
+  int64_t i;
 
   double hx = nmax - 2;
   double hy = nmax - 2;
@@ -947,7 +952,7 @@ void Q::setExactBC(double Xa, double Xb, double Ya, double Yb) {
   double x1, y1, ux, uy, p1;
   double *xy = new double[2];
 
-  for (int i = 0; i < nmax + 1; i++) {
+  for (int64_t i = 0; i < nmax + 1; i++) {
 
     // set U on bottom and top
     Uxy(Xa, Ya, i, 0, xy);
@@ -978,7 +983,7 @@ void Q::setExactBC(double Xa, double Xb, double Ya, double Yb) {
     v[vIdx(nmax - 1, i)] = uy;
   }
 
-  for (int i = 0; i < nmax; i++) {
+  for (int64_t i = 0; i < nmax; i++) {
 
     // set U on sides
     Uxy(Xa, Ya, 0, i, xy);
@@ -1010,7 +1015,7 @@ void Q::setExactBC(double Xa, double Xb, double Ya, double Yb) {
   }
 }
 
-void Q::Uxy(double Xa, double Ya, int i, int j, double *xy) {
+void Q::Uxy(double Xa, double Ya, int64_t i, int64_t j, double *xy) {
 
   double X1 = Xa - dx;
   xy[0] = X1 + i * dx;
@@ -1018,7 +1023,7 @@ void Q::Uxy(double Xa, double Ya, int i, int j, double *xy) {
   xy[1] = Y1 + j * dy;
 }
 
-void Q::Vxy(double Xa, double Ya, int i, int j, double *xy) {
+void Q::Vxy(double Xa, double Ya, int64_t i, int64_t j, double *xy) {
 
   double X1 = Xa - dx * 0.5;
   xy[0] = X1 + i * dx;
@@ -1026,7 +1031,7 @@ void Q::Vxy(double Xa, double Ya, int i, int j, double *xy) {
   xy[1] = Y1 + j * dy;
 }
 
-void Q::Pxy(double Xa, double Ya, int i, int j, double *xy) {
+void Q::Pxy(double Xa, double Ya, int64_t i, int64_t j, double *xy) {
 
   double X1 = Xa - dx * 0.5;
   xy[0] = X1 + i * dx;
@@ -1038,8 +1043,8 @@ void Q::showExact(double Xa, double Ya) {
   double x1, y1, ux, uy, p1;
   double *xy = new double[2];
 
-  for (int i = 0; i < nmax + 1; i++) {
-    for (int j = 0; j < nmax; j++) {
+  for (int64_t i = 0; i < nmax + 1; i++) {
+    for (int64_t j = 0; j < nmax; j++) {
 
       Uxy(Xa, Ya, i, j, xy);
       x1 = xy[0];
@@ -1049,8 +1054,8 @@ void Q::showExact(double Xa, double Ya) {
       // cout<<x1<<" "<<y1<<" "<<ux<<endl;
     }
   }
-  for (int i = 0; i < nmax; i++) {
-    for (int j = 0; j < nmax + 1; j++) {
+  for (int64_t i = 0; i < nmax; i++) {
+    for (int64_t j = 0; j < nmax + 1; j++) {
 
       Vxy(Xa, Ya, i, j, xy);
       x1 = xy[0];
@@ -1061,8 +1066,8 @@ void Q::showExact(double Xa, double Ya) {
     }
   }
 
-  for (int i = 0; i < nmax; i++) {
-    for (int j = 0; j < nmax; j++) {
+  for (int64_t i = 0; i < nmax; i++) {
+    for (int64_t j = 0; j < nmax; j++) {
 
       Pxy(Xa, Ya, i, j, xy);
       x1 = xy[0];
@@ -1078,24 +1083,24 @@ void Q::showExact(double Xa, double Ya) {
 
 void Q::Grad() {
 
-  for (int i = 0; i < nmax; i++) {
-    for (int j = 0; j < nmax; j++) {
+  for (int64_t i = 0; i < nmax; i++) {
+    for (int64_t j = 0; j < nmax; j++) {
 
       // pn[pIdx(i,j)]=(un[uIdx(i+1,j)]-un[uIdx(i,j)])/dx;
       // pn[pIdx(i,j)]=(vn[vIdx(i,j+1)]-vn[vIdx(i,j)])/dy;
     }
   }
 
-  for (int i = 0; i < nmax; i++) {
-    for (int j = 0; j < nmax - 1; j++) {
+  for (int64_t i = 0; i < nmax; i++) {
+    for (int64_t j = 0; j < nmax - 1; j++) {
 
       // pn[pIdx(i,j)]=(un[uIdx(i+1,j)]-un[uIdx(i,j)])/dx;
       // pn[pIdx(i,j)]=(un[uIdx(i,j+1)]-un[uIdx(i,j)])/dy;
     }
   }
 
-  for (int i = 0; i < nmax - 1; i++) {
-    for (int j = 0; j < nmax; j++) {
+  for (int64_t i = 0; i < nmax - 1; i++) {
+    for (int64_t j = 0; j < nmax; j++) {
 
       // pn[pIdx(i,j)]=(un[uIdx(i+1,j)]-un[uIdx(i,j)])/dx;
       pn[pIdx(i, j)] = (vn[vIdx(i + 1, j)] - vn[vIdx(i, j)]) / dx;
@@ -1103,12 +1108,12 @@ void Q::Grad() {
   }
 }
 
-double Q::U(int i, int j) { return (u[uIdx(i, j)]); }
+double Q::U(int64_t i, int64_t j) { return (u[uIdx(i, j)]); }
 
 void Q::debug(double Xa, double Ya) {
 
-  int i = 4;
-  int j = 5;
+  int64_t i = 4;
+  int64_t j = 5;
 
   double xy[2];
 
@@ -1221,7 +1226,7 @@ void Q::debug(double Xa, double Ya) {
 void Q::setBoundaryLidDrivenCavity() {
 
 #pragma omp parallel for simd
-  for (int i = 1; i < nmax; i++) {
+  for (int64_t i = 1; i < nmax; i++) {
     // cond on U at i direction
     un[uIdx(i, 0)] = -un[uIdx(i, 1)];
     //        u[uIdx( i, nmax - 1 )] = 2. -  u[uIdx( i, nmax -2 )] ;
@@ -1233,7 +1238,7 @@ void Q::setBoundaryLidDrivenCavity() {
 
   // no leaking at the top so the u velocity is zero
 #pragma omp parallel for simd
-  for (int i = 1; i < nmax - 1; i++) {
+  for (int64_t i = 1; i < nmax - 1; i++) {
     // condition on V at i-direction
     //         vn[vIdx(i,1)]=0.0;
     //         vn[vIdx( i,0 )] = -vn[vIdx( 2, i )];
@@ -1257,7 +1262,7 @@ void Q::setNeumanPressureLDC() {
   // we solid faces so five neuman or solid
 
 #pragma omp parallel for simd
-  for (int i = 0; i < nmax; i++) {
+  for (int64_t i = 0; i < nmax; i++) {
       pn[pIdx(i, 0)] = pn[pIdx(i, 1)];
       pn[pIdx(0, i)] = pn[pIdx(1, i)];
       pn[pIdx(nmax - 1, i)] = pn[pIdx(nmax - 2, i)];
