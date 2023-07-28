@@ -519,7 +519,7 @@ __assume_aligned(pn,64);
 
 //  pn[pIdx(5, 5)] = 0.0;
   //  while ( err > 1.e-12 )
-  for (int64_t l = 0; l < 10; l++) {
+  for (int64_t l = 0; l < 5; l++) {
 #pragma omp parallel for 
       for (int64_t j = 1; j < shortEnd; j++) {
 #pragma omp simd
