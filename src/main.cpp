@@ -1,6 +1,8 @@
 #include "header.h"
 #include <cmath>
+#ifdef _OPENMP
 #include <omp.h>
+#endif
 #define LID 0
 
 double rhs(double &x, double &y, double &z);
@@ -70,7 +72,7 @@ int main(int argsc, char *argsv[]) {
     }
     total_time+=end_time-start_time;
   }
-   std::cout<< " total time Kov "<< total_time <<std::endl;
+//   std::cout<< " total time Kov "<< total_time <<std::endl;
 #else
   // solve lid driven Cavity
   Re = 100.;
@@ -79,7 +81,9 @@ int main(int argsc, char *argsv[]) {
   q.start();
   count = 0;
   double res_old = 2.0;
+#ifdef _OPENMP
   double start_time = omp_get_wtime();
+#endif
 //  while (res > 1.e-7) {
   while (count < count_max) {
     q.getRes(Re);
@@ -93,18 +97,21 @@ int main(int argsc, char *argsv[]) {
     q.getResTotal(Re);
     q.getResNorm(&res);
     count++;
+/*
     if (count % 100 == 0) {
       cout << res << endl;
     }
+*/
     if (fabs(res_old - res) < 1e-14) {
       // break;
     }
     res_old = res;
   }
 #endif
+#ifdef _OPENMP
     double end_time = omp_get_wtime();
     total_time += end_time-start_time;
-
+#endif
     cout <<" residual = "<< res << endl;
 
 /*
@@ -117,8 +124,8 @@ int main(int argsc, char *argsv[]) {
   q.VTK_out_with_ghost(X, Y);
 #endif
 
-*/
    std::cout<< " total time "<< total_time <<std::endl;
+*/
 };
 
 void Struct_2D(double Xa, double Xb, double Ya, double Yb, int64_t N, int64_t M,
